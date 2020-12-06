@@ -18,3 +18,9 @@ Route::get('/', 'App\Http\Controllers\HomeController@home');
 
 Route::get('/Trang-chu', 'App\Http\Controllers\HomeController@home');
 
+
+Route::get('/admin','App\Http\Controllers\AdminController@admin');
+
+
+Route::get('dashboard','AdminController@show');
+
