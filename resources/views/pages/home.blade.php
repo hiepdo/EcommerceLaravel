@@ -2,28 +2,28 @@
 @section('content')
 <!--features_items-->
 <div class="features_items">
-						<h2 class="title text-center">Features Items</h2>
+						<h2 class="title text-center">Sản phẩm nổi bật</h2>
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
 											<img src="{{ asset('public/frontend/images/product1.jpg')}}" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<h2>500.000 VND</h2>
+											<p>describe to product</p>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 										</div>
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>thêm vào yêu thích</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào so sánh</a></li>
 									</ul>
 								</div>
 							</div>
@@ -33,22 +33,22 @@
 								<div class="single-products">
 									<div class="productinfo text-center">
 										<img src="{{ asset('public/frontend/images/product2.jpg') }}" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										<h2>500.000 VND</h2>
+										<p>describe to product</p>
+										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<h2>500.000 VND</h2>
+											<p>describe to product</p>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 										</div>
 									</div>
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>thêm vào yêu thích</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào so sánh</a></li>
 									</ul>
 								</div>
 							</div>
@@ -58,22 +58,22 @@
 								<div class="single-products">
 									<div class="productinfo text-center">
 										<img src="{{ asset('public/frontend/images/product3.jpg') }}" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										<h2>500.000 VND</h2>
+										<p>describe to product</p>
+										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<h2>500.000 VND</h2>
+											<p>describe to product</p>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 										</div>
 									</div>
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>thêm vào yêu thích</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào so sánh</a></li>
 									</ul>
 								</div>
 							</div>
@@ -83,23 +83,23 @@
 								<div class="single-products">
 									<div class="productinfo text-center">
 										<img src="{{ asset('public/frontend/images/product4.jpg') }}" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										<h2>500.000 VND</h2>
+										<p>describe to product</p>
+										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<h2>500.000 VND</h2>
+											<p>describe to product</p>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 										</div>
 									</div>
 									<img src="{{ asset('public/frontend/images/new.png')}}" class="new" alt="" />
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>thêm vào yêu thích</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào so sánh</a></li>
 									</ul>
 								</div>
 							</div>
@@ -109,23 +109,23 @@
 								<div class="single-products">
 									<div class="productinfo text-center">
 										<img src="{{ asset('public/frontend/images/product5.jpg') }}" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										<h2>500.000 VND</h2>
+										<p>describe to product</p>
+										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<h2>500.000 VND</h2>
+											<p>describe to product</p>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 										</div>
 									</div>
 									<img src="{{ asset('public/frontend/images/sale.png')}}" class="new" alt="" />
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>thêm vào yêu thích</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào so sánh</a></li>
 									</ul>
 								</div>
 							</div>
@@ -135,22 +135,22 @@
 								<div class="single-products">
 									<div class="productinfo text-center">
 										<img src="{{ asset('public/frontend/images/product6.jpg') }}" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										<h2>500.000 VND</h2>
+										<p>describe to product</p>
+										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<h2>500.000 VND</h2>
+											<p>describe to product</p>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 										</div>
 									</div>
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>thêm vào yêu thích</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào so sánh</a></li>
 									</ul>
 								</div>
 							</div>
@@ -177,9 +177,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery1.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -190,9 +190,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery2.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -203,9 +203,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery3.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -216,9 +216,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery4.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -232,9 +232,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery4.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -245,9 +245,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery3.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -258,9 +258,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery2.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -271,9 +271,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery1.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -287,9 +287,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery3.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -300,9 +300,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery4.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -313,9 +313,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery1.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -326,9 +326,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery2.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -342,9 +342,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery1.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -355,9 +355,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery2.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -368,9 +368,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery3.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -381,9 +381,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery4.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -397,9 +397,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery2.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -410,9 +410,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery4.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -423,9 +423,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery3.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -436,9 +436,9 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('public/frontend/images/gallery1.jpg') }}" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>500.000 VND</h2>
+												<p>describe to product</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 											
 										</div>
@@ -451,7 +451,7 @@
 
                     <!--recommended_items-->
                     <div class="recommended_items">
-						<h2 class="title text-center">recommended items</h2>
+						<h2 class="title text-center">Sản phẩm gợi ý</h2>
 						
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
@@ -461,9 +461,9 @@
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="{{ asset('public/frontend/images/recommend1.jpg') }}" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<h2>500.000 VND</h2>
+													<p>describe to product</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 												</div>
 												
 											</div>
@@ -474,9 +474,9 @@
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="{{ asset('public/frontend/images/recommend2.jpg') }}" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<h2>500.000 VND</h2>
+													<p>describe to product</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 												</div>
 												
 											</div>
@@ -487,9 +487,9 @@
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="{{ asset('public/frontend/images/recommend3.jpg') }}" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<h2>500.000 VND</h2>
+													<p>describe to product</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 												</div>
 												
 											</div>
@@ -502,9 +502,9 @@
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="{{ asset('public/frontend/images/recommend1.jpg') }}" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<h2>500.000 VND	</h2>
+													<p>describe to product</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 												</div>
 												
 											</div>
@@ -515,9 +515,9 @@
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="{{ asset('public/frontend/images/recommend2.jpg') }}" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<h2>500.000 VND</h2>
+													<p>describe to product</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 												</div>
 												
 											</div>
@@ -528,9 +528,9 @@
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="{{ asset('public/frontend/images/recommend3.jpg')}}" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<h2>500.000 VND</h2>
+													<p>describe to product</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 												</div>
 												
 											</div>
