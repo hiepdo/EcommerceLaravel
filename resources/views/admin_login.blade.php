@@ -24,9 +24,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="log-w3">
 <div class="w3layouts-main">
 	<h2>Sign In Now</h2>
-		<form action="#" method="post">
-			<input type="email" class="ggg" name="Email" placeholder="E-MAIL" required="">
-			<input type="password" class="ggg" name="Password" placeholder="PASSWORD" required="">
+		<form action="{{URL::to('/admin-dashboard')}}" method="post">
+			{{ csrf_field() }}
+			<input type="email" class="ggg" name="admin_email" placeholder="E-MAIL" required="">
+			<input type="password" class="ggg" name="admin_password" placeholder="PASSWORD" required="">
 			<span><input type="checkbox" />Nhớ mật khẩu</span>
 			<h6><a href="#">Quên mật khẩu?</a></h6>
 				<div class="clearfix"></div>
