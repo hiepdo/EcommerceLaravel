@@ -42,8 +42,6 @@
 							<ul class="nav navbar-nav" >
 								<li><a href="https://www.facebook.com/groups/2966534243584019"><i class="fa fa-facebook"></i></a></li>
 								<li><a href="http://twitter.com/home?status=E%20Shopper%20-%20https%3A%2F%2Fwww.free-css.com%2Ffree-css-templates%2Fpage203%2Fe-shopper"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
 								<li><a href="http://www.google.com/bookmarks/mark?op=edit&bkmk=https%3A%2F%2Fwww.free-css.com%2Ffree-css-templates%2Fpage203%2Fe-shopper&title=E%20Shopper&annotation=E%20Shopper"><i class="fa fa-google-plus"></i></a></li>
 							</ul>
 						</div>
@@ -57,7 +55,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="{{ URL::to('/Trang-chu') }}"><img src="{{ asset('public/frontend/images/logo.png') }}" alt="" /></a>
+							<a href="{{ URL::to('/Trang-chu') }}"><img src="{{ asset('public/frontend/images/home/logo.png') }}" alt="" /></a>
 						</div>
 						<div class="btn-group pull-right">
 							<div class="btn-group">
@@ -115,8 +113,8 @@
 								<li><a href="{{ URL::to('/Trang-chu') }}" class="active">Trang chủ</a></li>
 								<li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li> 
+                                        <li><a href="{{ URL::to('/shop') }}">Products</a></li>
+										<li><a href="{{ URL::to('/product') }}">Product Details</a></li> 
 										<li><a href="checkout.html">Checkout</a></li> 
 										<li><a href="cart.html">Cart</a></li> 
 										<li><a href="login.html">Login</a></li> 
@@ -169,8 +167,8 @@
 									<button type="button" class="btn btn-default get">Xem thêm</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="{{ ('public/frontend/images/girl1.jpg') }}" class="girl img-responsive" alt="" />
-									<img src="{{ ('public/frontend/images/pricing.png') }}"  class="pricing" alt="" />
+									<img src="{{ ('public/frontend/images/home/girl1.jpg') }}" class="girl img-responsive" alt="" />
+									<img src="{{ ('public/frontend/images/home/pricing.png') }}"  class="pricing" alt="" />
 								</div>
 							</div>
 							<div class="item">
@@ -181,8 +179,8 @@
 									<button type="button" class="btn btn-default get">Xem thêm</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="{{ asset('public/frontend/images/girl2.jpg') }}" class="girl img-responsive" alt="" />
-									<img src="{{ asset('public/frontend/images/pricing.png') }}"  class="pricing" alt="" />
+									<img src="{{ asset('public/frontend/images/home/girl2.jpg') }}" class="girl img-responsive" alt="" />
+									<img src="{{ asset('public/frontend/images/home/pricing.png') }}"  class="pricing" alt="" />
 								</div>
 							</div>
 							
@@ -194,8 +192,8 @@
 									<button type="button" class="btn btn-default get">Xem thêm</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="{{ asset('public/frontend/images/girl3.jpg') }}" class="girl img-responsive" alt="" />
-									<img src="{{ asset('public/frontend/images/pricing.png') }}" class="pricing" alt="" />
+									<img src="{{ asset('public/frontend/images/home/girl3.jpg') }}" class="girl img-responsive" alt="" />
+									<img src="{{ asset('public/frontend/images/home/pricing.png') }}" class="pricing" alt="" />
 								</div>
 							</div>
 							
@@ -354,7 +352,7 @@
 						</div><!--/price-range-->
 						
 						<div class="shipping text-center"><!--shipping-->
-							<img src="{{ asset('public/frontend/images/shipping.jpg') }}" alt="" />
+							<img src="{{ asset('public/frontend/images/home/shipping.jpg') }}" alt="" />
 						</div><!--/shipping-->
 					
 					</div>
@@ -383,7 +381,7 @@
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="{{ asset('public/frontend/images/iframe1.png') }}" alt="" />
+										<img src="{{ asset('public/frontend/images/home/iframe1.png') }}" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
@@ -398,7 +396,7 @@
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="{{ asset('public/frontend/images/iframe2.png') }}" alt="" />
+										<img src="{{ asset('public/frontend/images/home/iframe2.png') }}" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
@@ -413,7 +411,7 @@
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="{{ asset('public/frontend/images/iframe3.png')}}" alt="" />
+										<img src="{{ asset('public/frontend/images/home/iframe3.png')}}" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
@@ -428,7 +426,7 @@
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="{{ asset('public/frontend/images/iframe4.png') }}" alt="" />
+										<img src="{{ asset('public/frontend/images/home/iframe4.png') }}" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
@@ -441,7 +439,7 @@
 					</div>
 					<div class="col-sm-3">
 						<div class="address">
-							<img src="{{ asset('public/frontend/images/map.png') }}" alt="" />
+							<img src="{{ asset('public/frontend/images/home/map.png') }}" alt="" />
 						</div>
 					</div>
 				</div>

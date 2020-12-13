@@ -18,3 +18,9 @@ Route::get('/', 'App\Http\Controllers\HomeController@home');
 
 Route::get('/Trang-chu', 'App\Http\Controllers\HomeController@home');
 
+Route::get('/product', 'App\Http\Controllers\HomeController@products');
+
+Route::get('/shop', 'App\Http\Controllers\HomeController@shop');
+
+
+
