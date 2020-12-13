@@ -32,19 +32,19 @@
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> +1 234 567 89</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i> +058 417 9899</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> ltw18ck1@gmail.com</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="social-icons pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<ul class="nav navbar-nav" >
+								<li><a href="https://www.facebook.com/groups/2966534243584019"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="http://twitter.com/home?status=E%20Shopper%20-%20https%3A%2F%2Fwww.free-css.com%2Ffree-css-templates%2Fpage203%2Fe-shopper"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
 								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+								<li><a href="http://www.google.com/bookmarks/mark?op=edit&bkmk=https%3A%2F%2Fwww.free-css.com%2Ffree-css-templates%2Fpage203%2Fe-shopper&title=E%20Shopper&annotation=E%20Shopper"><i class="fa fa-google-plus"></i></a></li>
 							</ul>
 						</div>
 					</div>
@@ -57,7 +57,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="{{ asset('public/frontend/images/logo.png') }}" alt="" /></a>
+							<a href="{{ URL::to('/Trang-chu') }}"><img src="{{ asset('public/frontend/images/logo.png') }}" alt="" /></a>
 						</div>
 						<div class="btn-group pull-right">
 							<div class="btn-group">
@@ -133,8 +133,15 @@
 						</div>
 					</div>
 					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+						<div class="pull-right">
+							<form class="navbar-form pull-right" role="search">
+								<div class="input-group">
+								<input type="text" class="form-control" placeholder="Search">
+								<div class="input-group-btn">
+									<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+								</div>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -219,7 +226,7 @@
 									<h4 class="panel-title">
 										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Sportswear
+											Đồ Thể Thao
 										</a>
 									</h4>
 								</div>
@@ -240,11 +247,33 @@
 									<h4 class="panel-title">
 										<a data-toggle="collapse" data-parent="#accordian" href="#mens">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Mens
+											Nam
 										</a>
 									</h4>
 								</div>
 								<div id="mens" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul>
+											<li><a href="#">Fendi</a></li>
+											<li><a href="#">Guess</a></li>
+											<li><a href="#">Valentino</a></li>
+											<li><a href="#">Dior</a></li>
+											<li><a href="#">Versace</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+											Nữ
+										</a>
+									</h4>
+								</div>
+								<div id="womens" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
 											<li><a href="#">Fendi</a></li>
@@ -261,61 +290,39 @@
 									</div>
 								</div>
 							</div>
-							
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Womens
-										</a>
-									</h4>
-								</div>
-								<div id="womens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Fendi</a></li>
-											<li><a href="#">Guess</a></li>
-											<li><a href="#">Valentino</a></li>
-											<li><a href="#">Dior</a></li>
-											<li><a href="#">Versace</a></li>
-										</ul>
-									</div>
+									<h4 class="panel-title"><a href="#">Trẻ em</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Kids</a></h4>
+									<h4 class="panel-title"><a href="#">Thời Trang</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Fashion</a></h4>
+									<h4 class="panel-title"><a href="#">Gia Đình</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Households</a></h4>
+									<h4 class="panel-title"><a href="#">Thiết Kế</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Interiors</a></h4>
+									<h4 class="panel-title"><a href="#">Thịnh Hành</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Clothing</a></h4>
+									<h4 class="panel-title"><a href="#">Balo</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Bags</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Shoes</a></h4>
+									<h4 class="panel-title"><a href="#">Giày</a></h4>
 								</div>
 							</div>
 						</div><!--/category-products-->
@@ -324,22 +331,25 @@
 							<h2>Thương hiệu</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
-									<li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
-									<li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
-									<li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
-									<li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
-									<li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
-									<li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
+									<li><a href="#"> <span class="pull-right">(50)</span>Fendi</a></li>
+									<li><a href="#"> <span class="pull-right">(56)</span>Guess</a></li>
+									<li><a href="#"> <span class="pull-right">(27)</span>Valentino</a></li>
+									<li><a href="#"> <span class="pull-right">(32)</span>Dior</a></li>
+									<li><a href="#"> <span class="pull-right">(5)</span>Versace</a></li>
+									<li><a href="#"> <span class="pull-right">(9)</span>Armani</a></li>
+									<li><a href="#"> <span class="pull-right">(4)</span>Prada</a></li>
+									<li><a href="#"> <span class="pull-right">(15)</span>Chanel</a></li>
+									<li><a href="#"> <span class="pull-right">(7)</span>Dolce and Gabbana</a></li>
+									<li><a href="#"> <span class="pull-right">(20)</span>Gucci</a></li>
 								</ul>
 							</div>
 						</div><!--/brands_products-->
 						
 						<div class="price-range"><!--price-range-->
-							<h2>Tầm giá</h2>
+							<h2>Khoảng Giá</h2>
 							<div class="well text-center">
-								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-								 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="10000" data-slider-step="100" data-slider-value="[0,2500]" id="sl2" ><br />
+								 <b class="pull-left">$ 0	</b> <b class="pull-right">$ 10.000.000</b>
 							</div>
 						</div><!--/price-range-->
 						
@@ -365,7 +375,7 @@
 					<div class="col-sm-2">
 						<div class="companyinfo">
 							<h2><span>e</span>-shopper</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+							<p>Trang thương mại chuyên bán các mặt hàng thời trang nam,nữ, gia đình đầy đủ.</p>
 						</div>
 					</div>
 					<div class="col-sm-7">
@@ -379,7 +389,7 @@
 										<i class="fa fa-play-circle-o"></i>
 									</div>
 								</a>
-								<p>Circle of Hands</p>
+								<p>Thương Hiệu Nam</p>
 								<h2>24 DEC 2014</h2>
 							</div>
 						</div>
@@ -394,7 +404,7 @@
 										<i class="fa fa-play-circle-o"></i>
 									</div>
 								</a>
-								<p>Circle of Hands</p>
+								<p>Phụ Kiện Nữ</p>
 								<h2>24 DEC 2014</h2>
 							</div>
 						</div>
@@ -409,7 +419,7 @@
 										<i class="fa fa-play-circle-o"></i>
 									</div>
 								</a>
-								<p>Circle of Hands</p>
+								<p>Thời Trang Nữ</p>
 								<h2>24 DEC 2014</h2>
 							</div>
 						</div>
@@ -424,7 +434,7 @@
 										<i class="fa fa-play-circle-o"></i>
 									</div>
 								</a>
-								<p>Circle of Hands</p>
+								<p>Trang Sức Nữ</p>
 								<h2>24 DEC 2014</h2>
 							</div>
 						</div>
@@ -432,7 +442,6 @@
 					<div class="col-sm-3">
 						<div class="address">
 							<img src="{{ asset('public/frontend/images/map.png') }}" alt="" />
-							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
 						</div>
 					</div>
 				</div>
@@ -444,59 +453,46 @@
 				<div class="row">
 					<div class="col-sm-2">
 						<div class="single-widget">
-							<h2>Service</h2>
+							<h2>Dịch Vụ</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Online Help</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Order Status</a></li>
-								<li><a href="#">Change Location</a></li>
-								<li><a href="#">FAQ’s</a></li>
+								<li><a href="#">Hỗ trợ trực tuyến</a></li>
+								<li><a href="#">Liên hệ chúng tôi</a></li>
+								<li><a href="#">Tình trạng đặt hàng</a></li>
+								<li><a href="#">Thay đổi địa điểm</a></li>
+								<li><a href="#">Câu hỏi thường gặp</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-sm-2">
 						<div class="single-widget">
-							<h2>Quock Shop</h2>
+							<h2>Chính Sách</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">T-Shirt</a></li>
-								<li><a href="#">Mens</a></li>
-								<li><a href="#">Womens</a></li>
-								<li><a href="#">Gift Cards</a></li>
-								<li><a href="#">Shoes</a></li>
+								<li><a href="#">Chính sách bảo mật thanh toán</a></li>
+								<li><a href="#">Chính sách thanh toán</a></li>
+								<li><a href="#">Chính sách giao hàng</a></li>
+								<li><a href="#">Chính sách đổi trả</a></li>
+								<li><a href="#">Chính sách bảo hành</a></li>
+								<li><a href="#">Điều khoảng và điều kiện giao dịch</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-sm-2">
 						<div class="single-widget">
-							<h2>Policies</h2>
+							<h2>E - Shopper</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privecy Policy</a></li>
-								<li><a href="#">Refund Policy</a></li>
-								<li><a href="#">Billing System</a></li>
-								<li><a href="#">Ticket System</a></li>
+								<li><a href="#">Giới Thiệu về E-Shop </a></li>
+								<li><a href="#">Đánh Giá của Khách Hàng</a></li>
+								<li><a href="#">Được Chứng Nhận bởi Bộ Công Thương</a></li>
 							</ul>
 						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Company Information</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">Store Location</a></li>
-								<li><a href="#">Affillate Program</a></li>
-								<li><a href="#">Copyright</a></li>
-							</ul>
-						</div>
+
 					</div>
 					<div class="col-sm-3 col-sm-offset-1">
 						<div class="single-widget">
-							<h2>About Shopper</h2>
+							<h2>Liên Hệ với chúng tôi.</h2>
 							<form action="#" class="searchform">
 								<input type="text" placeholder="Your email address" />
 								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-								<p>Get the most recent updates from <br />our site and be updated your self...</p>
 							</form>
 						</div>
 					</div>
@@ -504,8 +500,17 @@
 				</div>
 			</div>
 		</div>
-		
 		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+				<p class="pull-left">© 2020 - Bản quyền của Nhóm Ku-Ma</p>
+					<p class="pull-left">Lưu Phước Hậu - Phan Phi Hùng - Đỗ Tiến Hiệp - Nguyễn Mạnh Cường.</p>
+					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+				</div>
+			</div>
+		</div>
+				
+		<!-- <div class="footer-bottom">
 			<div class="container">
 				<div class="row">
 					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
@@ -513,7 +518,7 @@
 				</div>
 			</div>
 		</div>
-		
+		 -->
 	</footer><!--/Footer-->
 	
 
