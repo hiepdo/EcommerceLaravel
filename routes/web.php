@@ -21,3 +21,4 @@ Route::get('/Home', 'App\Http\Controllers\HomeController@home');
 Route::get('/admin','App\Http\Controllers\AdminController@admin');
 Route::get('/dashboard','App\Http\Controllers\AdminController@show');
 Route::post('/admin-dashboard','App\Http\Controllers\AdminController@dashboard');
+
