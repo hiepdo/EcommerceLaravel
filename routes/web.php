@@ -20,7 +20,9 @@ Route::get('/Home', 'App\Http\Controllers\HomeController@home');
 
 Route::get('/admin','App\Http\Controllers\AdminController@admin');
 Route::get('/dashboard','App\Http\Controllers\AdminController@show');
+Route::get('/logout','App\Http\Controllers\AdminController@logout');
 Route::post('/admin-dashboard','App\Http\Controllers\AdminController@dashboard');
+
 //Category product
 Route::get('/add-category-product','App\Http\Controllers\CategoryProduct@add_category_product');
 Route::get('/edit-category-product/{category_product_id}','App\Http\Controllers\CategoryProduct@edit_category_product');

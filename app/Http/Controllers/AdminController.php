@@ -51,6 +51,12 @@ class AdminController extends Controller
             return Redirect::to('/dashboard');
         }else{
                 Session::put('message','Mật khẩu hoặc tài khoản bị sai.Làm ơn nhập lại');
-        }       return Redirect::to('/admin');    
+        }           
+    }
+    public function logout()
+    {
+        Session::put('admin_name',null);
+        Session::put('admin_id',null);
+        return Redirect::to('/admin');
     }
 }
