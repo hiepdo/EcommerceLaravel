@@ -43,3 +43,6 @@ Route::get('/active-brand-product/{brand_product_id}','App\Http\Controllers\Bran
 
 Route::post('/save-brand-product','App\Http\Controllers\BrandProduct@save_brand_product');
 Route::post('/update-brand-product/{brand_product_id}','App\Http\Controllers\BrandProduct@update_brand_product');
+
+
+

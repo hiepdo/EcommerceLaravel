@@ -10,6 +10,18 @@ use Validator;
 
 class AdminController extends Controller
 {
+    public function AuthenLogin()
+    {
+        $admin_id = Session::get('admin_id');
+        if($admin_id)
+        {
+           return Redirect::to('dashboard');
+        }
+        else
+        {
+           return Redirect::to('admin')-> send();
+        }
+    }
     public function admin()
     {
         return view('admin_login');
@@ -17,11 +29,13 @@ class AdminController extends Controller
 
     public function show()
     {
+        $this->AuthenLogin();
         return view('admin.dashboard');
     }
     
     public function dashboard(Request $request)
     {
+       
         //$data = $request->all();
         $data = $request->validate([
             //validation laravel 
