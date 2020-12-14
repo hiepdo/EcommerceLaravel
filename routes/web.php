@@ -14,10 +14,14 @@ use App\Http\Controllers\UserController;
 |
 */
 
-
+//homepage
 Route::get('/', 'App\Http\Controllers\HomeController@home');
 Route::get('/Home', 'App\Http\Controllers\HomeController@home');
+Route::get('/login', 'App\Http\Controllers\HomeController@to_login');
+Route::post('/register-user', 'App\Http\Controllers\HomeController@register_user');
+Route::post('/login-user', 'App\Http\Controllers\HomeController@login_user');
 
+//admin
 Route::get('/admin','App\Http\Controllers\AdminController@admin');
 Route::get('/dashboard','App\Http\Controllers\AdminController@show');
 Route::post('/admin-dashboard','App\Http\Controllers\AdminController@dashboard');
