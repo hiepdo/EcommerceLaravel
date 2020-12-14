@@ -14,10 +14,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{{asset('public/backend/css/style.css')}}" rel='stylesheet' type='text/css' />
 <link href="{{asset('public/backend/css/style-responsive.css')}}" rel="stylesheet"/>
 <!-- font CSS -->
-<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<!-- <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'> -->
 <!-- font-awesome icons -->
-<link rel="stylesheet" href="{{asset('public/backend/css/font.css')}}" type="text/css"/>
-<link href="{{asset('public/backend/css/font-awesome.css')}}" rel="stylesheet"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="{{asset('public/backend/css/font.css')}}" type="text/css"/> -->
+<!-- <link href="{{asset('public/backend/css/font-awesome.css')}}" rel="stylesheet">  -->
 <link rel="stylesheet" href="{{asset('public/backend/css/morris.css')}}" type="text/css"/>
 <!-- calendar -->
 <link rel="stylesheet" href="{{asset('public/backend/css/monthly.css')}}">
@@ -84,22 +85,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Danh mục sản phẩm </span>
                     </a>
                     <ul class="sub">
-						<li><a href="#">Thêm sản phẩm</a></li>
-						<li><a href="#">Liệt kê sản phẩm</a></li>
-                        <li><a href="#">Sửa sản phẩm</a></li>
+						<li><a href="{{URL::to('/add-category-product')}}">Thêm danh mục sản phẩm</a></li>
+						<li><a href="{{URL::to('/all-category-product')}}">Liệt kê danh mục sản phẩm</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Quản lí đơn hàng </span>
+                        <span>Thương hiệu sản phẩm </span>
                     </a>
                     <ul class="sub">
-						<li><a href="#">Đơn hàng chờ xử lý</a></li>
-                        <li><a href="#">Đơn hàng đang xử lý</a></li>
-						<li><a href="#">Đơn hàng đã hủy</a></li>
-                        <li><a href="#">Đơn hàng đang giao</a></li>
-                        <li><a href="#">Đơn hàng đã hoàn thành</a></li>
+						<li><a href="{{URL::to('/add-brand-product')}}">Thêm thương hiệu sản phẩm</a></li>
+                        <li><a href="{{URL::to('/all-brand-product')}}">Liệt kê thương hiệu sản phẩm</a></li>
                     </ul>
                 </li>
                 
