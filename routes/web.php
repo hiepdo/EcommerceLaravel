@@ -21,9 +21,6 @@ Route::get('/Home', 'App\Http\Controllers\HomeController@home');
 Route::get('/admin','App\Http\Controllers\AdminController@admin');
 Route::get('/dashboard','App\Http\Controllers\AdminController@show');
 Route::post('/admin-dashboard','App\Http\Controllers\AdminController@dashboard');
-
-<<<<<<< HEAD
-=======
 //Category product
 Route::get('/add-category-product','App\Http\Controllers\CategoryProduct@add_category_product');
 Route::get('/edit-category-product/{category_product_id}','App\Http\Controllers\CategoryProduct@edit_category_product');
@@ -46,4 +43,3 @@ Route::get('/active-brand-product/{brand_product_id}','App\Http\Controllers\Bran
 
 Route::post('/save-brand-product','App\Http\Controllers\BrandProduct@save_brand_product');
 Route::post('/update-brand-product/{brand_product_id}','App\Http\Controllers\BrandProduct@update_brand_product');
->>>>>>> 0997b601e5edeb9b86d26886a608aa03f0fdb1aa
