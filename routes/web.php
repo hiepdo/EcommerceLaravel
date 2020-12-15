@@ -58,3 +58,9 @@ Route::post('/update-brand-product/{brand_product_id}','App\Http\Controllers\Bra
 
 
 
+Route::get('/product', 'App\Http\Controllers\HomeController@products');
+
+Route::get('/shop', 'App\Http\Controllers\HomeController@shop');
+
+
+
