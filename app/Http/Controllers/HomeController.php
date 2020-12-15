@@ -56,4 +56,14 @@ class HomeController extends Controller
     	return Redirect::to('/login');
     }
 
+    public function products()
+    {
+        return view('pages.productdetail');
+    }
+    
+    public function shop()
+    {
+        return view('pages.product');
+    }
+
 }

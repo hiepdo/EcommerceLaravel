@@ -20,6 +20,9 @@ Route::get('/Home', 'App\Http\Controllers\HomeController@home');
 Route::get('/login', 'App\Http\Controllers\HomeController@to_login');
 Route::post('/register-user', 'App\Http\Controllers\HomeController@register_user');
 Route::post('/login-user', 'App\Http\Controllers\HomeController@login_user');
+Route::get('/product', 'App\Http\Controllers\HomeController@products');
+Route::get('/shop', 'App\Http\Controllers\HomeController@shop');
+
 
 //admin
 Route::get('/admin','App\Http\Controllers\AdminController@admin');
@@ -49,6 +52,9 @@ Route::get('/active-brand-product/{brand_product_id}','App\Http\Controllers\Bran
 
 Route::post('/save-brand-product','App\Http\Controllers\BrandProduct@save_brand_product');
 Route::post('/update-brand-product/{brand_product_id}','App\Http\Controllers\BrandProduct@update_brand_product');
+
+
+
 
 
 
