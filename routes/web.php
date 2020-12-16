@@ -19,9 +19,6 @@ use App\Http\Controllers\UserController;
 //homepage
 Route::get('/', 'HomeController@home');
 Route::get('/Home', 'HomeController@home');
-Route::get('/login', 'HomeController@to_login');
-Route::post('/register-user', 'HomeController@register_user');
-Route::post('/login-user', 'HomeController@login_user');
 Route::get('/product', 'HomeController@products');
 Route::get('/shop', 'HomeController@shop');
 
@@ -44,20 +41,24 @@ Route::post('/save-category-product','CategoryProduct@save_category_product');
 Route::post('/update-category-product/{category_product_id}','CategoryProduct@update_category_product');
 
 //brand product
-Route::get('/add-brand-product','BrandProduct@add_brand_product');
-Route::get('/edit-brand-product/{brand_product_id}','BrandProduct@edit_brand_product');
-Route::get('/delete-brand-product/{brand_product_id}','BrandProduct@delete_brand_product');
-Route::get('/all-brand-product','BrandProduct@all_brand_product');
+Route::get('/add-brand-product', 'BrandProduct@add_brand_product');
+Route::get('/edit-brand-product/{brand_product_id}', 'BrandProduct@edit_brand_product');
+Route::get('/delete-brand-product/{brand_product_id}', 'BrandProduct@delete_brand_product');
+Route::get('/all-brand-product', 'BrandProduct@all_brand_product');
 
-Route::get('/unactive-brand-product/{brand_product_id}','BrandProduct@unactive_brand_product');
-Route::get('/active-brand-product/{brand_product_id}','BrandProduct@active_brand_product');
+Route::get('/unactive-brand-product/{brand_product_id}', 'BrandProduct@unactive_brand_product');
+Route::get('/active-brand-product/{brand_product_id}', 'BrandProduct@active_brand_product');
 
-Route::post('/save-brand-product','BrandProduct@save_brand_product');
-Route::post('/update-brand-product/{brand_product_id}','BrandProduct@update_brand_product');
+Route::post('/save-brand-product', 'BrandProduct@save_brand_product');
+Route::post('/update-brand-product/{brand_product_id}', 'BrandProduct@update_brand_product');
 
 //Send mail
-Route::get('/send-mail','MailController@SendEmail');
+Route::get('/send-mail', 'MailController@SendEmail');
 
-
-
+//account
+Route::get('/login', 'HomeController@to_login');
+Route::get('/forget-password', 'HomeController@to_forget_password');
+Route::post('/register-user', 'HomeController@register_user');
+Route::post('/login-user', 'HomeController@login_user');
+Route::post('/recover-pass', 'HomeController@recover_pass');
 

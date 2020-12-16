@@ -15,6 +15,7 @@
 								<input type="checkbox" class="checkbox"> 
 								Ghi nhớ đăng nhập
 							</span>
+							<a href="{{URL::to('forget-password')}}">Quên mật khẩu</a>
 							<button type="submit" class="btn btn-default">Đăng nhập</button>
 						</form>
 					</div><!--/login form-->

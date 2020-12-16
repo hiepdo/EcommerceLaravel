@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use DB;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use Validator;
+use Carbon\Carbon;
+use App\Customer;
+use Mail;
 
 
 class HomeController extends Controller
@@ -19,6 +23,11 @@ class HomeController extends Controller
     public function to_login()
     {
         return view('pages.login_user');
+    }
+
+    public function to_forget_password()
+    {
+        return view('pages.forget_password');
     }
 
     public function register_user(Request $request)
@@ -48,6 +57,43 @@ class HomeController extends Controller
     		return Redirect::to('/login');
     	}
         Session::save();
+
+    }
+
+    public function recover_pass(Request $request)
+    {
+        $data = $request->email_account;
+        $time_now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
+        $title_mail = "Lấy lại mật khẩu tài khoản ".$time_now;
+        $customer = DB::table('tbl_customers')->where('customer_email', $data)->get();
+        // foreach($customer as $key => $value){
+        //     $customer_id = $value->customer_id;
+        // }
+        if($customer)
+        {
+            $count_customer = $customer->count();
+            if($count_customer == 0)
+            {
+                return redirect()->back()->with('error', 'Email chưa được đăng ký');
+            }
+            else{
+                $token_random = Str::random();
+                $customer = DB::table('tbl_customers')->where('customer_email', $data)
+                            ->update(['customer_token' => $token_random]);
+            
+                //send mail
+                $to_email = $data;//send to this email
+                $link_reset_pass = url('/reset-password?email='.$to_email.'&token='.$token_random);
+                $data = array("name"=>$title_mail, "body"=>$link_reset_pass, 'email'=>$data); //body of mail.blade.php
+                Mail::send('pages.send_mail', $data, function($message) use ($title_mail,$data){
+                    $message->to($data['email'])->subject($title_mail);//send this mail with subject
+                    $message->from($data['email'], $title_mail);//send from this mail
+                });
+                //return redirect()->back()->with('message', 'Gửi mail thành công, vui lòng kiểm tra email để đổi mật khẩu');
+                //--send 
+                return redirect::to('/Home');
+            }
+        }
 
     }
 
