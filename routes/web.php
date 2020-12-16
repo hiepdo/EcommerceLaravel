@@ -58,7 +58,8 @@ Route::get('/send-mail', 'MailController@SendEmail');
 //account
 Route::get('/login', 'HomeController@to_login');
 Route::get('/forget-password', 'HomeController@to_forget_password');
+Route::get('/reset-password', 'HomeController@reset_password');
 Route::post('/register-user', 'HomeController@register_user');
 Route::post('/login-user', 'HomeController@login_user');
 Route::post('/recover-pass', 'HomeController@recover_pass');
-
+Route::post('/update-password', 'HomeController@update_password');

@@ -5,6 +5,15 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
+					@if(session()->has('message'))
+					<div class="alert alert-success">
+						{!! session()->get('message') !!}
+					</div>
+					@elseif(session()->has('error'))
+						<div class="alert alert-danger">
+							{!! session()->get('error') !!}
+						</div>
+					@endif
 					<div class="login-form"><!--login form-->
 						<h2>Đăng nhập tài khoản</h2>
 						<form action="{{URL::to('/login-user')}}" method="POST">

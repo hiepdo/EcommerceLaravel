@@ -11,6 +11,8 @@ class TblCustomer extends Migration
      *
      * @return void
      */
+    protected $primaryKey = 'customer_id';
+
     public function up()
     {
         Schema::create('tbl_customers', function (Blueprint $table) {

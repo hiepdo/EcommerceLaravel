@@ -13,6 +13,7 @@ use App\Customer;
 use Mail;
 
 
+
 class HomeController extends Controller
 {
     public function home()
@@ -38,7 +39,7 @@ class HomeController extends Controller
         $data['customer_password'] = md5($request->customer_password);
         $data['customer_phone'] = $request->customer_phone;
 
-        $customer_id = DB::table('tbl_customers')->InsertGetId($data);
+        $customer_id = Customer::insertGetId($data);
         Session::put('customer_id', $customer_id);
         Session::put('customer_name', $request->customer_name);
         return Redirect('/login');
@@ -48,13 +49,13 @@ class HomeController extends Controller
     {
     	$email = $request->email_account;
     	$password = md5($request->password_account);
-    	$result = DB::table('tbl_customers')->where('customer_email',$email)->where('customer_password',$password)->first();
+    	$result = Customer::where('customer_email',$email)->where('customer_password',$password)->first();
     	
     	if($result){
     		Session::put('customer_id',$result->customer_id);
-    		return Redirect::to('/Home');
+    		return redirect()->back()->with('message', 'Đăng nhập thành công');
     	}else{
-    		return Redirect::to('/login');
+    		return redirect()->back()->with('error', 'Sai tên tài khoản hoặc mật khẩu, vui lòng kiểm tra lại');
     	}
         Session::save();
 
@@ -64,8 +65,8 @@ class HomeController extends Controller
     {
         $data = $request->email_account;
         $time_now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
-        $title_mail = "Lấy lại mật khẩu tài khoản ".$time_now;
-        $customer = DB::table('tbl_customers')->where('customer_email', $data)->get();
+        $title_mail = "Lấy lại mật khẩu tài khoản ".$data.' '.$time_now;
+        $customer = Customer::where('customer_email', $data)->get();
         // foreach($customer as $key => $value){
         //     $customer_id = $value->customer_id;
         // }
@@ -78,23 +79,49 @@ class HomeController extends Controller
             }
             else{
                 $token_random = Str::random();
-                $customer = DB::table('tbl_customers')->where('customer_email', $data)
+                $customer = Customer::where('customer_email', $data)
                             ->update(['customer_token' => $token_random]);
             
                 //send mail
                 $to_email = $data;//send to this email
                 $link_reset_pass = url('/reset-password?email='.$to_email.'&token='.$token_random);
                 $data = array("name"=>$title_mail, "body"=>$link_reset_pass, 'email'=>$data); //body of mail.blade.php
-                Mail::send('pages.send_mail', $data, function($message) use ($title_mail,$data){
+                Mail::send('pages.reset_pass_mail', $data, function($message) use ($title_mail,$data){
                     $message->to($data['email'])->subject($title_mail);//send this mail with subject
-                    $message->from($data['email'], $title_mail);//send from this mail
+                    $message->from('ltweb1082@gmail.com', 'EcommerceLaravel');//send from this mail
                 });
-                //return redirect()->back()->with('message', 'Gửi mail thành công, vui lòng kiểm tra email để đổi mật khẩu');
+                return redirect()->back()->with('message', 'Gửi mail thành công, vui lòng kiểm tra email để đổi mật khẩu');
                 //--send 
-                return redirect::to('/Home');
+                
             }
         }
 
+    }
+
+    public function reset_password(Request $request)
+    {
+        return view('pages.reset_password');
+    }
+
+    public function update_password(Request $request)
+    {
+        $data = $request->all();
+        $token_random = Str::random();
+        $customer = Customer::where('customer_email', $data['email'])->where('customer_token', $data['token'])->get();
+        if($customer->count() > 0)
+        {
+            foreach($customer as $key => $cus){
+                $customer_id = $cus->customer_id;
+            }
+            $reset = Customer::find($customer_id);
+            $reset->customer_password = md5($data['new-password']);
+            $reset->customer_token = $token_random;
+            $reset->save();
+            return redirect()->back()->with('message', 'Đổi mật khẩu thành công, quay lại trang đăng nhập');
+        }
+        else{
+            return redirect()->back()->with('error', 'Vui lòng nhập lại email vì đường dẫn đã hết hạn');
+        }
     }
 
     public function logout_checkout(){
