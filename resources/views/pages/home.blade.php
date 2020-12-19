@@ -8,7 +8,8 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
+											<h2></br></h2>
+											<img src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" height="250" width="150" alt="" />
 											<h2>{{number_format($product->product_price)}} VNĐ</h2>
 											<p>{{($product->product_name)}}</p>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
@@ -30,6 +31,24 @@
 							</div>
 						</div>
 					@endforeach
+					<footer class="panel-footer">
+						<div class="row">
+							
+							<div class="col-sm-5 text-center">
+							<small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+							</div>
+							<div class="col-sm-7 text-right text-center-xs">                
+							<ul class="pagination pagination-sm m-t-none m-b-none">
+								<li><a href=""><i class="fa fa-chevron-left"></i></a></li>
+								<li><a href="">1</a></li>
+								<li><a href="">2</a></li>
+								<li><a href="">3</a></li>
+								<li><a href="">4</a></li>
+								<li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+							</ul>
+							</div>
+						</div>
+					</footer>
                     <!--features_items-->
 
                     <!-- category-tab -->
