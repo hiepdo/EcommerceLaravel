@@ -32,17 +32,17 @@
                                     <label for="exampleInputEmail1">Hình Ảnh Sản Phẩm</label>
                                     <input type="file" name="product_image" class="form-control" id="exampleInputEmail1" >
                                     <img src="{{URL::to('public/uploads/product/'.$pro->product_image)}}" height="100" width = "100">
-                                </div>            
+                                </div>                 
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Chi tiết Sản phẩm</label> 
+                                    <textarea style="resize: none" rows="8" class="form-control" name="product_content" id="exampleInputPassword1" 
+                                    >{{$pro->product_content}}</textarea>
+                                </div> 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Mô tả Sản phẩm</label>
                                     <textarea style="resize: none" rows="8" class="form-control" name="product_desc" id="exampleInputPassword1" 
                                    >{{$pro->product_desc}} </textarea>
-                                </div>       
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Nội Dung Sản phẩm</label> 
-                                    <textarea style="resize: none" rows="8" class="form-control" name="product_content" id="exampleInputPassword1" 
-                                    >{{$pro->product_content}}</textarea>
-                                </div> 
+                                </div>  
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Danh Mục Sản Phẩm</label>
                                       <select name="product_cate" class="form-control input-sm m-bot15">
