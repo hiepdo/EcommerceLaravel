@@ -16,7 +16,7 @@
                         <div class="panel-body">
 
                             <div class="position-center">
-                                <form role="form" action="{{URL::to('/save-product')}}" method="post" enctype="multipart/form-dat"> 
+                                <form role="form" action="{{URL::to('/save-product')}}" method="post" enctype="multipart/form-data"> 
                                     {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên Sản Phẩm</label>
@@ -61,8 +61,8 @@
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Hiển thị</label>
                                       <select name="product_status" class="form-control input-sm m-bot15">
-                                            <option value="0">Ẩn</option>
-                                            <option value="1">Hiển thị</option>
+                                            <option value="0">Hiển thị</option>
+                                            <option value="1">Ẩn</option>
                                             
                                     </select>
                                 </div>
