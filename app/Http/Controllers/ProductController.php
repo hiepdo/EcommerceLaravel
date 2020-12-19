@@ -104,4 +104,9 @@ class ProductController extends Controller
         Session::put('message','Xóa sản phẩm thành công');
         return Redirect::to('all-product');
     }
+    //End admin page
+   /*  public function detail_product($product_id)
+    {
+
+    } */
 }
