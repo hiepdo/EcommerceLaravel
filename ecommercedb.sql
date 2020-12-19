@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 18, 2020 lúc 09:16 PM
+-- Thời gian đã tạo: Th12 19, 2020 lúc 04:16 AM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.11
 
@@ -180,7 +180,19 @@ INSERT INTO `tbl_product` (`product_id`, `product_name`, `category_id`, `brand_i
 (12, 'ALIENWARE 15 R3 - 7716G256', 6, 4, 'Intel Core i7-7700HQ, GTX 1070 8GB GDDR5, 16GB DDR4 - 2400 Mhz, 256GB SSD + 1Tb, 15.6\" (1920 x 1080)', 'Intel Core i7-7700HQ, GTX 1070 8GB GDDR5, 16GB DDR4 - 2400 Mhz, 256GB SSD + 1Tb, 15.6\" (1920 x 1080)', '37,200,000', 'dell0128.jpg', 0, NULL, NULL),
 (13, 'ALIENWARE 17 R2 478G256GG', 6, 4, 'Intel Core i7-4720HQ, GTX 1060 8GB GDDR5, 8GB DDR4 - 2400 Mhz, 256GB SSD, 17.3\" (1920 x 1080)', 'Intel Core i7-4720HQ, GTX 1060 8GB GDDR5, 8GB DDR4 - 2400 Mhz, 256GB SSD, 17.3\" (1920 x 1080)', '21,000,000', 'dell0281.jpg', 0, NULL, NULL),
 (14, 'ALIENWARE M17 878G128G', 6, 4, 'Intel Core i7-7700HQ, GTX 1070 8GB GDDR5, 16GB DDR4 - 2400 Mhz, 256GB SSD + 1Tb, 15.6\" (1920 x 1080)', 'Intel Core i7-7700HQ, GTX 1070 8GB GDDR5, 16GB DDR4 - 2400 Mhz, 256GB SSD + 1Tb, 15.6\" (1920 x 1080)', '50,500,000', 'dell0313.jpg', 0, NULL, NULL),
-(15, 'ALIENWARE M15 RED 8716G51', 6, 4, 'Intel Core i7-8750HQ, GTX 2060 8GB GDDR5, 24GB DDR4 - 2400 Mhz, 512GB, 15.6\" (1920 x 1080)', 'Intel Core i7-8750HQ, GTX 2060 8GB GDDR5, 24GB DDR4 - 2400 Mhz, 512GB, 15.6\" (1920 x 1080)', '56,000,000', 'dell0451.jpg', 0, NULL, NULL);
+(16, 'ALIENWARE M15 RED 8716G51', 6, 4, 'Intel Core i7-8750HQ, GTX 2060 8GB GDDR5, 24GB DDR4 - 2400 Mhz, 512GB, 15.6\" (1920 x 1080)', 'Intel Core i7-8750HQ, GTX 2060 8GB GDDR5, 24GB DDR4 - 2400 Mhz, 512GB, 15.6\" (1920 x 1080)', '56,000,000', 'dell0472.jpg', 0, NULL, NULL),
+(17, 'DELL XPS 13 9370 - 8550U16G', 6, 4, 'Intel Core i7-6600K, GTX 1030 8GB GDDR5, 4GB DDR4 - 2400 Mhz, 256GB SSD + 1Tb, 13\" (1920 x 1080)', 'Intel Core i7-6600K, GTX 1030 8GB GDDR5, 4GB DDR4 - 2400 Mhz, 256GB SSD + 1Tb, 13\" (1920 x 1080)', '30,500,000', 'dell0579.jpg', 0, NULL, NULL),
+(18, 'DELL INSPIRON 3576', 6, 4, 'Intel Core i7-7700HQ, GTX 1070 8GB GDDR5, 16GB DDR4 - 2400 Mhz, 256GB SSD + 1Tb, 15.6\" (1920 x 1080)', 'Intel Core i7-7700HQ, GTX 1070 8GB GDDR5, 16GB DDR4 - 2400 Mhz, 256GB SSD + 1Tb, 15.6\" (1920 x 1080)', '10,700,000', 'dell0657.jpg', 0, NULL, NULL),
+(19, 'DELL VOSTRO 5481', 6, 4, 'Intel Core i7-7300HQ, Intel UHD 620, 16GB DDR4 - 2400 Mhz, 256GB SSD, 11\" (1920 x 1080)', 'Intel Core i7-7300HQ, Intel UHD 620, 16GB DDR4 - 2400 Mhz, 256GB SSD, 11\" (1920 x 1080)', '24,890,000', 'dell0729.jpg', 0, NULL, NULL),
+(20, 'DELL INSPIRON 5379', 6, 4, 'Intel Core i7-7700HQ, GTX 1070 8GB GDDR5, 16GB DDR4 - 2400 Mhz, 256GB SSD + 1Tb, 15.6\" (1920 x 1080)', 'Intel Core i7-7700HQ, GTX 1070 8GB GDDR5, 16GB DDR4 - 2400 Mhz, 256GB SSD + 1Tb, 15.6\" (1920 x 1080)', '17,800,000', 'dell0835.jpg', 0, NULL, NULL),
+(21, 'HP SPECTRE 13 X360 I7 2019- 16G', 6, 5, 'Intel Core i7-7700HQ, GTX 1070 8GB GDDR5, 16GB DDR4 - 2400 Mhz, 256GB SSD + 1Tb, 15.6\" (1920 x 1080)', 'Intel Core i7-7700HQ, GTX 1070 8GB GDDR5, 16GB DDR4 - 2400 Mhz, 256GB SSD + 1Tb, 15.6\" (1920 x 1080)', '37,200,000', 'hp0123.jpg', 0, NULL, NULL),
+(22, 'SURFACE PRO 6', 6, 6, 'Intel Core m3-7Y30 2.60 GHz, HD 620, 8GB ddr3 1866Mhz, 128GB SSD, 12.3\" ( 2256X1504 ) Touchscreen', 'Intel Core m3-7Y30 2.60 GHz, HD 620, 8GB ddr3 1866Mhz, 128GB SSD, 12.3\" ( 2256X1504 ) Touchscreen', '17,900,000', 'microsoft0153.jpg', 0, NULL, NULL),
+(23, 'SURFACE PRO TYPE COVER BLACK', 1, 6, 'Bàn Phím', 'Bàn Phím', '2,900,000', 'microsoft0224.jpg', 0, NULL, NULL),
+(24, 'Surface Pro 4', 6, 6, 'Intel Core m3-7Y30 2.60 GHz, HD 620, 8GB ddr3 1866Mhz, 128GB SSD, 12.3\" ( 2256X1504 ) Touchscreen', 'Intel Core m3-7Y30 2.60 GHz, HD 620, 8GB ddr3 1866Mhz, 128GB SSD, 12.3\" ( 2256X1504 ) Touchscreen', '30,800,000', 'microsoft0340.jpg', 0, NULL, NULL),
+(25, 'ARC TOUCH BLUETOOTH MOUSE', 1, 6, 'Chuột không dây', 'Chuột không dây', '2,000,000', 'microsoft0494.jpg', 0, NULL, NULL),
+(26, 'TYPE COVER SURFACE PRO 2017', 1, 6, 'Bàn Phím', 'Bàn Phím', '2,800,000', 'microsoft0580.jpg', 0, NULL, NULL),
+(27, 'Surface Pen', 1, 6, 'Bút cảm ứng', 'Bút cảm ứng', '2,500,000', 'microsoft0638.jpg', 0, NULL, NULL),
+(28, 'RAZER BLADE 15', 6, 1, '8th Intel Core i7-8750H 2.2 GHz, GTX 1070, 16GB DDR4 2667MHz', '8th Intel Core i7-8750H 2.2 GHz, GTX 1070, 16GB DDR4 2667MHz', '30,000,000', 'razer0157.jpg', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -284,7 +296,7 @@ ALTER TABLE `tbl_category_product`
 -- AUTO_INCREMENT cho bảng `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
