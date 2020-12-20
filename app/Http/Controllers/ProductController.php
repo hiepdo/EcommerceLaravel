@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Session;
+use App\Models\Comment;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -127,5 +128,46 @@ class ProductController extends Controller
         return view('pages.product.show_detail')->with('category',$cate_product)->with('brand',$brand_product)
         ->with('product_details',$details_product)
         ->with('relate',$related_brand);
+    }
+
+    //Send comment
+    public function sent_comment(Request $request)
+    {
+        $product_id = $request->product_id;
+        $comment_name = $request->comment_name;
+        $comment_content = $request->comment_content;
+        $comment = new Comment();
+        $comment->comment = $comment_content;
+        $comment->comment_name = $comment_name;
+        $comment->comment_product_id = $product_id;
+        $comment->comment_status = 1;
+        $comment->save();
+    }
+
+    //Load comment
+    public function load_comment(Request $request)
+    {
+        $product_id = $request->product_id;
+        $comment = Comment::where('comment_product_id',$product_id)->where('comment_status',0)->get();
+        $output = '';
+        foreach($comment as $key => $cmt)
+        {
+            $output.= '
+            <div class="row style_comment">
+                <div class="col-md-2">
+                <!-- lấy id của sản phẩm để hiển thị cmt -->
+                <input type="hidden" name="comment_product_id" class="comment_product_id" value="{{$value->product_id}}">
+                    <img id="img-customer-comment" width="100%" height="100%" src="'.url('/public/frontend/images/customer-icon.png').'" alt="" 
+                        class="img img-responsive img-thumbnail">
+                </div>
+                <div class="col-md-10">
+                    <p style="color:green"> '.$cmt->comment_name.'</p>
+                    <p style="color:#000"> '.$cmt->comment_date.'</p>
+                    <p>'.$cmt->comment.'</p>
+                </div>
+            </div><p></p>
+            ';
+        } 
+        echo $output;
     }
 }

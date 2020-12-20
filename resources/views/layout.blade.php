@@ -415,13 +415,51 @@
 		 -->
 	</footer><!--/Footer-->
 	
-
-  
     <script src="{{ asset('public/frontend/js/jquery.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/jquery.scrollUp.min.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/price-range.js') }}"></script>
     <script src="{{ asset('public/frontend/js/jquery.prettyPhoto.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/main.js') }}"></script>
+	<script src="{{ asset('public/frontend/js/main.js') }}"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			load_comment();
+			function load_comment()
+			{
+				var product_id = $('.comment_product_id').val();
+				var _token = $('input[name="_token"]').val();
+				$.ajax({
+					url : '{{url('/load-comment')}}',
+					method: "POST",
+					data:{product_id:product_id,_token:_token},
+					success:function(data)
+					{
+						$('#comment_show').html(data);     
+					}
+            	});
+			}
+			$('.sent-comment').click(function(){
+				var product_id = $('.comment_product_id').val();
+				var comment_name = $('.comment_name').val();
+				var comment_content = $('.comment_content').val();
+				var _token = $('input[name="_token"]').val();
+				$.ajax({
+					url : '{{url('/sent-comment')}}',
+					method: "POST",
+					data:{product_id:product_id,comment_name:comment_name,comment_content:comment_content,_token:_token},
+					success:function(data)
+					{
+						$('#notify_comment ').html('<span class="text text-success">Thêm bình luận thành công,bình luận đang chờ duyệt</span>');
+						load_comment();
+						$('#notify_comment ').fadeOut(5000);
+						$('.comment_name').val('');
+						$('.comment_content').val('');
+					}
+            	});
+			}); 
+		});
+	</script>
 </body>
 </html>
