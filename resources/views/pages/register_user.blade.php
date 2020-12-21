@@ -30,32 +30,21 @@
 					@endif
 
 			
-			<form action="{{URL::to('/login-user')}}" method="POST">
+			<form action="{{URL::to('/register-user')}}" method="POST">
 							{{csrf_field()}}
             <form class="form-signin">
               <div class="form-label-group">
-                <input type="email" name="email_account" class="form-control" placeholder="Điền email của bạn">
+                <input type="text" name="customer_name" class="form-control" placeholder="Họ và tên">
+                <input type="email" name="customer_email" class="form-control" placeholder="Địa chỉ email">
                 <!-- <label for="email_account">Địa chỉ email</label> -->
               </div>
 
               <div class="form-label-group">
-                <input type="password" name="password_account" class="form-control" placeholder="Điền mật khẩu">
+                <input type="password" name="customer_password" class="form-control" placeholder="Mật khẩu">
+                <input type="text" name="customer_phone" class="form-control" placeholder="Số điện thoại">
                 <!-- <label for="password_account">Mật khẩu</label> -->
               </div>
-
-              <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-				<label class="custom-control-label" for="customCheck1">Nhớ mật khẩu</label>
-              </div>
-			  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Đăng nhập</button>
-			<span>
-			Bạn chưa có tài khoản ?
-			<a href="{{URL::to('register')}}">Đăng kí</a>
-			<br>
-			Bạn quên mật khẩu ? 
-			<a href="{{URL::to('forget-password')}}">Lấy mật khẩu </a>
-			</span> 
-			  
+			  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Đăng ký</button>
               <hr class="my-4">
             </form>
           </div>

@@ -30,6 +30,10 @@ class HomeController extends Controller
     {
         return view('pages.forget_password');
     }
+    public function to_register()
+    {
+        return view('pages.register_user');
+    }
 
     public function register_user(Request $request)
     {
@@ -42,7 +46,7 @@ class HomeController extends Controller
         $customer_id = Customer::insertGetId($data);
         Session::put('customer_id', $customer_id);
         Session::put('customer_name', $request->customer_name);
-        return redirect()->back()->with('message', 'Đăng ký thành công');
+        // return redirect()->back()->with('message', 'Đăng ký thành công');
         return Redirect('/login');
     }
 
