@@ -20,9 +20,8 @@
             <th>Tên người gửi</th>
             <th>Bình luận</th>
             <th>Ngày gửi</th>
-            <th>Sản phẩm</th>
-            <th>Quản lý</th>        
-            <th style="width:30px;"></th>
+            <th style="width:25px;">Sản phẩm</th>
+            <th>Quản lý</th>  
           </tr>
         </thead>
         <tbody>
