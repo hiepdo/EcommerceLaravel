@@ -54,7 +54,8 @@ class HomeController extends Controller
     	
     	if($result){
     		Session::put('customer_id',$result->customer_id);
-    		return redirect()->back()->with('message', 'Đăng nhập thành công');
+            // return redirect()->back()->with('message', 'Đăng nhập thành công');
+            return Redirect('/Home');
     	}else{
     		return redirect()->back()->with('error', 'Sai tên tài khoản hoặc mật khẩu, vui lòng kiểm tra lại');
     	}
