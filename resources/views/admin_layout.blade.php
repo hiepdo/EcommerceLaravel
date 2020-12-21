@@ -77,8 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
-                </li>
-                
+                </li>              
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
@@ -87,6 +86,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="sub">
 						<li><a href="{{URL::to('/add-category-product')}}">Thêm danh mục sản phẩm</a></li>
 						<li><a href="{{URL::to('/all-category-product')}}">Liệt kê danh mục sản phẩm</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Bình luận </span>
+                    </a>
+                    <ul class="sub">
+						<!-- <li><a href="{{URL::to('/add-category-product')}}">Thêm danh mục sản phẩm</a></li> -->
+						<li><a href="{{URL::to('/comment')}}">Liệt kê bình luận</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

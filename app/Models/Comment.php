@@ -12,5 +12,10 @@ class Comment extends Model
     	'comment', 'comment_name', 'comment_date','comment_product_id'
     ];
     protected $primaryKey = 'comment_id';
- 	protected $table = 'tbl_comment';
+     protected $table = 'tbl_comment';
+     
+     public function product()
+     {
+         return $this->belongsTo('App\Models\Product','comment_product_id');
+     }
 }
