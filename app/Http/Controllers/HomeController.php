@@ -42,6 +42,7 @@ class HomeController extends Controller
         $customer_id = Customer::insertGetId($data);
         Session::put('customer_id', $customer_id);
         Session::put('customer_name', $request->customer_name);
+        return redirect()->back()->with('message', 'Đăng nhập thành công');
         return Redirect('/login');
     }
 
