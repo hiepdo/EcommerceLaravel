@@ -11,6 +11,8 @@ class TblCustomer extends Migration
      *
      * @return void
      */
+    protected $primaryKey = 'customer_id';
+
     public function up()
     {
         Schema::create('tbl_customers', function (Blueprint $table) {
@@ -19,6 +21,7 @@ class TblCustomer extends Migration
             $table->string('customer_email');
             $table->string('customer_password');
             $table->string('customer_phone');
+            $table->string('customer_token')->nullable()->default(null);
             $table->timestamps();
         });
     }

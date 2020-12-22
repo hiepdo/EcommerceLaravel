@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
+
+//use App\Http\Controllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,52 +17,50 @@ use App\Http\Controllers\UserController;
 */
 
 //homepage
-Route::get('/', 'App\Http\Controllers\HomeController@home');
-Route::get('/Home', 'App\Http\Controllers\HomeController@home');
-Route::get('/login', 'App\Http\Controllers\HomeController@to_login');
-Route::post('/register-user', 'App\Http\Controllers\HomeController@register_user');
-Route::post('/login-user', 'App\Http\Controllers\HomeController@login_user');
-Route::get('/product', 'App\Http\Controllers\HomeController@products');
-Route::get('/shop', 'App\Http\Controllers\HomeController@shop');
+Route::get('/', 'HomeController@home');
+Route::get('/Home', 'HomeController@home');
+Route::get('/product', 'HomeController@products');
+Route::get('/shop', 'HomeController@shop');
 
 
 //admin
-Route::get('/admin','App\Http\Controllers\AdminController@admin');
-Route::get('/dashboard','App\Http\Controllers\AdminController@show');
-Route::get('/logout','App\Http\Controllers\AdminController@logout');
-Route::post('/admin-dashboard','App\Http\Controllers\AdminController@dashboard');
+Route::get('/admin','AdminController@admin');
+Route::get('/dashboard','AdminController@show');
+Route::get('/logout','AdminController@logout');
+Route::post('/admin-dashboard','AdminController@dashboard');
 
 //Category product
-Route::get('/add-category-product','App\Http\Controllers\CategoryProduct@add_category_product');
-Route::get('/edit-category-product/{category_product_id}','App\Http\Controllers\CategoryProduct@edit_category_product');
-Route::get('/delete-category-product/{category_product_id}','App\Http\Controllers\CategoryProduct@delete_category_product');
-Route::get('/all-category-product','App\Http\Controllers\CategoryProduct@all_category_product');
-Route::get('/unactive-category-product/{category_product_id}','App\Http\Controllers\CategoryProduct@unactive_category_product');
-Route::get('/active-category-product/{category_product_id}','App\Http\Controllers\CategoryProduct@active_category_product');
+Route::get('/add-category-product','CategoryProduct@add_category_product');
+Route::get('/edit-category-product/{category_product_id}','CategoryProduct@edit_category_product');
+Route::get('/delete-category-product/{category_product_id}','CategoryProduct@delete_category_product');
+Route::get('/all-category-product','CategoryProduct@all_category_product');
+Route::get('/unactive-category-product/{category_product_id}','CategoryProduct@unactive_category_product');
+Route::get('/active-category-product/{category_product_id}','CategoryProduct@active_category_product');
 
-Route::post('/save-category-product','App\Http\Controllers\CategoryProduct@save_category_product');
-Route::post('/update-category-product/{category_product_id}','App\Http\Controllers\CategoryProduct@update_category_product');
+Route::post('/save-category-product','CategoryProduct@save_category_product');
+Route::post('/update-category-product/{category_product_id}','CategoryProduct@update_category_product');
 
 //brand product
-Route::get('/add-brand-product','App\Http\Controllers\BrandProduct@add_brand_product');
-Route::get('/edit-brand-product/{brand_product_id}','App\Http\Controllers\BrandProduct@edit_brand_product');
-Route::get('/delete-brand-product/{brand_product_id}','App\Http\Controllers\BrandProduct@delete_brand_product');
-Route::get('/all-brand-product','App\Http\Controllers\BrandProduct@all_brand_product');
+Route::get('/add-brand-product', 'BrandProduct@add_brand_product');
+Route::get('/edit-brand-product/{brand_product_id}', 'BrandProduct@edit_brand_product');
+Route::get('/delete-brand-product/{brand_product_id}', 'BrandProduct@delete_brand_product');
+Route::get('/all-brand-product', 'BrandProduct@all_brand_product');
 
-Route::get('/unactive-brand-product/{brand_product_id}','App\Http\Controllers\BrandProduct@unactive_brand_product');
-Route::get('/active-brand-product/{brand_product_id}','App\Http\Controllers\BrandProduct@active_brand_product');
+Route::get('/unactive-brand-product/{brand_product_id}', 'BrandProduct@unactive_brand_product');
+Route::get('/active-brand-product/{brand_product_id}', 'BrandProduct@active_brand_product');
 
-Route::post('/save-brand-product','App\Http\Controllers\BrandProduct@save_brand_product');
-Route::post('/update-brand-product/{brand_product_id}','App\Http\Controllers\BrandProduct@update_brand_product');
+Route::post('/save-brand-product', 'BrandProduct@save_brand_product');
+Route::post('/update-brand-product/{brand_product_id}', 'BrandProduct@update_brand_product');
 
+//Send mail
+Route::get('/send-mail', 'MailController@SendEmail');
 
-
-
-
-
-Route::get('/product', 'App\Http\Controllers\HomeController@products');
-
-Route::get('/shop', 'App\Http\Controllers\HomeController@shop');
-
-
-
+//account
+Route::get('/login', 'HomeController@to_login');
+Route::get('/forget-password', 'HomeController@to_forget_password');
+Route::get('/reset-password', 'HomeController@reset_password');
+Route::get('/register', 'HomeController@to_register');
+Route::post('/register-user', 'HomeController@register_user');
+Route::post('/login-user', 'HomeController@login_user');
+Route::post('/recover-pass', 'HomeController@recover_pass');
+Route::post('/update-password', 'HomeController@update_password');
