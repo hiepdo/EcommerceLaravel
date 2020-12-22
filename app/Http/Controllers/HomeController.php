@@ -38,11 +38,39 @@ class HomeController extends Controller
         $data['customer_email'] = $request->customer_email;
         $data['customer_password'] = md5($request->customer_password);
         $data['customer_phone'] = $request->customer_phone;
-
+        $data['customer_verification_code'] = Str::random();
         $customer_id = Customer::insertGetId($data);
-        Session::put('customer_id', $customer_id);
-        Session::put('customer_name', $request->customer_name);
-        return Redirect('/login');
+        //send mail
+        if($data != null)
+        {
+            $title_mail = 'Xác nhận tài khoản đăng ký';
+            $to_email = $data['customer_email'];//send to this email
+            $link_verify = url('/verify?email='.$to_email.'&code='.$data['customer_verification_code']);
+            $data = array("body"=>$link_verify, 'email'=>$to_email); //body of mail.blade.php
+            Mail::send('pages.register_verify_mail', $data, function($message) use ($title_mail,$data){
+                $message->to($data['email'])->subject($title_mail);//send this mail with subject
+                $message->from('ltweb1082@gmail.com', 'EcommerceLaravel');//send from this mail
+            });
+        
+            // Session::put('customer_id', $customer_id);
+            // Session::put('customer_name', $request->customer_name);
+            return redirect()->back()->with('message', 'Đã gửi mail xác nhận, vui lòng kiểm tra email'); 
+        }
+        else{
+            return redirect()->back()->with('error', 'Lỗi đăng ký tài khoản, vui lòng kiểm tra lại');
+        }  
+    }
+
+    public function verify_user(Request $request){
+        $verification_code = \Illuminate\Support\Facades\Request::get('code');
+        print_r($verification_code);
+        $customer = Customer::where('customer_verification_code', $verification_code)->first();
+        if($customer != null)
+        {
+            $customer->customer_is_verified = 1;
+            $customer->save();
+            return redirect('/login');
+        }
     }
 
     public function login_user(Request $request)
@@ -50,15 +78,19 @@ class HomeController extends Controller
     	$email = $request->email_account;
     	$password = md5($request->password_account);
     	$result = Customer::where('customer_email',$email)->where('customer_password',$password)->first();
-    	
-    	if($result){
-    		Session::put('customer_id',$result->customer_id);
-    		return redirect()->back()->with('message', 'Đăng nhập thành công');
-    	}else{
-    		return redirect()->back()->with('error', 'Sai tên tài khoản hoặc mật khẩu, vui lòng kiểm tra lại');
-    	}
-        Session::save();
-
+        if($result != null){
+            if($result->customer_is_verified == 1){
+                Session::put('customer_id', $result->customer_id);
+                Session::put('customer_name', $result->customer_name);
+                Session::save();
+                return redirect()->back()->with('message', 'Đăng nhập thành công');
+            }else{
+                return redirect()->back()->with('error', 'Tài khoản của bạn chưa xác nhận, vui lòng kiểm tra email');
+            }
+        }
+        else{
+            return redirect()->back()->with('error', 'Sai tên tài khoản hoặc mật khẩu, vui lòng kiểm tra lại');
+        }
     }
 
     public function recover_pass(Request $request)

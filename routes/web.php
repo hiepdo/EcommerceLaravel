@@ -18,7 +18,7 @@ use App\Http\Controllers\UserController;
 
 //homepage
 Route::get('/', 'HomeController@home');
-Route::get('/Home', 'HomeController@home');
+Route::get('/home', 'HomeController@home');
 Route::get('/product', 'HomeController@products');
 Route::get('/shop', 'HomeController@shop');
 
@@ -56,6 +56,7 @@ Route::post('/update-brand-product/{brand_product_id}', 'BrandProduct@update_bra
 Route::get('/send-mail', 'MailController@SendEmail');
 
 //account
+Route::get('/verify', 'HomeController@verify_user');
 Route::get('/login', 'HomeController@to_login');
 Route::get('/forget-password', 'HomeController@to_forget_password');
 Route::get('/reset-password', 'HomeController@reset_password');
