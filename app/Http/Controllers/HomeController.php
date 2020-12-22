@@ -30,6 +30,10 @@ class HomeController extends Controller
     {
         return view('pages.forget_password');
     }
+    public function to_register()
+    {
+        return view('pages.register_user');
+    }
 
     public function register_user(Request $request)
     {
@@ -71,6 +75,11 @@ class HomeController extends Controller
             $customer->save();
             return redirect('/login');
         }
+        Session::put('customer_id', $customer_id);
+        Session::put('customer_name', $request->customer_name);
+        // return redirect()->back()->with('message', 'Đăng ký thành công');
+        return Redirect('/login');
+
     }
 
     public function login_user(Request $request)
@@ -91,6 +100,14 @@ class HomeController extends Controller
         else{
             return redirect()->back()->with('error', 'Sai tên tài khoản hoặc mật khẩu, vui lòng kiểm tra lại');
         }
+    	if($result){
+    		Session::put('customer_id',$result->customer_id);
+            // return redirect()->back()->with('message', 'Đăng nhập thành công');
+            return Redirect('/Home');
+    	}else{
+    		return redirect()->back()->with('error', 'Sai tên tài khoản hoặc mật khẩu, vui lòng kiểm tra lại');
+    	}
+        Session::save();
     }
 
     public function recover_pass(Request $request)
