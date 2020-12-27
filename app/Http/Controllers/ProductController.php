@@ -153,19 +153,26 @@ class ProductController extends Controller
         foreach($comment as $key => $cmt)
         {
             $output.= '
-            <div class="row style_comment">
-                <div class="col-md-2">
-                <!-- lấy id của sản phẩm để hiển thị cmt -->
-                <input type="hidden" name="comment_product_id" class="comment_product_id" value="{{$value->product_id}}">
-                    <img id="img-customer-comment" width="100%" height="100%" src="'.url('/public/frontend/images/customer-icon.png').'" alt="" 
-                        class="img img-responsive img-thumbnail">
-                </div>
-                <div class="col-md-10">
-                    <p style="color:green"> '.$cmt->comment_name.'</p>
-                    <p style="color:#000"> '.$cmt->comment_date.'</p>
-                    <p>'.$cmt->comment.'</p>
-                </div>
-            </div><p></p>
+            <ol class="commentlist">
+				<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
+					<div id="comment-20" class="comment_container"> 
+						<img alt="" src="'.url('/public/frontend/images/customer.png').'" height="80" width="80">
+						<div class="comment-text">
+							<div class="star-rating">
+							<span class="width-80-percent">Rated <strong class="rating">5</strong> out of 5</span>
+						</div>
+						<p class="meta"> 
+                            <strong class="woocommerce-review__author">'.$cmt->comment_name.'</strong> 
+                            
+                            <time class="woocommerce-review__published-date" datetime="2008-02-14 20:00" >'.$cmt->comment_date.'</time>
+						</p>
+						<div class="description">
+							<p>'.$cmt->comment.'</p>
+						</div>
+					</div>
+				
+				</li>
+			</ol>
             ';
         } 
         echo $output;

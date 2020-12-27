@@ -58,8 +58,6 @@ Route::post('/save-product','App\Http\Controllers\ProductController@save_product
 Route::post('/update-product/{product_id}','App\Http\Controllers\ProductController@update_product');
 
 
-
-
 // Frontend
 Route::get('/product', 'App\Http\Controllers\HomeController@products');
 Route::get('/shop', 'App\Http\Controllers\HomeController@shop');
