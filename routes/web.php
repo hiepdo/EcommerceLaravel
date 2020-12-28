@@ -68,7 +68,8 @@ Route::get('/thuong-hieu-san-pham/{brand_id}','App\Http\Controllers\BrandProduct
 Route::get('/chi-tiet-san-pham/{product_id}','App\Http\Controllers\ProductController@detail_product');
 Route::post('/load-comment','App\Http\Controllers\ProductController@load_comment');
 Route::post('/sent-comment','App\Http\Controllers\ProductController@sent_comment'); 
-
+Route::post('/allow-comment','App\Http\Controllers\ProductController@allow_comment'); 
+Route::post('/reply-comment','App\Http\Controllers\ProductController@reply_comment'); 
 
 //Comment
 Route::get('/comment','App\Http\Controllers\CommentController@list_comment');
