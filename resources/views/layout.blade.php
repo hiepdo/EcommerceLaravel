@@ -17,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/style.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/color-01.css') }}">
 </head>
-<body class="home-page home-01 detail page">
+<body class="home-page home-01 detail page shopping-cart">
 
 	<!-- mobile menu -->
     <div class="mercado-clone-wrap">

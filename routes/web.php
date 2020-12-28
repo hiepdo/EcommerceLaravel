@@ -66,6 +66,7 @@ Route::get('/shop', 'App\Http\Controllers\HomeController@shop');
 Route::get('/danh-muc-san-pham/{category_id}','App\Http\Controllers\CategoryProduct@show_category_home');
 Route::get('/thuong-hieu-san-pham/{brand_id}','App\Http\Controllers\BrandProduct@show_brand_home');
 Route::get('/chi-tiet-san-pham/{product_id}','App\Http\Controllers\ProductController@detail_product');
+
 Route::post('/load-comment','App\Http\Controllers\ProductController@load_comment');
 Route::post('/sent-comment','App\Http\Controllers\ProductController@sent_comment'); 
 Route::post('/allow-comment','App\Http\Controllers\ProductController@allow_comment'); 
@@ -73,3 +74,7 @@ Route::post('/reply-comment','App\Http\Controllers\ProductController@reply_comme
 
 //Comment
 Route::get('/comment','App\Http\Controllers\CommentController@list_comment');
+
+//Cart
+Route::post('/save-cart','App\Http\Controllers\CartController@save_cart'); 
+Route::get('/show-cart','App\Http\Controllers\CartController@show_cart'); 

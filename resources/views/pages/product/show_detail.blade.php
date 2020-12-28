@@ -63,22 +63,26 @@
                             <div class="stock-info in-stock">
                                 <p class="availability">Tình trạng: <b>Còn hàng</b></p>
                             </div>
-                            <div class="quantity">
-                            	<span>Số lượng:</span>
-								<div class="quantity-input">
-									<input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >
-									
-									<a class="btn btn-reduce" href="#"></a>
-									<a class="btn btn-increase" href="#"></a>
+                            <form action="{{URL::to('/save-cart')}}" method="POST">
+								{{csrf_field()}}
+								<div class="quantity">
+									<span>Số lượng:</span>
+									<div class="quantity-input">
+										<input type="text" name="product_quatity" value="1" data-max="120" pattern="[0-9]*" >
+										<input type="hidden" name="product_id_hidden" value="{{$value->product_id}}">
+										<a class="btn btn-reduce" href="#"></a>
+										<a class="btn btn-increase" href="#"></a>
+									</div>
 								</div>
-							</div>
-							<div class="wrap-butons">
-								<a href="#" class="btn add-to-cart">Thêm vào giỏ hàng</a>
-                                <div class="wrap-btn">
-                                    <a href="#" class="btn btn-compare">Thêm so sánh</a>
-                                    <a href="#" class="btn btn-wishlist">Thêm yêu thích</a>
-                                </div>
-							</div>
+								<div class="wrap-butons">
+									<button type="submit" class="btn add-to-cart">Thêm vào giỏ hàng</button>
+									<!-- <a href="#" class="btn add-to-cart">Thêm vào giỏ hàng</a> -->
+									<div class="wrap-btn">
+										<a href="#" class="btn btn-compare">Thêm so sánh</a>
+										<a href="#" class="btn btn-wishlist">Thêm yêu thích</a>
+									</div>
+								</div>
+							</form>
 						</div>
 						<div class="advance-info">
 							<div class="tab-control normal">
