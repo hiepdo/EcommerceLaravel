@@ -52,8 +52,31 @@ Route::get('/active-brand-product/{brand_product_id}', 'BrandProduct@active_bran
 Route::post('/save-brand-product', 'BrandProduct@save_brand_product');
 Route::post('/update-brand-product/{brand_product_id}', 'BrandProduct@update_brand_product');
 
+// product
+Route::get('/add-product', 'ProductController@add_product');
+Route::get('/edit-product/{product_id}', 'ProductController@edit_product');
+Route::get('/delete-product/{product_id}', 'ProductController@delete_product');
+Route::get('/all-product', 'ProductController@all_product');
+
+Route::get('/unactive-product/{product_id}', 'ProductController@unactive_product');
+Route::get('/active-product/{product_id}', 'ProductController@active_product');
+
+Route::post('/save-product', 'ProductController@save_product');
+Route::post('/update-product/{product_id}', 'ProductController@update_product');
+
+//Home product category
+Route::get('/danh-muc-san-pham/{category_id}','CategoryProduct@show_category_home');
+Route::get('/thuong-hieu-san-pham/{brand_id}','BrandProduct@show_brand_home');
+Route::get('/chi-tiet-san-pham/{product_id}','ProductController@detail_product');
+Route::post('/load-comment','ProductController@load_comment');
+Route::post('/sent-comment','ProductController@sent_comment'); 
+
+
 //Send mail
 Route::get('/send-mail', 'MailController@SendEmail');
+
+//Comment
+Route::get('/comment','App\Http\Controllers\CommentController@list_comment');
 
 //account
 Route::get('/login', 'HomeController@to_login');
