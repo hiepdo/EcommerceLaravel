@@ -169,14 +169,9 @@ class ProductController extends Controller
             <ol class="commentlist" style="margin-left: 40px;" >
 				<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
 					<div id="comment-20" class="comment_container"> 
-						<img alt="" src="'.url('/public/frontend/images/admin-icon.jpg').'" height="40" width="40">
-						<div class="comment-text">
-							<div class="star-rating">
-							<span class="width-80-percent">Rated <strong class="rating">5</strong> out of 5</span>
-						</div>
+						<img style="margin-right: 10px;" alt="" src="'.url('/public/frontend/images/admin-icon.jpg').'" height="40" width="40">		
 						<p class="meta"> 
                             <strong class="woocommerce-review__author">@Admin</strong> 
-                            
                             <time class="woocommerce-review__published-date" datetime="2008-02-14 20:00" >'.$rep_cmt->comment_date.'</time>
 						</p>
 						<div class="description">
