@@ -28,6 +28,7 @@
             },
             onReady: function() {
                 this.mercado_innit_carousel();
+                this.mercado_product_slider();
             },
 
             onResize: function() {
@@ -403,9 +404,9 @@
                     $(".quantity-input").on('click', '.btn', function(event) {
                         event.preventDefault();
                         var _this = $(this),
-                            _input = _this.siblings('input[name=product-quatity]'),
-                            _current_value = _this.siblings('input[name=product-quatity]').val(),
-                            _max_value = _this.siblings('input[name=product-quatity]').attr('data-max');
+                            _input = _this.siblings('input[name=product_quatity]'),
+                            _current_value = _this.siblings('input[name=product_quatity]').val(),
+                            _max_value = _this.siblings('input[name=product_quatity]').attr('data-max');
                         if (_this.hasClass('btn-reduce')) {
                             if (parseInt(_current_value, 10) > 1) _input.val(parseInt(_current_value, 10) - 1);
                         } else {

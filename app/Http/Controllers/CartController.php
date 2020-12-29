@@ -105,4 +105,64 @@ class CartController extends Controller
 
         return view('pages.cart.cart_ajax')->with('category', $cate_product)->with('brand',$brand_product);
     }
+
+    public function delete_cart_ajax($session_id)
+    {
+        $cart = Session::get('cart');
+        if($cart == true)
+        {
+            foreach($cart as $key => $val)
+            {
+                if($val['session_id']==$session_id)
+                {
+                    unset($cart[$key]);
+                }
+            }
+            Session::put('cart',$cart);
+            return Redirect()->back()->with('message', 'Delete product successfully');
+        }
+        else
+        {
+            return Redirect()->back()->with('message', 'Delete product failed');
+        }
+    }
+
+    public function update_cart_ajax(Request $request)
+    {
+        $data = $request->all();
+        $cart = Session::get('cart');
+        if($cart==true)
+        {
+            foreach($data['cart_quatity'] as $key => $qty)
+            {
+                foreach($cart as $session => $val)
+                {
+                    if($val['session_id'] == $key)
+                    {
+                        $cart[$session]['product_qty'] = $qty;
+                    }
+                }
+            }
+            Session::put('cart', $cart);
+            return Redirect()->back()->with('message', 'Update cart successfully');
+        }
+        else
+        {
+            return Redirect()->back()->with('message', 'Update cart failed');
+        }
+    }
+
+    public function clear_all_cart_ajax()
+    {
+        $cart = Session::get('cart');
+        if($cart == true)
+        {
+            Session::forget('cart');
+            return Redirect()->back()->with('message', 'Clear cart successfully');
+        }
+        else
+        {
+            return Redirect()->back()->with('message', 'Clear cart failed');
+        }
+    }
 }

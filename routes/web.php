@@ -84,3 +84,7 @@ Route::post('/update-cart','App\Http\Controllers\CartController@update_cart');
 //Cart Ajax
 Route::post('/add-cart-ajax','App\Http\Controllers\CartController@add_cart_ajax'); 
 Route::get('/show-cart-ajax','App\Http\Controllers\CartController@show_cart_ajax');
+Route::post('/update-cart-ajax','App\Http\Controllers\CartController@update_cart_ajax'); 
+Route::get('/delete-cart-ajax/{session_id}','App\Http\Controllers\CartController@delete_cart_ajax'); 
+Route::get('/clear-all-cart-ajax','App\Http\Controllers\CartController@clear_all_cart_ajax');
+

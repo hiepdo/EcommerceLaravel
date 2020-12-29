@@ -11,46 +11,56 @@
             <li class="item-link"><span>Giỏ hàng của bạn</span></li>
         </ul>
     </div>
-    <div class=" main-content-area">
-    <?php $total = 0; ?>
+    <div class=" main-content-area"> 
+    <form action="{{ url('/update-cart-ajax') }}" method="POST">
+    @csrf
+    @if(Session::get('cart') == true)
         <div class="wrap-iten-in-cart">
+           <!--  @if(session()->has('message'))
+                <div class="alert alert-success">
+                    <p style="font-size:15px; text-align:center;">{{session()->get('message')}}</p>
+                </div>
+            @elseif(session()->has('error'))
+                <div class="alert alert-danger">
+                    <p style="font-size:15px; text-align:center;"> {{session()->get('error')}}</p>
+                </div>
+            @endif -->
             <h3 class="box-title">Products Name</h3>
-            @foreach(Session::get('cart') as $key => $cart)
-           
-            <?php 
-                $subtotal = $cart['product_qty'] * $cart['product_price'];
-                $total += $subtotal;
-            ?>
-            <ul class="products-cart">
-                <li class="pr-cart-item">
-                    <div class="product-image">
-                        <figure><img src="{{ asset('public/uploads/product/'.$cart['product_image'])}}" alt="{{$cart['product_name']}}"></figure>
-                    </div>
-                    <div class="product-name">
-                        <a class="link-to-product" href="{{ URL::to('/chi-tiet-san-pham/'.$cart['product_id'])}}">{{$cart['product_name']}}</a>
-                    </div>
-                    <div class="price-field produtc-price"><p class="price">{{number_format($cart['product_price']).' '.'VNĐ'}}</p></div>
-                    <div class="quantity">
-                        <div class="quantity-input">
-                            <input type="text" name="cart_quatity" value="{{$cart['product_qty']}}" data-max="120" pattern="[0-9]*" >									
-                            <a class="btn btn-increase" href="#"></a>
-                            <a class="btn btn-reduce" href="#"></a>                         
+            
+                <?php $total = 0; ?>
+                @foreach(Session::get('cart') as $key => $cart)       
+                <?php 
+                    $subtotal = $cart['product_qty'] * $cart['product_price'];
+                    $total += $subtotal;
+                ?>
+                <ul class="products-cart">
+                    <li class="pr-cart-item">
+                        <div class="product-image">
+                            <figure><img src="{{ asset('public/uploads/product/'.$cart['product_image'])}}" alt="{{$cart['product_name']}}"></figure>
                         </div>
-                        <input type="submit" value="Update" name="update_qty" class="btn btn-info btn-sm">
-                    </div>
-                   
-                    <div class="price-field sub-total"><p class="price">{{number_format($subtotal).' '.'VNĐ'}}</p></div>
-                    <div class="delete">
-                        <a href="" class="btn" title="">
-                            <i class="fa fa-times-circle"></i>
-                        </a>
-                    </div>
-                </li>
-                											
-            </ul>
-            @endforeach
+                        <div class="product-name">
+                            <a class="link-to-product" href="{{ URL::to('/chi-tiet-san-pham/'.$cart['product_id'])}}">{{$cart['product_name']}}</a>
+                        </div>
+                        <div class="price-field produtc-price"><p class="price">{{number_format($cart['product_price']).' '.'VNĐ'}}</p></div>
+                        <div class="quantity">
+                            <div class="quantity-input">
+                                <input type="text" name="cart_quatity[{{$cart['session_id']}}]" value="{{$cart['product_qty']}}" data-max="120" pattern="[0-9]*" >									
+                                <a class="btn btn-increase" href="#"></a>
+                                <a class="btn btn-reduce" href="#"></a>                         
+                            </div>
+                        </div>
+                    
+                        <div class="price-field sub-total"><p class="price">{{number_format($subtotal).' '.'VNĐ'}}</p></div>
+                        <div class="delete">
+                            <a href="{{url('/delete-cart-ajax/'.$cart['session_id'])}}" class="btn" title="">
+                                <i class="fa fa-times-circle"></i>
+                            </a>
+                        </div>
+                    </li>
+                                                                
+                </ul>
+                @endforeach        
         </div>
-
         <div class="summary">
             <div class="order-summary">
                 <h4 class="title-box">Order Summary</h4>
@@ -67,11 +77,14 @@
                 <a class="link-to-shop" href="shop.html">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
             </div>
             <div class="update-clear">
-                <a class="btn btn-clear" href="#">Clear Shopping Cart</a>
-                <a class="btn btn-update" href="#">Update Shopping Cart</a>
+                <input type="submit" value="Update Shopping Cart" name="update_qty" class="btn btn-update">
+                <a class="btn btn-clear" href="{{url('/clear-all-cart-ajax')}}">Clear Shopping Cart</a>
             </div>
         </div>
-
+    @else
+        <div class="alert alert-danger" role="alert"><p style="font-size:18px; text-align:center;">Empty cart. Please choose something product</p></div>
+    @endif
+    </form>
         <div class="wrap-show-advance-info-box style-1 box-in-site">
             <h3 class="title-box">Most Viewed Products</h3>
             <div class="wrap-products">
