@@ -16,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/chosen.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/style.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/color-01.css') }}">
+	
 </head>
 <body class="home-page home-01 detail page shopping-cart">
 
@@ -168,7 +169,7 @@
 									<a href="{{ URL::to('/shop') }}" class="link-term mercado-item-title">Shop</a>
 								</li>
 								<li class="menu-item">
-									<a href="cart.html" class="link-term mercado-item-title">Cart</a>
+									<a href="{{URL::to('/show-cart')}}" class="link-term mercado-item-title">Cart</a>
 								</li>
 								<li class="menu-item">
 									<a href="checkout.html" class="link-term mercado-item-title">Checkout</a>

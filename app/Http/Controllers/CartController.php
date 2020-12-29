@@ -40,4 +40,18 @@ class CartController extends Controller
 
         return view('pages.cart.show_cart')->with('category', $cate_product)->with('brand',$brand_product);
     }
+        
+    public function delete_cart($rowId)
+    {
+        Cart::update($rowId, 0); 
+        return Redirect::to('/show-cart');
+    }
+
+    public function update_cart(Request $request)
+    {
+        $rowId = $request->rowId_cart;
+        $qty = $request->cart_quatity;
+        Cart::update($rowId, $qty); 
+        return Redirect::to('/show-cart');
+    }
 }
