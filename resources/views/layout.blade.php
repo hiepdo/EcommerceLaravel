@@ -16,7 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/chosen.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/style.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/color-01.css') }}">
-	
+	<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/sweetalert.css') }}">
 </head>
 <body class="home-page home-01 detail page shopping-cart">
 
@@ -169,7 +169,7 @@
 									<a href="{{ URL::to('/shop') }}" class="link-term mercado-item-title">Shop</a>
 								</li>
 								<li class="menu-item">
-									<a href="{{URL::to('/show-cart')}}" class="link-term mercado-item-title">Cart</a>
+									<a href="{{URL::to('/show-cart-ajax')}}" class="link-term mercado-item-title">Cart</a>
 								</li>
 								<li class="menu-item">
 									<a href="checkout.html" class="link-term mercado-item-title">Checkout</a>
@@ -450,7 +450,8 @@
 	<script src="{{ asset('public/frontend/js/jquery.countdown.min.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/jquery.sticky.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/functions.js') }}"></script>
-
+	<script src="{{ asset('public/frontend/js/sweetalert.js') }}"></script>
+	
 	<script type="text/javascript">
 		$(document).ready(function()
 		{
@@ -488,6 +489,40 @@
 					}
             	});
 			}); 
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			$('.add-to-cart').click(function()
+			{
+				var product_id = $(this).data('product_id');
+				var cart_product_id = $('.cart_product_id_' + product_id).val();
+				var cart_product_name = $('.cart_product_name_' + product_id).val();
+				var cart_product_image = $('.cart_product_image_' + product_id).val();
+				var cart_product_price = $('.cart_product_price_' + product_id).val();
+				var cart_product_qty = $('.cart_product_qty_' + product_id).val();
+				var _token = $('input[name="_token"]').val();
+				$.ajax({
+                    url: '{{url('/add-cart-ajax')}}',
+                    method: 'POST',
+                    data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token},
+                    success:function(){
+ 					 	swal({
+                                title: "Thêm giỏ hàng thành công",
+                                text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                                showCancelButton: true,
+                                cancelButtonText: "Xem tiếp",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Đi đến giỏ hàng",
+                                closeOnConfirm: false
+                            },
+                            function() {
+                                window.location.href = "{{url('/show-cart-ajax')}}";
+						}); 
+                    }
+                });
+			});
 		});
 	</script>
 </body>

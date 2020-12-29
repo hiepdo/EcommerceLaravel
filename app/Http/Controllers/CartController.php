@@ -29,7 +29,7 @@ class CartController extends Controller
         $data['options']['image'] = $product_info->product_image;
         
         Cart::add($data);
-        return Redirect::to('/show-cart');
+        return Redirect::to('/show-cart'); 
     }
 
     public function show_cart()
@@ -53,5 +53,56 @@ class CartController extends Controller
         $qty = $request->cart_quatity;
         Cart::update($rowId, $qty); 
         return Redirect::to('/show-cart');
+    }
+
+    //Cart Ajax
+    public function add_cart_ajax(Request $request)
+    {
+        $data = $request->all();
+        $session_id = substr(md5(microtime()),rand(0,26),5);
+        $cart = Session::get('cart');
+        if($cart==true){
+            $is_avaiable = 0;
+            foreach($cart as $key => $val){
+                if($val['product_id']==$data['cart_product_id']){
+                    $is_avaiable++;
+                }
+            }
+            if($is_avaiable == 0){
+                $cart[] = array(
+                'session_id' => $session_id,
+                'product_name' => $data['cart_product_name'],
+                'product_id' => $data['cart_product_id'],
+                'product_image' => $data['cart_product_image'],
+                'product_qty' => $data['cart_product_qty'],
+                'product_price' => $data['cart_product_price'],
+                );
+                Session::put('cart',$cart);
+            }
+        }
+        else
+        {
+            $cart[] = array(
+                'session_id' => $session_id,
+                'product_name' => $data['cart_product_name'],
+                'product_id' => $data['cart_product_id'],
+                'product_image' => $data['cart_product_image'],
+                'product_qty' => $data['cart_product_qty'],
+                'product_price' => $data['cart_product_price'],
+
+            );
+            Session::put('cart',$cart);
+        }
+        
+        Session::save();
+    }
+
+    public function show_cart_ajax()
+    {
+        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
+        
+        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
+
+        return view('pages.cart.cart_ajax')->with('category', $cate_product)->with('brand',$brand_product);
     }
 }

@@ -80,3 +80,7 @@ Route::post('/save-cart','App\Http\Controllers\CartController@save_cart');
 Route::get('/show-cart','App\Http\Controllers\CartController@show_cart'); 
 Route::get('/delete-cart/{rowId}','App\Http\Controllers\CartController@delete_cart'); 
 Route::post('/update-cart','App\Http\Controllers\CartController@update_cart'); 
+
+//Cart Ajax
+Route::post('/add-cart-ajax','App\Http\Controllers\CartController@add_cart_ajax'); 
+Route::get('/show-cart-ajax','App\Http\Controllers\CartController@show_cart_ajax');
