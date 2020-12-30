@@ -65,33 +65,33 @@ Route::post('/update-product/{product_id}', 'ProductController@update_product');
 
 //Home product category
 
-Route::get('/danh-muc-san-pham/{category_id}','App\Http\Controllers\CategoryProduct@show_category_home');
-Route::get('/thuong-hieu-san-pham/{brand_id}','App\Http\Controllers\BrandProduct@show_brand_home');
-Route::get('/chi-tiet-san-pham/{product_id}','App\Http\Controllers\ProductController@detail_product');
+Route::get('/danh-muc-san-pham/{category_id}', 'CategoryProduct@show_category_home');
+Route::get('/thuong-hieu-san-pham/{brand_id}', 'BrandProduct@show_brand_home');
+Route::get('/chi-tiet-san-pham/{product_id}', 'ProductController@detail_product');
 
-Route::post('/load-comment','App\Http\Controllers\ProductController@load_comment');
-Route::post('/sent-comment','App\Http\Controllers\ProductController@sent_comment'); 
-Route::post('/allow-comment','App\Http\Controllers\ProductController@allow_comment'); 
-Route::post('/reply-comment','App\Http\Controllers\ProductController@reply_comment'); 
+Route::post('/load-comment', 'ProductController@load_comment');
+Route::post('/sent-comment', 'ProductController@sent_comment'); 
+Route::post('/allow-comment', 'ProductController@allow_comment'); 
+Route::post('/reply-comment', 'ProductController@reply_comment'); 
 
 //Send mail
 Route::get('/send-mail', 'MailController@SendEmail');
 
 //Comment
-Route::get('/comment','App\Http\Controllers\CommentController@list_comment');
+Route::get('/comment', 'CommentController@list_comment');
 
 //Cart
-Route::post('/save-cart','App\Http\Controllers\CartController@save_cart'); 
-Route::get('/show-cart','App\Http\Controllers\CartController@show_cart'); 
-Route::get('/delete-cart/{rowId}','App\Http\Controllers\CartController@delete_cart'); 
-Route::post('/update-cart','App\Http\Controllers\CartController@update_cart'); 
+Route::post('/save-cart', 'CartController@save_cart'); 
+Route::get('/show-cart', 'CartController@show_cart'); 
+Route::get('/delete-cart/{rowId}', 'CartController@delete_cart'); 
+Route::post('/update-cart', 'CartController@update_cart'); 
 
 //Cart Ajax
-Route::post('/add-cart-ajax','App\Http\Controllers\CartController@add_cart_ajax'); 
-Route::get('/show-cart-ajax','App\Http\Controllers\CartController@show_cart_ajax');
-Route::post('/update-cart-ajax','App\Http\Controllers\CartController@update_cart_ajax'); 
-Route::get('/delete-cart-ajax/{session_id}','App\Http\Controllers\CartController@delete_cart_ajax'); 
-Route::get('/clear-all-cart-ajax','App\Http\Controllers\CartController@clear_all_cart_ajax');
+Route::post('/add-cart-ajax', 'CartController@add_cart_ajax'); 
+Route::get('/show-cart-ajax', 'CartController@show_cart_ajax');
+Route::post('/update-cart-ajax', 'CartController@update_cart_ajax'); 
+Route::get('/delete-cart-ajax/{session_id}', 'CartController@delete_cart_ajax'); 
+Route::get('/clear-all-cart-ajax', 'CartController@clear_all_cart_ajax');
 
 //account
 Route::get('/verify', 'HomeController@verify_user');
