@@ -1,19 +1,16 @@
 @extends('layout')
 @section('content')
-<!--main area-->
-<main id="main" class="main-site">
 
-<div class="container">
+<main id="main" class="main-site">
     
+<div class="container">
     <div class="wrap-breadcrumb">
         <ul>
-            <li class="item-link"><a href="{{ URL::to('/Home') }}" class="link">Trang chủ</a></li>
-            <li class="item-link"><span>Giỏ hàng của bạn</span></li>
+            <li class="item-link"><a href="{{URL::to('/Home')}}" class="link">Home</a></li>
+            <li class="item-link"><span>Payment</span></li>
         </ul>
     </div>
-    <div class=" main-content-area"> 
-    <form action="{{ url('/update-cart-ajax') }}" method="POST">
-    @csrf
+    <div class=" main-content-area">
     @if(Session::get('cart') == true)
         <div class="wrap-iten-in-cart">
            <!--  @if(session()->has('message'))
@@ -25,7 +22,7 @@
                     <p style="font-size:15px; text-align:center;"> {{session()->get('error')}}</p>
                 </div>
             @endif -->
-            <h3 class="box-title">Products Name</h3>
+            <h3 class="box-title">Giỏ hàng của bạn</h3>
             
                 <?php $total = 0; ?>
                 @foreach(Session::get('cart') as $key => $cart)       
@@ -61,43 +58,59 @@
                 </ul>
                 @endforeach        
         </div>
-        <div class="summary">
-            <div class="order-summary">
-                <h4 class="title-box">Order Summary</h4>
-                <p class="summary-info"><span class="title">Subtotal</span><b class="index">{{number_format($total).' '.'VNĐ'}}</b></p>
-                <p class="summary-info"><span class="title">Tax</span><b class="index">0</b></p>
-                <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
-                <p class="summary-info total-info "><span class="title">Total</span><b class="index">{{number_format($total).' '.'VNĐ'}}</b></p>
-            </div>
-            <div class="checkout-info">
-                <label class="checkbox-field">
-                    <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have promo code</span>
-                </label>
-                <?php 
-                    $customer_id = Session::get('customer_id');
-                    $shipping_id = Session::get('shipping_id');
-				if($customer_id!=NULL && $shipping_id==NULL)
-				{ ?>
-                    <a class="btn btn-checkout" href="{{URL::to('/checkout')}}">Check out</a>
-                <?php 
-                }
-                elseif($customer_id!=NULL && $shipping_id!=NULL) { ?>
-                    <a class="btn btn-checkout" href="{{URL::to('/payment')}}">Check out</a>
-                <?php }
-                else{ ?>
-                    <a class="btn btn-checkout" href="{{URL::to('/login')}}">Check out</a>
-                <?php } ?>
-                <a class="link-to-shop" href="{{ URL::to('/shop') }}">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
-            </div>
-            <div class="update-clear">
-                <input type="submit" value="Update Shopping Cart" name="update_qty" class="btn btn-update">
-                <a class="btn btn-clear" href="{{url('/clear-all-cart-ajax')}}">Clear Shopping Cart</a>
-            </div>
-        </div>
     @else
         <div class="alert alert-danger" role="alert"><p style="font-size:18px; text-align:center;">Empty cart. Please choose something product</p></div>
     @endif
-    </form>
+        <div class="wrap-address-billing">
+        <h3>Thanh toán giỏ hàng</h3>
+        
+        <!-- <h3 class="">Thanh toán giỏ hàng</h3> -->
+        <!-- <form action="{{URL::to('/save-checkout-customer')}}" method="POST" name="frm-billing">
+            {{ csrf_field() }}
+            
+                <input type="submit" value="Thanh toán" name="send_order" class="btn btn-danger">
+        </form> -->
+        </div>
+        <div class="summary summary-checkout">
+            <div class="summary-item payment-method">
+                <h4 class="title-box">Hình thức thanh toán</h4>
+                <p class="summary-info"><span class="title">Check / Money order</span></p>
+                <p class="summary-info"><span class="title">Credit Cart (saved)</span></p>
+                <div class="choose-payment-methods">
+                    <label class="payment-method">
+                        <input name="payment_option" id="payment-method-bank" value="1" type="radio">
+                        <span>Thanh toán bằng thẻ tín dụng (ATM)</span>
+                        <span class="payment-desc">But the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</span>
+                    </label>
+                    <label class="payment-method">
+                        <input name="payment_option" id="payment-method-visa" value="3" type="radio">
+                        <span>Thanh toán bằng thẻ Visa</span>
+                        <span class="payment-desc">You can pay with your credit</span>
+                        <span class="payment-desc">card if you don't have a paypal account</span>
+                    </label>
+                    <label class="payment-method">
+                        <input name="payment_option" id="payment-method-paypal" value="2" type="radio">
+                        <span>Thanh toán khi nhận hàng</span>
+                        <span class="payment-desc">You can pay with your credit</span>
+                        <span class="payment-desc">card if you don't have a paypal account</span>
+                    </label>
+                </div>
+                <p class="summary-info grand-total"><span>Tổng cộng</span> <span class="grand-total-price">$100.00</span></p>
+                <a href="{{URL::to('/thankyou')}}" class="btn btn-medium">Đặt hàng ngay bây giờ</a>
+            </div>
+            <div class="summary-item shipping-method">
+                <h4 class="title-box f-title">Shipping method</h4>
+                <p class="summary-info"><span class="title">Flat Rate</span></p>
+                <p class="summary-info"><span class="title">Fixed $50.00</span></p>
+                <h4 class="title-box">Discount Codes</h4>
+                <p class="row-in-form">
+                    <label for="coupon-code">Enter Your Coupon code:</label>
+                    <input id="coupon-code" type="text" name="coupon-code" value="" placeholder="">	
+                </p>
+                <a href="#" class="btn btn-small">Apply</a>
+            </div>
+        </div>
+
         <div class="wrap-show-advance-info-box style-1 box-in-site">
             <h3 class="title-box">Most Viewed Products</h3>
             <div class="wrap-products">
@@ -106,7 +119,7 @@
                     <div class="product product-style-2 equal-elem ">
                         <div class="product-thumnail">
                             <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                <figure><img src="{{ asset('public/frontend/images/products/digital_17.jpg')}}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                                <figure><img src="assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
                                 <span class="flash-item new-label">new</span>
@@ -124,7 +137,7 @@
                     <div class="product product-style-2 equal-elem ">
                         <div class="product-thumnail">
                             <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                <figure><img src="{{ asset('public/frontend/images/products/digital_17.jpg')}}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                                <figure><img src="assets/images/products/digital_17.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
                                 <span class="flash-item sale-label">sale</span>
@@ -142,7 +155,7 @@
                     <div class="product product-style-2 equal-elem ">
                         <div class="product-thumnail">
                             <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                <figure><img src="{{ asset('public/frontend/images/products/digital_17.jpg')}}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                                <figure><img src="assets/images/products/digital_15.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
                                 <span class="flash-item new-label">new</span>
@@ -161,7 +174,7 @@
                     <div class="product product-style-2 equal-elem ">
                         <div class="product-thumnail">
                             <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                <figure><img src="{{ asset('public/frontend/images/products/digital_17.jpg')}}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                                <figure><img src="assets/images/products/digital_01.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
                                 <span class="flash-item bestseller-label">Bestseller</span>
@@ -179,7 +192,7 @@
                     <div class="product product-style-2 equal-elem ">
                         <div class="product-thumnail">
                             <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                <figure><img src="{{ asset('public/frontend/images/products/digital_17.jpg')}}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                                <figure><img src="assets/images/products/digital_21.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="wrap-btn">
                                 <a href="#" class="function-link">quick view</a>
@@ -194,7 +207,7 @@
                     <div class="product product-style-2 equal-elem ">
                         <div class="product-thumnail">
                             <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                <figure><img src="{{ asset('public/frontend/images/products/digital_17.jpg')}}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                                <figure><img src="assets/images/products/digital_03.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
                                 <span class="flash-item sale-label">sale</span>
@@ -212,7 +225,7 @@
                     <div class="product product-style-2 equal-elem ">
                         <div class="product-thumnail">
                             <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                <figure><img src="{{ asset('public/frontend/images/products/digital_17.jpg')}}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                                <figure><img src="assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
                                 <span class="flash-item new-label">new</span>

@@ -20,7 +20,6 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/sweetalert.css') }}">
 </head>
 <body class="home-page home-01 detail page shopping-cart">
-
 	<!-- mobile menu -->
     <div class="mercado-clone-wrap">
         <div class="mercado-panels-actions-wrap">
@@ -173,9 +172,24 @@
 								<li class="menu-item">
 									<a href="{{URL::to('/show-cart-ajax')}}" class="link-term mercado-item-title">Cart</a>
 								</li>
+								<?php 
+									$customer_id = Session::get('customer_id');
+									$shipping_id = Session::get('shipping_id');
+									if($customer_id!=NULL && $shipping_id == NULL)
+									{
+								?>
 								<li class="menu-item">
 									<a href="{{ URL::to('/checkout') }}" class="link-term mercado-item-title">Checkout</a>
 								</li>
+								<?php }elseif($customer_id != NULL && $shipping_id != NULL) { ?>
+								<li class="menu-item">
+									<a href="{{ URL::to('/payment') }}" class="link-term mercado-item-title">Checkout</a>
+								</li>
+								<?php }else { ?>
+								<li class="menu-item">
+									<a href="{{ URL::to('/login') }}" class="link-term mercado-item-title">Checkout</a>
+								</li>
+								<?php } ?>
 								<li class="menu-item">
 									<a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
 								</li>																	
