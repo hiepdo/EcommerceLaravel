@@ -5,6 +5,9 @@
     <div class="panel-heading">
       Liệt kê bình luận
     </div>
+    </br>
+    <div id="notify_comment"></div>
+
     <div class="table-responsive">
                       <?php
                             $message = Session::get('message');
@@ -28,20 +31,41 @@
           @foreach($comment as $key => $cmt)
           <tr>
             <td>
-                @if($cmt->comment_status)
-                    <input type="button" data-comment-id="{{$cmt->comment_id}}" id="{{$cmt->comment_product_id}}" class="btn btn-primary btn-xs comment_check_btn" value="Duyệt">
+                @if($cmt->comment_status==1)
+                    <input type="button" data-comment_status="0" data-comment_id="{{$cmt->comment_id}}" id="{{$cmt->comment_product_id}}" class="btn btn-primary btn-xs comment-check-btn" value="Duyệt">
                 @else
-                    <input type="button" data-comment-id="{{$cmt->comment_id}}" id="{{$cmt->comment_product_id}}" class="btn btn-danger btn-xs comment_uncheck_btn" value="Bỏ duyệt">
+                    <input type="button" data-comment_status="1" data-comment_id="{{$cmt->comment_id}}" id="{{$cmt->comment_product_id}}" class="btn btn-danger btn-xs comment-check-btn" value="Bỏ duyệt">
                 @endif
             </td>
             <td>{{ $cmt->comment_name }}</td>
             <td>{{ $cmt->comment}}
-            </br><a href="#">Trả lời bình luận</a>
-            </br><textarea name="" id="" cols="30" rows="5"></textarea>
-            </br><button type="button" class="btn btn-success">Trả lời</button>
+              <style type="text/css">
+                ul.list-reply-comment li {
+                  list-style-type: decimal;
+                  color: red;
+                  margin: 5px 30px;
+              }
+              </style>
+              <ul class="list-reply-comment">
+                <p style="color: blue; font-weight: bolder; margin-top:5px;">Trả lời: </p>
+                @foreach($comment_reply as $key => $cmt_reply)
+                  @if($cmt_reply->comment_parent_comment == $cmt->comment_id)
+                    <li>{{$cmt_reply->comment}}</li>
+                  @endif
+                @endforeach
+                
+              </ul>
+              @if($cmt->comment_status==0)
+                
+                </br><a href="#">Trả lời bình luận</a>
+                </br><textarea class="form-control reply_comment_{{$cmt->comment_id}}" cols="30" rows="5"></textarea>
+                </br><button type="button" data-comment_id="{{$cmt->comment_id}}" data-product_id="{{$cmt->comment_product_id}}" class="btn btn-success btn-reply-comment" >Trả lời bình luận</button>
+ 
+              @endif
+            
             </td>
             
-            <td>{{ $cmt->comment_date}}</td>
+            <td>{{ $cmt->comment_date }}</td>
             <td><a href="{{'chi-tiet-san-pham/'}}" target="_blank">{{ $cmt->product->product_name }}</a></td>         
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">

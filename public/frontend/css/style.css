@@ -2768,7 +2768,7 @@ li.menu-item .nav-label.sale-label::before {
     margin-top: 11px;
 }
 
-.product-style-3 a.add-to-cart {
+.product-style-3 .add-to-cart {
     display: inline-block;
     width: 100%;
     font-size: 14px;
@@ -2787,8 +2787,9 @@ li.menu-item .nav-label.sale-label::before {
     margin-top: 14px;
 }
 
-.product-style-3 a.add-to-cart:hover {
+.product-style-3 .add-to-cart:hover {
     color: #f5f5f5;
+    background-color: red;
 }
 
 .wrap-pagination-info {
@@ -5298,7 +5299,7 @@ article.single-post blockquote p:last-child::after {
     display: block;
     width: 100%;
     float: left;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 #comments .commentlist li .comment_container img {
