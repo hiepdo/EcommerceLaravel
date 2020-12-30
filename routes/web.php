@@ -79,7 +79,9 @@ Route::get('/send-mail', 'MailController@SendEmail');
 Route::get('/comment','App\Http\Controllers\CommentController@list_comment');
 
 //account
+Route::get('/verify', 'HomeController@verify_user');
 Route::get('/login', 'HomeController@to_login');
+Route::get('/logout', 'HomeController@logout');
 Route::get('/forget-password', 'HomeController@to_forget_password');
 Route::get('/reset-password', 'HomeController@reset_password');
 Route::get('/register', 'HomeController@to_register');

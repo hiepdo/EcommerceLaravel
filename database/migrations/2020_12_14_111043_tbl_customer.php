@@ -21,6 +21,8 @@ class TblCustomer extends Migration
             $table->string('customer_email');
             $table->string('customer_password');
             $table->string('customer_phone');
+            $table->string('customer_verification_code')->nullable();
+            $table->integer('customer_is_verified')->default(0);
             $table->string('customer_token')->nullable()->default(null);
             $table->timestamps();
         });

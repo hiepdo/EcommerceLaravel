@@ -29,20 +29,21 @@
 						</div>
 					@endif
 
-			
+			<h1><Center>Đăng ký tài khoản</Center></h1><br>
 			<form action="{{URL::to('/register-user')}}" method="POST">
 							{{csrf_field()}}
             <form class="form-signin">
               <div class="form-label-group">
                 <input type="text" name="customer_name" class="form-control" placeholder="Họ và tên">
-                <input type="email" name="customer_email" class="form-control" placeholder="Địa chỉ email">
-                <!-- <label for="email_account">Địa chỉ email</label> -->
               </div>
-
+              <div class="form-label-group">
+                <input type="email" name="customer_email" class="form-control" placeholder="Địa chỉ email">
+              </div>
               <div class="form-label-group">
                 <input type="password" name="customer_password" class="form-control" placeholder="Mật khẩu">
+              </div>
+              <div class="form-label-group">
                 <input type="text" name="customer_phone" class="form-control" placeholder="Số điện thoại">
-                <!-- <label for="password_account">Mật khẩu</label> -->
               </div>
 			  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Đăng ký</button>
               <hr class="my-4">

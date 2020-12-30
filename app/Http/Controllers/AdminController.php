@@ -6,6 +6,7 @@ use DB;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use Validator;
+session_start();
 
 
 class AdminController extends Controller
@@ -44,7 +45,7 @@ class AdminController extends Controller
             'admin_password' => 'required',
         ]);
         $admin_email = $data['admin_email'];
-        $admin_password = md5($data['admin_password']);
+        $admin_password = $data['admin_password'];
         $login = DB::table('tbl_admin')->where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();
         if($login){ 
             Session::put('admin_name',$login->admin_name);
@@ -54,13 +55,13 @@ class AdminController extends Controller
                 Session::put('message','Mật khẩu hoặc tài khoản bị sai.Làm ơn nhập lại');
                 return Redirect::to('/admin');
         }
-        }           
-    }
+    }           
 
     public function logout()
     {
-        Session::put('admin_name',null);
-        Session::put('admin_id',null);
+        Session::put('admin_name', null);
+        Session::put('admin_id', null);
+        Session::put('logged', false);
         return Redirect::to('/admin');
     }
 }

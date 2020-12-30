@@ -8,7 +8,8 @@ class Customer extends Model
 {
     public $timestamps = false; //set time to false
     protected $fillable = [
-    	'customer_name', 'customer_email', 'customer_password', 'customer_phone', 'customer_token'
+        'customer_name', 'customer_email', 'customer_password', 'customer_phone',
+        'customer_verification_code', 'customer_is_verified', 'customer_token'
     ];
     protected $primaryKey = 'customer_id';
  	protected $table = 'tbl_customers';
