@@ -66,7 +66,7 @@
             </td>
             
             <td>{{ $cmt->comment_date }}</td>
-            <td><a href="{{'chi-tiet-san-pham/'}}" target="_blank">{{ $cmt->product->product_name }}</a></td>         
+            <td><a href="{{'detail-product/'}}" target="_blank">{{ $cmt->product->product_name }}</a></td>         
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i></a>

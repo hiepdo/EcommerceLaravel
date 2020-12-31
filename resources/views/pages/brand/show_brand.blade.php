@@ -41,20 +41,28 @@
 
                         <ul class="product-list grid-products equal-container">
 						@foreach($brand_by_id as $key => $product)
+                        <form>
+                        @csrf
                             <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
                                 <div class="product product-style-3 equal-elem ">
                                     <div class="product-thumnail">
-                                        <a href="{{ URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                        <a href="{{ URL::to('/detail-product/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
                                             <figure><img src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt=""></figure>
                                         </a>
                                     </div>
                                     <div class="product-info">
+                                        <input type="hidden" name="" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
+                                        <input type="hidden" name="" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}">
+                                        <input type="hidden" name="" value="{{$product->product_image}}" class="cart_product_image_{{$product->product_id}}">
+                                        <input type="hidden" name="" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
+                                        <input type="hidden" name="" value="1" class="cart_product_qty_{{$product->product_id}}">
                                         <a href="#" class="product-name"><span>{{($product->product_name)}}</span></a>
                                         <div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} VNĐ</span></div>
-                                        <a href="#" class="btn add-to-cart">Thêm vào giỏ hàng</a>
+                                        <button type="button" data-product_id_brand="{{$product->product_id}}" class="btn add-to-cart add-to-cart-product-brand">Thêm vào giỏ hàng</button>
                                     </div>
                                 </div>
                             </li>
+                        </form>
 						@endforeach
                         </ul>
 

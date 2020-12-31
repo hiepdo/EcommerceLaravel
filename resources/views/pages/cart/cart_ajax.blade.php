@@ -38,14 +38,17 @@
                             <figure><img src="{{ asset('public/uploads/product/'.$cart['product_image'])}}" alt="{{$cart['product_name']}}"></figure>
                         </div>
                         <div class="product-name">
-                            <a class="link-to-product" href="{{ URL::to('/chi-tiet-san-pham/'.$cart['product_id'])}}">{{$cart['product_name']}}</a>
+                            <a class="link-to-product" href="{{ URL::to('/detail-product/'.$cart['product_id'])}}">{{$cart['product_name']}}</a>
                         </div>
                         <div class="price-field produtc-price"><p class="price">{{number_format($cart['product_price']).' '.'VNĐ'}}</p></div>
                         <div class="quantity">
-                            <div class="quantity-input">
+                            <!-- <div class="quantity-input">
                                 <input type="text" name="cart_quatity[{{$cart['session_id']}}]" value="{{$cart['product_qty']}}" data-max="120" pattern="[0-9]*" >									
                                 <a class="btn btn-increase" href="#"></a>
                                 <a class="btn btn-reduce" href="#"></a>                         
+                            </div> -->
+                            <div class="form-group">
+                                <input type="number" name="cart_quatity[{{$cart['session_id']}}]" class="form-control" min="1" value="{{$cart['product_qty']}}">
                             </div>
                         </div>
                     

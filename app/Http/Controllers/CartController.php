@@ -13,7 +13,7 @@ session_start();
 
 class CartController extends Controller
 {
-    public function save_cart(Request $request)
+    /* public function save_cart(Request $request)
     {
         $product_id = $request->product_id_hidden; 
        
@@ -53,7 +53,7 @@ class CartController extends Controller
         $qty = $request->cart_quatity;
         Cart::update($rowId, $qty); 
         return Redirect::to('/show-cart');
-    }
+    } */
 
     //Cart Ajax
     public function add_cart_ajax(Request $request)

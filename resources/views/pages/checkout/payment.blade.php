@@ -36,7 +36,7 @@
                             <figure><img src="{{ asset('public/uploads/product/'.$cart['product_image'])}}" alt="{{$cart['product_name']}}"></figure>
                         </div>
                         <div class="product-name">
-                            <a class="link-to-product" href="{{ URL::to('/chi-tiet-san-pham/'.$cart['product_id'])}}">{{$cart['product_name']}}</a>
+                            <a class="link-to-product" href="{{ URL::to('/detail-product/'.$cart['product_id'])}}">{{$cart['product_name']}}</a>
                         </div>
                         <div class="price-field produtc-price"><p class="price">{{number_format($cart['product_price']).' '.'VNĐ'}}</p></div>
                         <div class="quantity">
