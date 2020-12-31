@@ -109,4 +109,5 @@ Route::get('/clear-all-cart-ajax','CartController@clear_all_cart_ajax');
 Route::get('/checkout','CheckoutController@show_checkout');
 Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer'); 
 Route::get('/payment','CheckoutController@payment');
-Route::get('/thankyou','CheckoutController@thankyou_customer');
+Route::post('/order-place','CheckoutController@order_place'); 
+

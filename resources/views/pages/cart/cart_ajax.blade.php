@@ -26,7 +26,6 @@
                 </div>
             @endif -->
             <h3 class="box-title">Products Name</h3>
-            
                 <?php $total = 0; ?>
                 @foreach(Session::get('cart') as $key => $cart)       
                 <?php 

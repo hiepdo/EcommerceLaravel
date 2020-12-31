@@ -72,7 +72,16 @@
         </form> -->
         </div>
         <div class="summary summary-checkout">
+        <?php $total = 0; ?>
+                @foreach(Session::get('cart') as $key => $cart)       
+                <?php 
+                    $subtotal = $cart['product_qty'] * $cart['product_price'];
+                    $total += $subtotal;
+                ?>
+                @endforeach
+        <form action="{{URL::to('/order-place')}}" method="POST">
             <div class="summary-item payment-method">
+                {{ csrf_field() }}
                 <h4 class="title-box">Hình thức thanh toán</h4>
                 <p class="summary-info"><span class="title">Check / Money order</span></p>
                 <p class="summary-info"><span class="title">Credit Cart (saved)</span></p>
@@ -80,34 +89,33 @@
                     <label class="payment-method">
                         <input name="payment_option" id="payment-method-bank" value="1" type="radio">
                         <span>Thanh toán bằng thẻ tín dụng (ATM)</span>
-                        <span class="payment-desc">But the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</span>
+                        <span class="payment-desc">Hình thức thanh toán áp dụng cho tất cả các ngân hàng được liên kết</span>
                     </label>
                     <label class="payment-method">
-                        <input name="payment_option" id="payment-method-visa" value="3" type="radio">
+                        <input name="payment_option" id="payment-method-visa" value="2" type="radio">
                         <span>Thanh toán bằng thẻ Visa</span>
-                        <span class="payment-desc">You can pay with your credit</span>
-                        <span class="payment-desc">card if you don't have a paypal account</span>
+                        <span class="payment-desc">Hình thức thanh toán chỉ áp dụng khi bạn sở hữu thẻ Visa</span>
                     </label>
                     <label class="payment-method">
-                        <input name="payment_option" id="payment-method-paypal" value="2" type="radio">
+                        <input name="payment_option" id="payment-method-paypal" value="3" type="radio">
                         <span>Thanh toán khi nhận hàng</span>
-                        <span class="payment-desc">You can pay with your credit</span>
-                        <span class="payment-desc">card if you don't have a paypal account</span>
+                        <span class="payment-desc">Bạn có thể kiểm tra hàng trước khi trả tiền</span>
                     </label>
                 </div>
-                <p class="summary-info grand-total"><span>Tổng cộng</span> <span class="grand-total-price">$100.00</span></p>
-                <a href="{{URL::to('/thankyou')}}" class="btn btn-medium">Đặt hàng ngay bây giờ</a>
+                <p class="summary-info grand-total"><span>Tổng Hóa đơn:</span> <span class="grand-total-price">{{number_format($total).' '.'VNĐ'}}</span></p>
+                <input type="submit" name="order_place" class="btn btn-medium" value="Đặt hàng ngay bây giờ">
             </div>
+        </form>
             <div class="summary-item shipping-method">
-                <h4 class="title-box f-title">Shipping method</h4>
+                <h4 class="title-box f-title">Hình thức vận chuyển</h4>
                 <p class="summary-info"><span class="title">Flat Rate</span></p>
                 <p class="summary-info"><span class="title">Fixed $50.00</span></p>
-                <h4 class="title-box">Discount Codes</h4>
+                <h4 class="title-box">Mã giảm giá</h4>
                 <p class="row-in-form">
-                    <label for="coupon-code">Enter Your Coupon code:</label>
+                    <label for="coupon-code">Nhập vào mã giảm giá của bạn:</label>
                     <input id="coupon-code" type="text" name="coupon-code" value="" placeholder="">	
                 </p>
-                <a href="#" class="btn btn-small">Apply</a>
+                <input type="submit" name="coupon_order_place" class="btn btn-small" value="Áp dụng">
             </div>
         </div>
 

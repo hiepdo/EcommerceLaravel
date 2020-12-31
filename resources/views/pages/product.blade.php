@@ -80,7 +80,7 @@
                                             <a href="#" class="product-name"><span>{{($product->product_name)}}</span></a>
                                             <div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} VNĐ</span></div>
                                             <!-- <a href="#" class="btn add-to-cart">Thêm vào giỏ hàng</a> -->
-                                            <button type="button" data-product_id="{{$product->product_id}}" class="btn btn-danger add-to-cart" name="add_to_cart">Thêm vào giỏ hàng</button>
+                                            <button type="button" data-id_product="{{$product->product_id}}" class="btn btn-danger add-to-cart" name="add_to_cart">Thêm vào giỏ hàng</button>
                                         </div>
                                     </form>
                                 </div>
