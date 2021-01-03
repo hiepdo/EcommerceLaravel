@@ -294,4 +294,24 @@ class HomeController extends Controller
         Session::put('logged', false);
         return Redirect::to('/Home');
     }
+
+    public function all_customer_account(){
+        $this->AuthenLogin();
+        $all_customer_account = DB::table('tbl_customers')->get();
+        $manager_customer_account  = view('admin.all_customer_account')->with('all_customer_account',$all_customer_account);
+        return view('admin_layout')->with('admin.all_customer_account', $manager_customer_account);
+    }
+
+    public function AuthenLogin()
+    {
+        $admin_id = Session::get('admin_id');
+        if($admin_id)
+        {
+           return Redirect::to('dashboard');
+        }
+        else
+        {
+           return Redirect::to('admin')-> send();
+        }
+    }
 }

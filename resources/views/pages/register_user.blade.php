@@ -130,7 +130,7 @@ body {
 <body>
 <section id="form"><!--form-->
 <div class="signin-form">
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form action="{{URL::to('/register-user')}}" method="POST">
 		<h2>Đăng ký</h2>
 		@if(session()->has('message'))
 					<div class="alert alert-success">

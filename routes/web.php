@@ -108,6 +108,7 @@ Route::get('/logout', 'HomeController@logout');
 Route::get('/forget-password', 'HomeController@to_forget_password');
 Route::get('/reset-password', 'HomeController@reset_password');
 Route::get('/register', 'HomeController@to_register');
+Route::get('/all-customer-account', 'HomeController@all_customer_account');
 Route::post('/register-user', 'HomeController@register_user');
 Route::post('/login-user', 'HomeController@login_user');
 Route::post('/recover-pass', 'HomeController@recover_pass');

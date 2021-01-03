@@ -130,7 +130,7 @@ body {
 <body>
 <section id="form"><!--form-->
 <div class="signin-form">
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form action="{{URL::to('/login-user')}}" method="post">
 		<h2>Đăng nhập</h2>
 		@if(session()->has('message'))
 					<div class="alert alert-success">
@@ -160,7 +160,6 @@ body {
             <button type="submit" class="btn btn-success btn-lg btn-block signin-btn">Đăng nhập</button>
         </div>
         <div class="text-center small"><a href="{{URL::to('forget-password')}}">Bạn quên mật khẩu?</a></div>
-		<div class="text-center small"><a href="{{URL::to('update-password')}}">Bạn muốn đổi mật khẩu? </a></div>
     </form>
     <div class="text-center small">Bạn chưa có tài khoản? <a href="{{URL::to('register')}}">Đăng ký</a></div>
 </div>
