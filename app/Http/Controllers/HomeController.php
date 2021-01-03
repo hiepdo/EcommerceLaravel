@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 session_start();
 use Validator;
 use Carbon\Carbon;
-use App\Customer;
+use App\Models\Customer;
 use Mail;
 
 
