@@ -8,15 +8,118 @@ use DB;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
-session_start();
 use Validator;
 use Carbon\Carbon;
 use App\Customer;
 use Mail;
+use App\Models\Social;
+/*use App\Social; //sử dụng model Social*/
+use Socialite; //sử dụng Socialite
+// use App\Login; //sử dụng model Login
+use App\Models\Login;
+session_start();
+
+
 
 
 class HomeController extends Controller
 {
+    public function login_facebook(){
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function callback_facebook(){
+        $provider = Socialite::driver('facebook')->user();
+        $account = Social::where('provider','facebook')->where('provider_user_id',$provider->getId())->first();
+        if($account){
+            $account_name = Login::where('customer_id',$account->user)->first();
+            Session::put('customer_name',$account_name->customer_name);
+            Session::put('customer_id',$account_name->customer_id);
+        }else{
+
+            $customer_new = new Social([
+                'provider_user_id' => $provider->getId(),
+                'provider' => 'facebook'
+            ]);
+
+            $orang = Login::where('customer_email',$provider->getEmail())->first();
+
+            if(!$orang){
+                $orang = Login::create([
+                    'customer_name' => $provider->getName(),
+                    'customer_email' => $provider->getEmail(),
+                    'customer_password' => '',
+                    'customer_phone' => ''
+                ]);
+            }
+            $customer_new->login()->associate($orang);
+            $customer_new->save();
+
+            $account_name = Login::where('customer_id',$customer_new->user)->first();
+            Session::put('customer_name',$account_name->customer_name);
+             Session::put('customer_id',$account_name->customer_id);
+        } 
+        return redirect('/Home')->with('message', 'Đăng nhập thành công');
+    }
+    public function login_google(){
+        return Socialite::driver('google')->redirect();
+    }
+    public function callback_google(){
+        $users = Socialite::driver('google')->stateless()->user(); 
+        // return $users->id;
+        $authUser = $this->findOrCreateUser($users,'google');
+        if($authUser)
+        {
+            $account_name = Login::where('customer_id',$authUser->user)->first();
+            Session::put('customer_name',$account_name->customer_name);
+            Session::put('customer_id',$account_name->customer_id);
+        }else if($customer_new)
+        {
+            $account_name = Login::where('customer_id',$authUser->user)->first();
+            Session::put('customer_name',$account_name->customer_name);
+            Session::put('customer_id',$account_name->customer_id);
+        }
+
+        return redirect('/Home')->with('message', 'Đăng nhập thành công');
+      
+       
+    }
+    public function findOrCreateUser($users,$provider){
+        $authUser = Social::where('provider_user_id', $users->id)->first();
+        if($authUser){
+
+            return $authUser;
+        }
+        else{
+            $customer_new = new Social([
+                'provider_user_id' => $users->id,
+                'provider' => strtoupper($provider)
+            ]);
+    
+            $orang = Login::where('customer_email',$users->email)->first();
+    
+                if(!$orang){
+                    $orang = Login::create([
+                        'customer_name' => $users->name,
+                        'customer_email' => $users->email,
+                        'customer_password' => '',
+                        'customer_phone' => '',
+                    ]);
+                }
+            $customer_new->login()->associate($orang);
+            $customer_new->save();
+            
+            return $customer_new;
+        }
+        $account_name = Login::where('customer_id',$authUser->user)->first();
+        Session::put('customer_name',$account_name->customer_name);
+        Session::put('customer_id)',$account_name->customer_id);
+        return redirect('/Home')->with('message', 'Đăng nhập thành công');
+
+
+    }
+
+
     public function home()
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status','0') ->orderby('category_id','desc')->get();
