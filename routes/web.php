@@ -77,6 +77,14 @@ Route::post('/reply-comment', 'ProductController@reply_comment');
 //Send mail
 Route::get('/send-mail', 'MailController@SendEmail');
 
+//Login facebook
+Route::get('/login-facebook','HomeController@login_facebook');
+Route::get('/login/callback','HomeController@callback_facebook');
+
+//Login  google
+Route::get('/login-google','HomeController@login_google');
+Route::get('/google/callback','HomeController@callback_google');
+
 //Comment
 Route::get('/comment', 'CommentController@list_comment');
 
