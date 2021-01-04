@@ -6,10 +6,12 @@ use DB;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use Validator;
+session_start();
 
 
 class AdminController extends Controller
 {
+  
     public function AuthenLogin()
     {
         $admin_id = Session::get('admin_id');
@@ -22,6 +24,7 @@ class AdminController extends Controller
            return Redirect::to('admin')-> send();
         }
     }
+
     public function admin()
     {
         return view('admin_login');
@@ -35,7 +38,6 @@ class AdminController extends Controller
     
     public function dashboard(Request $request)
     {
-       
         //$data = $request->all();
         $data = $request->validate([
             //validation laravel 
@@ -43,7 +45,7 @@ class AdminController extends Controller
             'admin_password' => 'required',
         ]);
         $admin_email = $data['admin_email'];
-        $admin_password = md5($data['admin_password']);
+        $admin_password = $data['admin_password'];
         $login = DB::table('tbl_admin')->where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();
         if($login){ 
             Session::put('admin_name',$login->admin_name);
@@ -51,12 +53,15 @@ class AdminController extends Controller
             return Redirect::to('/dashboard');
         }else{
                 Session::put('message','Mật khẩu hoặc tài khoản bị sai.Làm ơn nhập lại');
-        }           
-    }
+                return Redirect::to('/admin');
+        }
+    }           
+
     public function logout()
     {
-        Session::put('admin_name',null);
-        Session::put('admin_id',null);
+        Session::put('admin_name', null);
+        Session::put('admin_id', null);
+        Session::put('logged', false);
         return Redirect::to('/admin');
     }
 }
