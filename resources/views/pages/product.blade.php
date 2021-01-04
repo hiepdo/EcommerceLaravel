@@ -72,15 +72,14 @@
                                         <input type="hidden" name="" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
                                         <input type="hidden" name="" value="1" class="cart_product_qty_{{$product->product_id}}">
                                         <div class="product-thumnail">
-                                            <a href="{{ URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                            <a href="{{ URL::to('/detail-product/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
                                                 <figure><img src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt=""></figure>
                                             </a>
                                         </div>
                                         <div class="product-info">
                                             <a href="#" class="product-name"><span>{{($product->product_name)}}</span></a>
                                             <div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} VNĐ</span></div>
-                                            <!-- <a href="#" class="btn add-to-cart">Thêm vào giỏ hàng</a> -->
-                                            <button type="button" data-product_id="{{$product->product_id}}" class="btn btn-danger add-to-cart" name="add_to_cart">Thêm vào giỏ hàng</button>
+                                            <button type="button" data-id_product="{{$product->product_id}}" class="btn btn-danger add-to-cart" name="add_to_cart">Thêm vào giỏ hàng</button>
                                         </div>
                                     </form>
                                 </div>
@@ -109,7 +108,7 @@
                             <ul class="list-category">
 							
                                 <li class="category-item has-child-cate">
-                                    <a href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id) }}" class="cate-link">{{$cate->category_name}}</a>
+                                    <a href="{{URL::to('/category-product/'.$cate->category_id) }}" class="cate-link">{{$cate->category_name}}</a>
                                 </li>
 																	
 							</ul>
@@ -124,7 +123,7 @@
                        
                             <ul class="list-style vertical-list list-limited" data-show="6">
                             @foreach($brand as $key => $brand)
-                                <li class="list-item"><a class="filter-link" href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id) }}">{{$brand->brand_name}}</a></li>
+                                <li class="list-item"><a class="filter-link" href="{{URL::to('/brand-product/'.$brand->brand_id) }}">{{$brand->brand_name}}</a></li>
                             @endforeach    
                                 <li class="list-item"><a data-label='Show less<i class="fa fa-angle-up" aria-hidden="true"></i>' class="btn-control control-show-more" href="#">Show more<i class="fa fa-angle-down" aria-hidden="true"></i></a></li>
                             </ul>					

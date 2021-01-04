@@ -20,7 +20,6 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/sweetalert.css') }}">
 </head>
 <body class="home-page home-01 detail page shopping-cart">
-
 	<!-- mobile menu -->
     <div class="mercado-clone-wrap">
         <div class="mercado-panels-actions-wrap">
@@ -173,9 +172,24 @@
 								<li class="menu-item">
 									<a href="{{URL::to('/show-cart-ajax')}}" class="link-term mercado-item-title">Cart</a>
 								</li>
+								<?php 
+									$customer_id = Session::get('customer_id');
+									$shipping_id = Session::get('shipping_id');
+									if($customer_id!=NULL && $shipping_id == NULL)
+									{
+								?>
 								<li class="menu-item">
-									<a href="checkout.html" class="link-term mercado-item-title">Checkout</a>
+									<a href="{{ URL::to('/checkout') }}" class="link-term mercado-item-title">Checkout</a>
 								</li>
+								<?php }elseif($customer_id != NULL && $shipping_id != NULL) { ?>
+								<li class="menu-item">
+									<a href="{{ URL::to('/payment') }}" class="link-term mercado-item-title">Checkout</a>
+								</li>
+								<?php }else { ?>
+								<li class="menu-item">
+									<a href="{{ URL::to('/login') }}" class="link-term mercado-item-title">Checkout</a>
+								</li>
+								<?php } ?>
 								<li class="menu-item">
 									<a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
 								</li>																	
@@ -494,16 +508,118 @@
 		});
 	</script>
 	<script type="text/javascript">
+		//add product to cart in product page
 		$(document).ready(function()
 		{
 			$('.add-to-cart').click(function()
 			{
-				var product_id = $(this).data('product_id');
-				var cart_product_id = $('.cart_product_id_' + product_id).val();
-				var cart_product_name = $('.cart_product_name_' + product_id).val();
-				var cart_product_image = $('.cart_product_image_' + product_id).val();
-				var cart_product_price = $('.cart_product_price_' + product_id).val();
-				var cart_product_qty = $('.cart_product_qty_' + product_id).val();
+				var id_product = $(this).data('id_product');
+				var cart_product_id = $('.cart_product_id_' + id_product).val();
+				var cart_product_name = $('.cart_product_name_' + id_product).val();
+				var cart_product_image = $('.cart_product_image_' + id_product).val();
+				var cart_product_price = $('.cart_product_price_' + id_product).val();
+				var cart_product_qty = $('.cart_product_qty_' + id_product).val();
+				var _token = $('input[name="_token"]').val();
+				$.ajax({
+                    url: '{{url('/add-cart-ajax')}}',
+                    method: 'POST',
+                    data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token},
+                    success:function(){
+ 					 	swal({
+                                title: "Thêm giỏ hàng thành công",
+                                text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                                showCancelButton: true,
+                                cancelButtonText: "Xem tiếp",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Đi đến giỏ hàng",
+                                closeOnConfirm: false
+                            },
+                            function() {
+                                window.location.href = "{{url('/show-cart-ajax')}}";
+						}); 
+                    }
+                });
+			});
+		});
+		
+		//add product to cart in product detail page
+		$(document).ready(function()
+		{
+			$('.add-to-cart-product-detail').click(function()
+			{
+				var cart_product_id = $('.cart_product_id').val();
+				var cart_product_name = $('.cart_product_name').val();
+				var cart_product_image = $('.cart_product_image').val();
+				var cart_product_price = $('.cart_product_price').val();
+				var cart_product_qty = $('.cart_product_qty').val();
+				var _token = $('input[name="_token"]').val();
+				$.ajax({
+                    url: '{{url('/add-cart-ajax')}}',
+                    method: 'POST',
+                    data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token},
+                    success:function(){
+ 					 	swal({
+                                title: "Thêm giỏ hàng thành công",
+                                text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                                showCancelButton: true,
+                                cancelButtonText: "Xem tiếp",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Đi đến giỏ hàng",
+                                closeOnConfirm: false
+                            },
+                            function() {
+                                window.location.href = "{{url('/show-cart-ajax')}}";
+						}); 
+                    }
+                });
+			});
+		});
+
+		//add product to cart in product category page
+		$(document).ready(function()
+		{
+			$('.add-to-cart-product-category').click(function()
+			{
+				var product_id_cate = $(this).data('product_id_category');
+				var cart_product_id = $('.cart_product_id_' + product_id_cate).val();
+				var cart_product_name = $('.cart_product_name_' + product_id_cate).val();
+				var cart_product_image = $('.cart_product_image_' + product_id_cate).val();
+				var cart_product_price = $('.cart_product_price_' + product_id_cate).val();
+				var cart_product_qty = $('.cart_product_qty_' + product_id_cate).val();
+				var _token = $('input[name="_token"]').val();
+				$.ajax({
+                    url: '{{url('/add-cart-ajax')}}',
+                    method: 'POST',
+                    data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token},
+                    success:function(){
+ 					 	swal({
+                                title: "Thêm giỏ hàng thành công",
+                                text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                                showCancelButton: true,
+                                cancelButtonText: "Xem tiếp",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Đi đến giỏ hàng",
+                                closeOnConfirm: false
+                            },
+                            function() {
+                                window.location.href = "{{url('/show-cart-ajax')}}";
+						}); 
+                    }
+                });
+			});
+		});
+
+		//add product to cart in product brand page
+		$(document).ready(function()
+		{
+			$('.add-to-cart-product-brand').click(function()
+			{
+				var product_id_brand = $(this).data('product_id_brand');
+				var cart_product_id = $('.cart_product_id_' + product_id_brand).val();
+				var cart_product_name = $('.cart_product_name_' + product_id_brand).val();
+				var cart_product_image = $('.cart_product_image_' + product_id_brand).val();
+				var cart_product_price = $('.cart_product_price_' + product_id_brand).val();
+				var cart_product_qty = $('.cart_product_qty_' + product_id_brand).val();
 				var _token = $('input[name="_token"]').val();
 				$.ajax({
                     url: '{{url('/add-cart-ajax')}}',

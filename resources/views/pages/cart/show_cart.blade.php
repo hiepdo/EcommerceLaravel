@@ -22,7 +22,7 @@
                         <figure><img src="{{URL::to('public/uploads/product/'.$v_content->options->image)}}" alt=""></figure>
                     </div>
                     <div class="product-name">
-                        <a class="link-to-product" href="{{ URL::to('/chi-tiet-san-pham/'.$v_content->id)}}">{{$v_content->name}}</a>
+                        <a class="link-to-product" href="{{ URL::to('/detail-product/'.$v_content->id)}}">{{$v_content->name}}</a>
                     </div>
                     <div class="price-field produtc-price"><p class="price">{{number_format($v_content->price).' '.'VNĐ'}}</p></div>
                     <div class="quantity">

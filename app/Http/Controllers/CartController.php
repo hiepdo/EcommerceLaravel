@@ -13,7 +13,7 @@ session_start();
 
 class CartController extends Controller
 {
-    public function save_cart(Request $request)
+    /* public function save_cart(Request $request)
     {
         $product_id = $request->product_id_hidden; 
        
@@ -53,7 +53,7 @@ class CartController extends Controller
         $qty = $request->cart_quatity;
         Cart::update($rowId, $qty); 
         return Redirect::to('/show-cart');
-    }
+    } */
 
     //Cart Ajax
     public function add_cart_ajax(Request $request)
@@ -61,14 +61,17 @@ class CartController extends Controller
         $data = $request->all();
         $session_id = substr(md5(microtime()),rand(0,26),5);
         $cart = Session::get('cart');
-        if($cart==true){
+        if($cart==true)
+        {
             $is_avaiable = 0;
-            foreach($cart as $key => $val){
+            foreach($cart as $key => $val)
+            {
                 if($val['product_id']==$data['cart_product_id']){
                     $is_avaiable++;
                 }
             }
-            if($is_avaiable == 0){
+            if($is_avaiable == 0)
+            {
                 $cart[] = array(
                 'session_id' => $session_id,
                 'product_name' => $data['cart_product_name'],
@@ -93,7 +96,6 @@ class CartController extends Controller
             );
             Session::put('cart',$cart);
         }
-        
         Session::save();
     }
 

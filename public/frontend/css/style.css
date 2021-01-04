@@ -869,6 +869,7 @@ li.menu-item .nav-label.sale-label::before {
 
 .header-style-1 .primary-nav-section {
     background: #444444;
+    display: flex;
 }
 
 .primary {
