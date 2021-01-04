@@ -7,7 +7,6 @@ use DB;
 use Session;
 use App\Models\Comment;
 use App\Http\Requests;
-use App\Http\Requests\checkoutRequest;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 
@@ -21,7 +20,7 @@ class CheckoutController extends Controller
         return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand',$brand_product);
     }
 
-    public function save_checkout_customer(checkoutRequest $request)
+    public function save_checkout_customer(Request $request)
     {
         $data = array();
         $data['shipping_name'] = $request->shipping_name;

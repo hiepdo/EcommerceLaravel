@@ -467,7 +467,12 @@
 	<script src="{{ asset('public/frontend/js/jquery.sticky.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/functions.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/sweetalert.js') }}"></script>
-	
+	<script src="{{asset('public/frontend/js/jquery.form-validator.min.js')}}"></script>
+	<script type="text/javascript">
+		$.validate({
+				
+		});
+	</script>
 	<script type="text/javascript">
 		$(document).ready(function()
 		{

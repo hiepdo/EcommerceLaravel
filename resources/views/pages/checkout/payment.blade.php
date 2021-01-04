@@ -79,7 +79,7 @@
                     $total += $subtotal;
                 ?>
                 @endforeach
-        <form action="{{URL::to('/order-place')}}" method="POST" class="was-validated">
+        <form action="{{URL::to('/order-place')}}" method="POST">
             <div class="summary-item payment-method">
                 {{ csrf_field() }}
                 <h4 class="title-box">Hình thức thanh toán</h4>
