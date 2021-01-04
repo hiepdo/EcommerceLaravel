@@ -87,7 +87,7 @@
                     <a class="btn btn-checkout" href="{{URL::to('/payment')}}">Check out</a>
                 <?php }
                 else{ ?>
-                    <a class="btn btn-checkout" href="{{URL::to('/login')}}">Check out</a>
+                    <a class="btn btn-checkout" href="{{URL::to('/login-to-checkout')}}">Check out</a>
                 <?php } ?>
                 <a class="link-to-shop" href="{{ URL::to('/shop') }}">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
             </div>

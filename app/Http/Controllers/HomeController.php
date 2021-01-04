@@ -180,9 +180,7 @@ class HomeController extends Controller
             $customer->save();
             return redirect('/login');
         }
-
         
-        // return redirect()->back()->with('message', 'Đăng ký thành công');
         return Redirect('/login');
 
     }
@@ -197,12 +195,18 @@ class HomeController extends Controller
             Session::put('customer_id', $result->customer_id);
             Session::put('customer_name', $result->customer_name);
             Session::put('logged', true);
-            return Redirect('/Home');
+            if(Session::get('backCheckout') == true) {
+                Session::put('backCheckout', false);
+                return redirect('/checkout');
+            }
+            else
+            {
+                return redirect('/Home');
+            } 
     	}else{
     		return redirect()->back()->with('error', 'Sai tên tài khoản hoặc mật khẩu, vui lòng kiểm tra lại');
     	}
         Session::save();
-
     }
 
     public function recover_pass(Request $request)
