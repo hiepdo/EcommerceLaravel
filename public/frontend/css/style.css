@@ -5601,7 +5601,12 @@ table.shop_attributes tbody {
     width: calc( 50% - 15px);
     width: -webkit-calc( 50% - 15px);
     width: -moz-calc( 50% - 15px);
-    margin-bottom: 23px;
+    margin-bottom: 15px;
+}
+
+.wrap-address-billing .is-danger {
+    color: red;
+    font-size: 15px;
 }
 
 .wrap-address-billing .row-in-form.fill-wife {

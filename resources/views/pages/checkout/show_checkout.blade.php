@@ -10,6 +10,23 @@
             <li class="item-link"><span>Checkout</span></li>
         </ul>
     </div>
+    @if ($errors->any())
+    <section class="error">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-6">
+                    <div class="notification is-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @endif
     <div class=" main-content-area">
         <div class="wrap-address-billing">
         <form action="{{URL::to('/save-checkout-customer')}}" method="POST" name="frm-billing">
@@ -17,19 +34,31 @@
             <h3 class="box-title">Thông tin giao hàng</h3>
                 <p class="row-in-form">
                     <label for="fname">Họ tên<span>*</span></label>
-                    <input id="fname" type="text" name="shipping_name" value="" placeholder="Họ tên của bạn">
+                    <input id="fname" type="text" name="shipping_name" value="" placeholder="Họ tên của bạn">                
+                  <!--   @if ($errors->has('shipping_name'))
+                        <p class="is-danger">{{ $errors->first('shipping_name') }}</p>
+                    @endif   -->                 
                 </p>
                 <p class="row-in-form">
                     <label for="email">Địa chỉ email</label>
                     <input id="email" type="email" name="shipping_email" value="" placeholder="Email của bạn">
+                  <!--   @if ($errors->has('shipping_email'))
+                        <p class="is-danger">{{ $errors->first('shipping_email') }}</p>
+                    @endif  -->
                 </p>
                 <p class="row-in-form">
                     <label for="phone">Số điện thoại<span>*</span></label>
                     <input id="phone" type="text" name="shipping_phone" value="" placeholder="Số điện thoại của bạn">
+                  <!--   @if ($errors->has('shipping_phone'))
+                        <p class="is-danger">{{ $errors->first('shipping_phone') }}</p>
+                    @endif  -->
                 </p>
                 <p class="row-in-form">
                     <label for="add">Địa chỉ:</label>
                     <input id="add" type="text" name="shipping_address" value="" placeholder="Địa chỉ của bạn đang ở">
+                   <!--  @if ($errors->has('shipping_address'))
+                        <p class="is-danger">{{ $errors->first('shipping_address') }}</p>
+                    @endif  -->
                 </p>
                 <div class="form-group">
                     <label style="font-weight: normal;" for="exampleFormControlTextarea1">Ghi chú thêm</label>
