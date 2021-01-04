@@ -9,24 +9,7 @@
             <li class="item-link"><a href="{{URL::to('/Home')}}" class="link">Home</a></li>
             <li class="item-link"><span>Checkout</span></li>
         </ul>
-    </div>
-    @if ($errors->any())
-    <section class="error">
-        <div class="container">
-            <div class="columns is-centered">
-                <div class="column is-6">
-                    <div class="notification is-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    @endif
+    </div>   
     <div class=" main-content-area">
         <div class="wrap-address-billing">
         <form action="{{URL::to('/save-checkout-customer')}}" method="POST" name="frm-billing">
@@ -67,7 +50,7 @@
                 <input type="submit" value="Tiến hành thanh toán" name="send_order" class="btn btn-danger">
         </form>
         </div>
-       
+        @include('form_error')
         <div class="wrap-show-advance-info-box style-1 box-in-site">
             <h3 class="title-box">Most Viewed Products</h3>
             <div class="wrap-products">

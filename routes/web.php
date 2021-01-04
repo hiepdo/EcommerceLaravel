@@ -75,7 +75,10 @@ Route::get('/active-product/{product_id}', 'ProductController@active_product');
 Route::post('/save-product', 'ProductController@save_product');
 Route::post('/update-product/{product_id}', 'ProductController@update_product');
 
-
+//order
+Route::get('/manage-order', 'OrderProduct@manage_order');
+Route::get('/view-order/{orderId}', 'OrderProduct@view_order');
+Route::get('/delete-order/{orderId}', 'OrderProduct@delete_order');
 
 //Home product category
 Route::get('/category-product/{category_id}','CategoryProduct@show_category_home');

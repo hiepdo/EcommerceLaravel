@@ -40,5 +40,4 @@ return [
         'redirect' => 'http://localhost/EcommerceLaravel/google/callback'
     ],
 
-
 ];
