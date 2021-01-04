@@ -494,6 +494,64 @@
 		});
 	</script>
 	<script type="text/javascript">
+		function view()
+		{
+			if(localStorage.getItem('data')!=null)
+			{
+				var data = JSON.parse(localStorage.getItem('data'));
+				data.reverse();
+				document.getElementById('row_wishlist').style.overflow='scroll';
+				document.getElementById('row_wishlist').style.height='300px';
+
+				for(i=0;i<data.length;i++)
+				{
+					var name=data[i].name;
+					var price=data[i].price;
+					var image=data[i].image;
+					var url=data[i].url;
+					$("#row_wishlist").append('<div class="row" style="margin:10px 0"><div class="col-md-4"><img width="100%" src="'+image+'"></div><div class="col-md-8 info_wishlist"><p style="color:#444444">'+name+'</p><p style="color:#d9534f;font-weight: bold">'+price+'</p><a href="'+url+'">Xem sản phẩm</a></div>');
+				}
+
+			}
+		}
+view();
+		function add_wishlist(clicked_id)
+		{
+			var id=clicked_id;
+			var name = document.getElementById('wishlist_productname'+id).value;
+			var price = document.getElementById('wishlist_productprice'+id).value;
+			var image = document.getElementById('wishlist_productimage'+id).src;
+			var url = document.getElementById('wishlist_producturl'+id).href;
+			var newItem = {
+				'url':url,
+				'id':id,
+				'name':name,
+				'price':price,
+				'image':image
+			}
+
+			if(localStorage.getItem('data')==null){
+				localStorage.setItem('data','[]');
+			}
+
+			var old_data=JSON.parse(localStorage.getItem('data'));
+
+			var matches=$.grep(old_data,function(obj){
+					return obj.id == id;
+			});
+			if(matches.length)
+			{
+				alert('Sản phẩm bạn đã yêu thích, không thể thêm');
+			}
+			else{
+				old_data.push(newItem);
+				$("#row_wishlist").append('<div class="row" style="margin:10px 0"><div class="col-md-4"><img width="100%" src="'+newItem.image+'"></div><div class="col-md-8 info_wishlist"><p style="color:#444444">'+newItem.name+'</p><p style="color:#d9534f;font-weight: bold">'+newItem.price+'</p><a href="'+newItem.url+'">Xem sản phẩm</a></div>');
+			}
+			localStorage.setItem('data',JSON.stringify(old_data));
+		}
+
+</script>
+	<script type="text/javascript">
 		$(document).ready(function()
 		{
 			$('.add-to-cart').click(function()

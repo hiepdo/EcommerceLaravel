@@ -66,21 +66,22 @@
                                 <div class="product product-style-3 equal-elem ">
                                     <form>
                                     @csrf
-                                        <input type="hidden" name="" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
-                                        <input type="hidden" name="" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}">
+                                        <input type="hidden" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
+                                        <input type="hidden" id="wishlist_productname{{$product->product_id}}" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}">
                                         <input type="hidden" name="" value="{{$product->product_image}}" class="cart_product_image_{{$product->product_id}}">
-                                        <input type="hidden" name="" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
+                                        <input type="hidden" id="wishlist_productprice{{$product->product_id}}" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
                                         <input type="hidden" name="" value="1" class="cart_product_qty_{{$product->product_id}}">
                                         <div class="product-thumnail">
-                                            <a href="{{ URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                                <figure><img src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt=""></figure>
+                                            <a id="wishlist_producturl{{$product->product_id}}"href="{{ URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                                <figure><img id="wishlist_productimage{{$product->product_id}}" src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt=""></figure>
                                             </a>
                                         </div>
                                         <div class="product-info">
                                             <a href="#" class="product-name"><span>{{($product->product_name)}}</span></a>
-                                            <div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} VNĐ</span></div>
+                                            <div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} Đ</span></div>
                                             <!-- <a href="#" class="btn add-to-cart">Thêm vào giỏ hàng</a> -->
-                                            <button type="button" data-product_id="{{$product->product_id}}" class="btn btn-danger add-to-cart" name="add_to_cart">Thêm vào giỏ hàng</button>
+                                            <button type="button" id="{{$product->product_id}}" class="btn btn-danger add-to-cart" name="add_to_cart">Thêm vào giỏ hàng</button>
+                                            <button type="button" class="btn btn-danger add-to-wishlist" id="{{$product->product_id}}" onclick="add_wishlist(this.id);" >Thêm vào yêu thích </button>
                                         </div>
                                     </form>
                                 </div>
@@ -144,20 +145,15 @@
                         </div>
                     </div>
                     <!-- Price-->
-
-                    <div class="widget mercado-widget filter-widget">
-                        <h2 class="widget-title">Color</h2>
+                    <div class="widget mercado-widget filter-widget brand-widget">
+                        <h2 class="widget-title">Sản phẩm yêu thích</h2>
                         <div class="widget-content">
-                            <ul class="list-style vertical-list has-count-index">
-                                <li class="list-item"><a class="filter-link " href="#">Red <span>(217)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Yellow <span>(179)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Black <span>(79)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Blue <span>(283)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Grey <span>(116)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Pink <span>(29)</span></a></li>
-                            </ul>
+                            <div id="row_wishlist" class="row">
+                                
+                            </div>		
                         </div>
                     </div>
+                   
                     <!-- Color -->
                     <div class="widget mercado-widget widget-product">
                         <h2 class="widget-title">Popular Products</h2>
