@@ -21,6 +21,7 @@ Route::get('/', 'HomeController@home');
 Route::get('/Home', 'HomeController@home');
 Route::get('/product', 'HomeController@products');
 Route::get('/shop', 'HomeController@shop');
+Route::post('/search', 'HomeController@search');
 
 //admin
 Route::get('/admin','AdminController@admin');
