@@ -117,7 +117,6 @@ Route::get('/clear-all-cart-ajax','CartController@clear_all_cart_ajax');
 //Checkout
 Route::get('/checkout', 'CheckoutController@show_checkout');
 Route::get('/payment', 'CheckoutController@payment');
-Route::get('/login-to-checkout', 'CheckoutController@login_to_checkout');
 Route::post('/order-place', 'CheckoutController@order_place'); 
 Route::post('/save-checkout-customer', 'CheckoutController@save_checkout_customer'); 
 

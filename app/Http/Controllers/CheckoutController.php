@@ -14,12 +14,6 @@ session_start();
 class CheckoutController extends Controller
 {
 
-    public function login_to_checkout()
-    {
-        Session::put('backCheckout', true);
-        return Redirect('/login');
-    }
-
     public function show_checkout()
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status','0') ->orderby('category_id','desc')->get();

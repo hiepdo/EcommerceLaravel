@@ -8,6 +8,7 @@ use DB;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 use Validator;
 use Carbon\Carbon;
 use App\Models\Customer;
@@ -115,8 +116,6 @@ class HomeController extends Controller
         Session::put('customer_name',$account_name->customer_name);
         Session::put('customer_id)',$account_name->customer_id);
         return redirect('/Home')->with('message', 'Đăng nhập thành công');
-
-
     }
 
 
@@ -131,6 +130,8 @@ class HomeController extends Controller
 
     public function to_login()
     {
+        $preUrl = URL::previous();
+        Session::put('previousUrl', $preUrl);
         return view('pages.login_user');
     }
 
@@ -195,14 +196,7 @@ class HomeController extends Controller
             Session::put('customer_id', $result->customer_id);
             Session::put('customer_name', $result->customer_name);
             Session::put('logged', true);
-            if(Session::get('backCheckout') == true) {
-                Session::put('backCheckout', false);
-                return redirect('/checkout');
-            }
-            else
-            {
-                return redirect('/Home');
-            } 
+            return redirect(Session::get('previousUrl'));
     	}else{
     		return redirect()->back()->with('error', 'Sai tên tài khoản hoặc mật khẩu, vui lòng kiểm tra lại');
     	}
