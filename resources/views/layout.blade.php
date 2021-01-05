@@ -85,8 +85,9 @@
 							<div class="wrap-search-form">
 								<form action="{{URL::to('/search')}}" method="POST" id="form-search-top" name="form-search-top">
 									{{ csrf_field() }}
-									<input type="text" name="search" value="" placeholder="Search here...">
-									<button type="submit" class="btn btn-primary" name="search_items"><i class="fa fa-search"></i>
+									<input type="text" name="search" id="keywords" placeholder="Search here..."/>
+									<div id="search_ajax"></div>
+									<button type="submit" class="btn btn-primary" name="search_items" value="Tìm kiếm"><i class="fa fa-search"></i>
 
 								</form>	
 							</div>
@@ -446,7 +447,30 @@
 	<script src="{{ asset('public/frontend/js/jquery.sticky.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/functions.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/sweetalert.js') }}"></script>
-	
+
+	<script type="text/javascript">
+		$('#keywords').keyup(function() {
+			var query = $(this).val();
+			if(query != '') {
+				var _token = $('input[name="_token"]').val();
+				$.ajax({
+					url : '{{url('/autocomplete-ajax')}}',
+					method: "POST",
+					data:{query:query, _token:_token},
+					success:function(data){
+						$('#search_ajax').fedeIn();
+						$('#search_ajax').html(data);
+					}
+				});
+			}else{
+				$('#search_ajax').fedeOut();
+			}
+		});
+		$(document).on('click', 'li',function(){
+			$('#keywords').val($(this).text());
+			$('#search_ajax').fadeOut();
+		});
+	</script>
 	<script type="text/javascript">
 		$(document).ready(function()
 		{

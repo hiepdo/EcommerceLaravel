@@ -26,7 +26,7 @@
 
                     </div>
                     <!--end wrap shop control-->
-
+                    
                     <div class="row">
                         <ul class="product-list grid-products equal-container">
                         @foreach($search_product as $key => $product)
