@@ -36,9 +36,7 @@
 					<div class="container">
 						<div class="topbar-menu left-menu">
 							<ul>
-								<li class="menu-item" >
-									<a title="Hotline: (+123) 456 789" href="#" ><span class="icon label-before fa fa-mobile"></span>Hotline: (+123) 456 789</a>
-								</li>
+								
 							</ul>
 						</div>
 						<div class="topbar-menu right-menu">
@@ -50,7 +48,7 @@
 								@else
 								<li class="dropdown">
 									<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-										<img alt="" src="{{asset('public/backend/images/2.png')}}">
+										<img alt="" src="{{asset('public/backend/images/2.png')}}" style="width:30px; height:30px;">
 									<span class="username">
 										<?php
 											$name= Session::get('customer_name');
@@ -124,10 +122,15 @@
 								</a>
 							</div>
 							<div class="wrap-icon-section minicart">
-								<a href="#" class="link-direction">
+							
+								<a href="{{URL::to('/show-cart-ajax')}}" class="link-direction">
 									<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 									<div class="left-info">
-										<span class="index">4 items</span>
+										@if(Session::get('cart') == true)											
+										<span class="index">{{count(Session::get('cart'))}} item</span>	
+										@else
+										<span class="index">0 item</span>
+										@endif
 										<span class="title">CART</span>
 									</div>
 								</a>
@@ -164,7 +167,7 @@
 									<a href="{{ URL::to('/Home') }}" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
 								</li>
 								<li class="menu-item">
-									<a href="about-us.html" class="link-term mercado-item-title">About Us</a>
+									<a href="{{URL::to('/about-us')}}" class="link-term mercado-item-title">About Us</a>
 								</li>
 								<li class="menu-item">
 									<a href="{{ URL::to('/shop') }}" class="link-term mercado-item-title">Shop</a>
@@ -191,7 +194,7 @@
 								</li>
 								<?php } ?>
 								<li class="menu-item">
-									<a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
+									<a href="{{ URL::to('/contact-us') }}" class="link-term mercado-item-title">Contact Us</a>
 								</li>																	
 							</ul>
 						</div>
@@ -467,7 +470,13 @@
 	<script src="{{ asset('public/frontend/js/jquery.sticky.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/functions.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/sweetalert.js') }}"></script>
-	<script src="{{asset('public/frontend/js/jquery.form-validator.min.js')}}"></script>
+	<script src="{{ asset('public/frontend/js/jquery.form-validator.min.js')}}"></script>
+	<div id="map"></div>
+	<script src="https://maps.googleapis.com/maps/api/js" async defer></script>
+
+	<script>
+	function initMap() {}
+	</script>
 	<script type="text/javascript">
 		$.validate({
 				

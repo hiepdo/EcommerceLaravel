@@ -10,7 +10,7 @@
                       <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<div style="text-align: center; font-size: 18px;" class="alert alert-danger" role="alert">'.$message.'</div>';
+                                echo '<div style="text-align: center; font-size: 18px;" class="alert alert-success" role="alert">'.$message.'</div>';
                                 Session::put('message',null);
                             }
                             ?>

@@ -16,9 +16,9 @@
 		<div class="container pb-60">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<h2>Thank you for your order</h2>
-                    <p>A confirmation email was sent.</p>
-                    <a href="{{ URL::to('/shop') }}" class="btn btn-submit btn-submitx">Continue Shopping</a>
+					<h2>Cảm ơn sự tin tưởng của bạn</h2>
+                    <p>Chúng tôi sẽ liên hệ với bạn để xác nhận đơn hàng</p>
+                    <a href="{{ URL::to('/shop') }}" class="btn btn-submit btn-submitx">Tiếp tục mua sắm</a>
 				</div>
 			</div>
 		</div><!--end container-->

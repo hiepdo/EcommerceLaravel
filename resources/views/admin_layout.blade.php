@@ -206,8 +206,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				success:function(data)
 				{
                     location.reload();
-					$('#notify_comment').html('<div class="alert alert-danger" role="alert">'+ alert +'</div>');     
-                    /* $('#notify_comment ').fadeOut(10000); */
+					$('#notify_comment').html('<div style="text-align: center; font-size: 18px;" class="alert alert-success" role="alert">'+ alert +'</div>');     
+                    $('#notify_comment').fadeOut(50000);
                     
                 }
         });
@@ -230,7 +230,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 data:{comment:comment,comment_id:comment_id,comment_product_id:comment_product_id},
 				success:function(data)
 				{
-					$('#notify_comment').html('<div class="alert alert-danger" role="alert">'+ alert +'</div>');     
+					$('#notify_comment').html('<div style="text-align: center; font-size: 15px;" class="alert alert-success" role="alert">'+ alert +'</div>');     
                     $('.reply_comment_' + comment_id).val('');
                 }
         });

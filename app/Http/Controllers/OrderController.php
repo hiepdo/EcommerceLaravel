@@ -51,15 +51,38 @@ class OrderController extends Controller
     }
 
     public function delete_order($orderId)
-    {
-        /* $this->AuthenLogin();
-        DB::table('tbl_order')->where('order_id',$orderId)->delete();
-        Session::put('message','Xóa đơn hàng thành công');
-        return Redirect::to('manage-order');     */  
-
+    {    
         $order = Order::find($orderId);
         $order->delete();
         Session::put('message','Xóa đơn hàng thành công');
+        return Redirect::to('manage-order');
+    }
+
+    public function update_status_order($orderId, Request $request)
+    {
+        $order = Order::find($orderId);
+        if($request->wait_progress)
+        {
+            $order->order_status = "Chờ xử lý";
+        }
+        if($request->waiting_progress)
+        {
+            $order->order_status = "Đang xử lý";
+        }
+        if($request->shipping)
+        {
+            $order->order_status = "Đang giao hàng";
+        }
+        if($request->Cancel)
+        {
+            $order->order_status = "Hủy";
+        }
+        if($request->complete_progress)
+        {
+            $order->order_status = "Hoàn thành";
+        }
+        $order->save();
+        Session::put('message','Cập nhật trạng thái đơn hàng thành công');
         return Redirect::to('manage-order');
     }
 }

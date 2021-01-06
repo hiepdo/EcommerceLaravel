@@ -269,7 +269,7 @@ class HomeController extends Controller
     }
 
     public function logout_checkout(){
-    	Session::forget('customer_id');
+        Session::forget('customer_id');
     	return Redirect::to('/login');
     }
 
@@ -292,6 +292,7 @@ class HomeController extends Controller
         Session::put('customer_id',null);
         Session::put('customer_name',null);
         Session::put('logged', false);
+        Session::forget('cart');
         return Redirect::to('/Home');
     }
 
@@ -300,6 +301,16 @@ class HomeController extends Controller
         $all_customer_account = DB::table('tbl_customers')->get();
         $manager_customer_account  = view('admin.all_customer_account')->with('all_customer_account',$all_customer_account);
         return view('admin_layout')->with('admin.all_customer_account', $manager_customer_account);
+    }
+
+    public function about_us()
+    {
+        return view('pages.about_us');
+    }
+
+    public function contact_us()
+    {
+        return view('pages.contact_us');
     }
 
     public function AuthenLogin()

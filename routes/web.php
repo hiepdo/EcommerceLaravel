@@ -21,6 +21,8 @@ Route::get('/', 'HomeController@home');
 Route::get('/Home', 'HomeController@home');
 Route::get('/product', 'HomeController@products');
 Route::get('/shop', 'HomeController@shop');
+Route::get('/about-us', 'HomeController@about_us');
+Route::get('/contact-us', 'HomeController@contact_us');
 
 //admin
 Route::get('/admin','AdminController@admin');
@@ -79,16 +81,18 @@ Route::post('/update-product/{product_id}', 'ProductController@update_product');
 Route::get('/manage-order', 'OrderController@manage_order');
 Route::get('/view-order/{orderId}', 'OrderController@view_order');
 Route::get('/delete-order/{orderId}', 'OrderController@delete_order');
+Route::post('/update-status-order/{orderId}','OrderController@update_status_order');
 
 //Home product category
 Route::get('/category-product/{category_id}','CategoryProduct@show_category_home');
 Route::get('/brand-product/{brand_id}','BrandProduct@show_brand_home');
 Route::get('/detail-product/{product_id}','ProductController@detail_product');
 
-Route::post('/load-comment','ProductController@load_comment');
-Route::post('/sent-comment','ProductController@sent_comment'); 
-Route::post('/allow-comment','ProductController@allow_comment'); 
-Route::post('/reply-comment','ProductController@reply_comment'); 
+//Comment
+Route::post('/load-comment','CommentController@load_comment');
+Route::post('/sent-comment','CommentController@sent_comment'); 
+Route::post('/allow-comment','CommentController@allow_comment'); 
+Route::post('/reply-comment','CommentController@reply_comment'); 
 
 //Send mail
 Route::get('/send-mail', 'MailController@SendEmail');

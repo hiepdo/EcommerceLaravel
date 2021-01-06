@@ -55,7 +55,7 @@ class BrandProduct extends Controller
         $brand = Brand::find($brand_product_id);
         $brand->brand_status = 1;
         $brand->save();
-        Session::put('message','Kích hoạt hiển thị thương hiệu sản phẩm');
+        Session::put('message','Cho phép hiển thị thương hiệu sản phẩm');
         return Redirect::to('all-brand-product');
     }
   
@@ -64,7 +64,7 @@ class BrandProduct extends Controller
         $brand = Brand::find($brand_product_id);
         $brand->brand_status = 0;
         $brand->save();
-        Session::put('message','Bỏ kích hoạt hiển thị thương hiệu sản phẩm');
+        Session::put('message','Không cho phép hiển thị thương hiệu sản phẩm');
         return Redirect::to('all-brand-product');
 
     }

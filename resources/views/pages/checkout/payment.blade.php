@@ -112,7 +112,7 @@
                     </label>
                 </div>
                 <p class="summary-info grand-total"><span>Tổng Hóa đơn:</span> <span class="grand-total-price">{{number_format($total).' '.'VNĐ'}}</span></p>
-                <input type="submit" name="order_place" class="btn btn-medium" value="Đặt hàng ngay bây giờ">
+                <input type="submit" name="order_place" class="btn btn-medium" value="Tiến hàng đặt hàng">
             </div>
         </form>
             <div class="summary-item shipping-method">

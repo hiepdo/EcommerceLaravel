@@ -49,6 +49,18 @@ class CheckoutController extends Controller
         //insert payment
         $data = array();
         $data['payment_method'] = $request->payment_option;
+        if($data['payment_method'] == 1)
+        {
+            $data['payment_method'] = 'ATM';
+        }
+        else if($data['payment_method'] == 2)
+        {
+            $data['payment_method'] = 'VISA';
+        }
+        else
+        {
+            $data['payment_method'] = 'HandCash';
+        }
         $data['payment_status'] = 'Đang chờ xử lý';
         $payment_id = DB::table('tbl_payment')->insertGetId($data);
 
@@ -64,7 +76,7 @@ class CheckoutController extends Controller
         $order_data['shipping_id'] = Session::get('shipping_id');
         $order_data['payment_id'] = $payment_id;
         $order_data['order_total'] = $total;
-        $order_data['order_status'] = '1';
+        $order_data['order_status'] = 'Chờ xử lý';
         $order_id = DB::table('tbl_order')->insertGetId($order_data);
 
         //insert order_detail

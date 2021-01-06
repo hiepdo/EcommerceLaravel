@@ -3,44 +3,44 @@
     <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê đơn hàng
+      Quản lý đơn hàng
     </div>
     <div class="table-responsive">
                       <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<div style="text-align: center; font-size: 18px;" class="alert alert-danger" role="alert">'.$message.'</div>';
+                                echo '<br><div style="text-align: center; font-size: 18px;" class="alert alert-success" role="alert">'.$message.'</div>';
                                 Session::put('message',null);
                             }
                             ?>
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th>Thứ tự</th>
             <th>Mã đơn hàng</th>
-            <th>Ngày đặt hàng</th>
-            <th>Tổng tiền</th>   
-            <th>Tình trạng</th>  
+            <!-- <th>Ngày đặt hàng</th> -->
+            <!-- <th>Tổng tiền</th>    -->
+            <th>Chờ xử lý</th>  
+            <th>Đang xử lý</th>  
+            <th>Đang giao hàng</th>
+            <th>Hủy</th>
+            <th>Hoàn thành</th>  
             <th>Hiển thị</th>  
             <th style="width:30px;"></th>
           </tr>
         </thead>
         <tbody>
-          <?php $i = 0; ?>
           @foreach($order as $key => $ord)
-          <?php $i++; ?>
+          <form role="form" action="{{URL::to('/update-status-order/'.$ord->order_id)}}" method="post">
+          {{ csrf_field() }}
           <tr>
-            <td><i>{{$i}}</i></td>
             <td>{{ $ord->order_id }}</td>
-            <td>{{ $ord->created_at }}</td>
-            <td>{{ $ord->order_total }}</td>
-            <td>
-                @if($ord->order_status==1)
-                    Chờ xử lý
-                @else 
-                    Đã xử lý
-                @endif
-            </td>
+            <!-- <td>{{ $ord->created_at }}</td> -->
+            <!-- <td>{{number_format($ord->order_total).' '.'VNĐ'}}</td> -->
+            <td><input type="checkbox" name="wait_progress" {{$ord->order_status=="Chờ xử lý" ? 'checked' : ''}}></td>
+            <td><input type="checkbox" name="waiting_progress" {{$ord->order_status=="Đang xử lý" ? 'checked' : ''}}></td>
+            <td><input type="checkbox" name="shipping" {{$ord->order_status=="Đang giao hàng" ? 'checked' : ''}}></td>
+            <td><input type="checkbox" name="Cancel" {{$ord->order_status=="Hủy" ? 'checked' : ''}}></td>
+            <td><input type="checkbox" name="complete_progress" {{$ord->order_status=="Hoàn thành" ? 'checked' : ''}}></td>
             <td>
               <a href="{{URL::to('/view-order/'.$ord->order_id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-eye text-success text-active"></i></a>
@@ -48,7 +48,9 @@
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
+            <td><input type="submit" value="cập nhật" class="btn btn-sm btn-default"></td>
           </tr>
+          </form>
           @endforeach
         </tbody>
       </table>
