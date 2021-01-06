@@ -18,13 +18,15 @@
           <tr>
             <th>Tên khách hàng</th>
             <th>Số điện thoại</th>  
+            <th>Địa chỉ email</th> 
             <th style="width:30px;"></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{{$order_by_id->customer_name}}</td>
-            <td>{{$order_by_id->customer_phone}}</td>
+            <td>{{$customer->customer_name}}</td>
+            <td>{{$customer->customer_phone}}</td>
+            <td>{{$customer->customer_email}}</td>
           </tr>
         </tbody>
       </table>
@@ -41,7 +43,7 @@
                       <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<div style="text-align: center; font-size: 18px;" class="alert alert-danger" role="alert">'.$message.'</div>';
                                 Session::put('message',null);
                             }
                             ?>
@@ -51,14 +53,18 @@
             <th>Tên người vận chuyển</th>
             <th>Địa chỉ</th>   
             <th>Số điện thoại</th>  
+            <th>Email</th>  
+            <th>Ghi chú</th> 
             <th style="width:30px;"></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{{$order_by_id->shipping_name}}</td>
-            <td>{{$order_by_id->shipping_address}}</td>
-            <td>{{$order_by_id->shipping_phone}}</td> 
+            <td>{{$shipping->shipping_name}}</td>
+            <td>{{$shipping->shipping_address}}</td>
+            <td>{{$shipping->shipping_phone}}</td> 
+            <td>{{$shipping->shipping_email}}</td>
+            <td>{{$shipping->shipping_notes}}</td> 
           </tr>
         </tbody>
       </table>
@@ -84,18 +90,26 @@
           <tr>
             <th>Tên sản phẩm</th>
             <th>Số lượng</th>   
-            <th>Giá</th>  
+            <th>Giá sản phẩm</th>  
             <th>Tổng tiền</th> 
             <th style="width:30px;"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody>  
+        <?php $total = 0; ?>
+          @foreach($order_details as $key => $details)
+          <?php 
+            $subtotal = $details->product_price*$details->product_sales_quantity;
+            $total+=$subtotal;
+          ?>
           <tr>
-            <td>{{$order_by_id->product_name}}</td>
-            <td>{{$order_by_id->product_sales_quantity}}</td>
-            <td>{{$order_by_id->product_price}}</td> 
-            <td>{{$order_by_id->order_total}}</td> 
+            <td>{{$details->product_name}}</td>
+            <td>{{$details->product_sales_quantity}}</td>
+            <td>{{number_format($details->product_price).' '.'VNĐ'}}</td> 
+            <td>{{number_format($subtotal).' '.'VNĐ'}}</td> 
           </tr>
+          @endforeach   
+          <tr><td><b>Tổng thanh toán: {{number_format($total).' '.'VNĐ'}}</b></td></tr>
         </tbody>
       </table>
     </div>

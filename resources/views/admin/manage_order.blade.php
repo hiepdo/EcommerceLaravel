@@ -9,19 +9,16 @@
                       <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<div style="text-align: center; font-size: 18px;" class="alert alert-danger" role="alert">'.$message.'</div>';
                                 Session::put('message',null);
                             }
                             ?>
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
-            <th>Tên người đặt</th>
+            <th>Thứ tự</th>
+            <th>Mã đơn hàng</th>
+            <th>Ngày đặt hàng</th>
             <th>Tổng tiền</th>   
             <th>Tình trạng</th>  
             <th>Hiển thị</th>  
@@ -29,16 +26,25 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($all_order as $key => $order)
+          <?php $i = 0; ?>
+          @foreach($order as $key => $ord)
+          <?php $i++; ?>
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>{{ $order->customer_name }}</td>
-            <td>{{ $order->order_total }}</td>
-            <td>{{ $order->order_status }}</td>
+            <td><i>{{$i}}</i></td>
+            <td>{{ $ord->order_id }}</td>
+            <td>{{ $ord->created_at }}</td>
+            <td>{{ $ord->order_total }}</td>
             <td>
-              <a href="{{URL::to('/view-order/'.$order->order_id)}}" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc là muốn xóa đơn hàng này ko?')" href="{{URL::to('/delete-order/'.$order->order_id)}}" class="active styling-edit" ui-toggle-class="">
+                @if($ord->order_status==1)
+                    Chờ xử lý
+                @else 
+                    Đã xử lý
+                @endif
+            </td>
+            <td>
+              <a href="{{URL::to('/view-order/'.$ord->order_id)}}" class="active styling-edit" ui-toggle-class="">
+                <i class="fa fa-eye text-success text-active"></i></a>
+              <a onclick="return confirm('Bạn có chắc là muốn xóa đơn hàng này ko?')" href="{{URL::to('/delete-order/'.$ord->order_id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>

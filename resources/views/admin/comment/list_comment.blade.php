@@ -12,7 +12,7 @@
                       <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<div style="text-align: center; font-size: 18px;" class="alert alert-danger" role="alert">'.$message.'</div>';
                                 Session::put('message',null);
                             }
                             ?>
