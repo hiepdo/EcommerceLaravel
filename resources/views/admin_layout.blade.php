@@ -154,7 +154,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		  </div>
   <!-- / footer -->
-</section>
+    </section>
 <!--main content end-->
 </section>
 <script src="{{asset('public/backend/js/bootstrap.js')}}"></script>

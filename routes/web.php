@@ -75,8 +75,6 @@ Route::get('/active-product/{product_id}', 'ProductController@active_product');
 Route::post('/save-product', 'ProductController@save_product');
 Route::post('/update-product/{product_id}', 'ProductController@update_product');
 
-
-
 //Home product category
 Route::get('/category-product/{category_id}','CategoryProduct@show_category_home');
 Route::get('/brand-product/{brand_id}','BrandProduct@show_brand_home');
