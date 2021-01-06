@@ -85,10 +85,11 @@
 							<div class="wrap-search-form">
 								<form action="{{URL::to('/search')}}" method="POST" id="form-search-top" name="form-search-top">
 									{{ csrf_field() }}
+									<div class="search_box">
 									<input type="text" name="search" id="keywords" placeholder="Search here..."/>
 									<div id="search_ajax"></div>
 									<button type="submit" class="btn btn-primary" name="search_items" value="Tìm kiếm"><i class="fa fa-search"></i>
-
+									</div>
 								</form>	
 							</div>
 						</div>
@@ -454,7 +455,7 @@
 			if(query != '') {
 				var _token = $('input[name="_token"]').val();
 				$.ajax({
-					url : '{{url('/autocomplete-ajax')}}',
+					url : "{{url('/autocomplete-ajax')}}",
 					method: "POST",
 					data:{query:query, _token:_token},
 					success:function(data){

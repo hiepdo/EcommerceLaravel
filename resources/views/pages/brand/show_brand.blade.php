@@ -18,21 +18,6 @@
 									<option value="price-desc">Giá: Từ cao đến thấp</option>
 								</select>
                             </div>
-                            <div class="sort-item product-per-page">
-                                <select name="post-per-page" class="use-chosen">
-									<option value="12" selected="selected">12 per page</option>
-									<option value="16">16 per page</option>
-									<option value="18">18 per page</option>
-									<option value="21">21 per page</option>
-									<option value="24">24 per page</option>
-									<option value="30">30 per page</option>
-									<option value="32">32 per page</option>
-								</select>
-                            </div>
-                            <div class="change-display-mode">
-                                <a href="#" class="grid-mode display-mode active"><i class="fa fa-th"></i>Grid</a>
-                                <a href="list.html" class="list-mode display-mode"><i class="fa fa-th-list"></i>List</a>
-                            </div>
                         </div>
                 </div>
                     <!--end wrap shop control-->
@@ -67,18 +52,11 @@
                         </ul>
 
                     </div>
-
-                    <div class="wrap-pagination-info">
-                        <ul class="page-numbers">
-                            <li><span class="page-number-item current">1</span></li>
-                            <li><a class="page-number-item" href="#">2</a></li>
-                            <li><a class="page-number-item" href="#">3</a></li>
-                            <li><a class="page-number-item next-link" href="#">Next</a></li>
-                        </ul>
-                        <p class="result-count">Showing 1-8 of 12 result</p>
-                    </div>
-                </div>
+                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                       {!!$brand_by_id->links()!!}
+                      </ul>
                 <!--end main products area-->
+                
     </div>
     <!--end container-->
 
