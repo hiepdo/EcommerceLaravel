@@ -17,7 +17,9 @@ class CreateTblComment extends Migration
             $table->Increments('comment_id');
             $table->string('comment');
             $table->string('comment_name');
+            $table->integer('comment_status');
             $table->integer('comment_product_id');
+            $table->integer('comment_parent_comment');
             $table->timestamps();
         });
     }
