@@ -23,10 +23,11 @@ Route::get('/product', 'HomeController@products');
 Route::get('/shop', 'HomeController@shop');
 
 //admin
-Route::get('/admin','AdminController@admin');
-Route::get('/dashboard','AdminController@show');
-Route::get('/logout','AdminController@logout');
-Route::post('/admin-dashboard','AdminController@dashboard');
+Route::get('/admin', 'AdminController@admin');
+Route::get('/dashboard', 'AdminController@show');
+Route::get('/logout', 'AdminController@logout');
+Route::post('/admin-dashboard', 'AdminController@dashboard');
+Route::post('/filter-by-date', 'AdminController@filter_by_date');
 
 //account
 Route::get('/verify', 'HomeController@verify_user');
