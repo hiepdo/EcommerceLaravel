@@ -7,7 +7,6 @@ use DB;
 use Session;
 use App\Models\Comment;
 use App\Http\Requests;
-use App\Http\Requests\checkoutRequest;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 
@@ -22,7 +21,7 @@ class CheckoutController extends Controller
         return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand',$brand_product);
     }
 
-    public function save_checkout_customer(checkoutRequest $request)
+    public function save_checkout_customer(Request $request)
     {
         $data = array();
         $data['shipping_name'] = $request->shipping_name;
@@ -51,6 +50,18 @@ class CheckoutController extends Controller
         //insert payment
         $data = array();
         $data['payment_method'] = $request->payment_option;
+        if($data['payment_method'] == 1)
+        {
+            $data['payment_method'] = 'ATM';
+        }
+        else if($data['payment_method'] == 2)
+        {
+            $data['payment_method'] = 'VISA';
+        }
+        else
+        {
+            $data['payment_method'] = 'HandCash';
+        }
         $data['payment_status'] = 'Đang chờ xử lý';
         $payment_id = DB::table('tbl_payment')->insertGetId($data);
 
@@ -65,8 +76,8 @@ class CheckoutController extends Controller
         $order_data['customer_id'] = Session::get('customer_id');
         $order_data['shipping_id'] = Session::get('shipping_id');
         $order_data['payment_id'] = $payment_id;
-        $order_data['order_total'] = number_format($total);
-        $order_data['order_status'] = 'Đang chờ xử lý';
+        $order_data['order_total'] = $total;
+        $order_data['order_status'] = 'Chờ xử lý';
         $order_id = DB::table('tbl_order')->insertGetId($order_data);
 
         //insert order_detail
@@ -76,7 +87,7 @@ class CheckoutController extends Controller
             $order_detail_data['order_id'] = $order_id;
             $order_detail_data['product_id'] = $cart['product_id'];
             $order_detail_data['product_name'] = $cart['product_name'];
-            $order_detail_data['product_price'] = number_format($cart['product_price']);
+            $order_detail_data['product_price'] = $cart['product_price'];
             $order_detail_data['product_sales_quantity'] = $cart['product_qty'];
             DB::table('tbl_order_details')->insert($order_detail_data);
         }

@@ -9,13 +9,13 @@
     <div id="notify_comment"></div>
 
     <div class="table-responsive">
-                      <?php
+                     <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<div style="text-align: center; font-size: 18px;" class="alert alert-danger" role="alert">'.$message.'</div>';
                                 Session::put('message',null);
                             }
-                            ?>
+                      ?> 
       <table class="table table-striped b-t b-light" id="myTable">
         <thead>
           <tr>           

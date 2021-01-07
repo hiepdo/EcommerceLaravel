@@ -13,7 +13,6 @@ session_start();
 
 class CartController extends Controller
 {
-    
     //Cart Ajax
     public function add_cart_ajax(Request $request)
     {
@@ -63,7 +62,7 @@ class CartController extends Controller
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
         
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
-
+        
         return view('pages.cart.cart_ajax')->with('category', $cate_product)->with('brand',$brand_product);
     }
 

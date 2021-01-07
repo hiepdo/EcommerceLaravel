@@ -16,16 +16,7 @@
     @csrf
     @if(Session::get('cart') == true)
         <div class="wrap-iten-in-cart">
-           <!--  @if(session()->has('message'))
-                <div class="alert alert-success">
-                    <p style="font-size:15px; text-align:center;">{{session()->get('message')}}</p>
-                </div>
-            @elseif(session()->has('error'))
-                <div class="alert alert-danger">
-                    <p style="font-size:15px; text-align:center;"> {{session()->get('error')}}</p>
-                </div>
-            @endif -->
-            <h3 class="box-title">Products Name</h3>
+            <h3 class="box-title">Giỏ hàng</h3>
                 <?php $total = 0; ?>
                 @foreach(Session::get('cart') as $key => $cart)       
                 <?php 
@@ -42,11 +33,6 @@
                         </div>
                         <div class="price-field produtc-price"><p class="price">{{number_format($cart['product_price']).' '.'VNĐ'}}</p></div>
                         <div class="quantity">
-                            <!-- <div class="quantity-input">
-                                <input type="text" name="cart_quatity[{{$cart['session_id']}}]" value="{{$cart['product_qty']}}" data-max="120" pattern="[0-9]*" >									
-                                <a class="btn btn-increase" href="#"></a>
-                                <a class="btn btn-reduce" href="#"></a>                         
-                            </div> -->
                             <div class="form-group">
                                 <input type="number" name="cart_quatity[{{$cart['session_id']}}]" class="form-control" min="1" value="{{$cart['product_qty']}}">
                             </div>
@@ -65,31 +51,28 @@
         </div>
         <div class="summary">
             <div class="order-summary">
-                <h4 class="title-box">Order Summary</h4>
-                <p class="summary-info"><span class="title">Subtotal</span><b class="index">{{number_format($total).' '.'VNĐ'}}</b></p>
-                <p class="summary-info"><span class="title">Tax</span><b class="index">0</b></p>
-                <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
-                <p class="summary-info total-info "><span class="title">Total</span><b class="index">{{number_format($total).' '.'VNĐ'}}</b></p>
+                <h4 class="title-box">Phiếu thanh toán</h4>
+                <p class="summary-info"><span class="title">Tạm tính</span><b class="index">{{number_format($total).' '.'VNĐ'}}</b></p>
+                <p class="summary-info"><span class="title">Thuế</span><b class="index">0</b></p>
+                <p class="summary-info"><span class="title">Phí ship</span><b class="index">Free Shipping</b></p>
+                <p class="summary-info total-info "><span class="title">Thành tiền</span><b class="index">{{number_format($total).' '.'VNĐ'}}</b></p>
             </div>
             <div class="checkout-info">
-                <label class="checkbox-field">
-                    <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have promo code</span>
-                </label>
                 <?php 
                     $customer_id = Session::get('customer_id');
                     $shipping_id = Session::get('shipping_id');
 				if($customer_id!=NULL && $shipping_id==NULL)
 				{ ?>
-                    <a class="btn btn-checkout" href="{{URL::to('/checkout')}}">Check out</a>
+                    <a class="btn btn-checkout" href="{{URL::to('/checkout')}}">Tiến hàng đặt hàng</a>
                 <?php 
                 }
                 elseif($customer_id!=NULL && $shipping_id!=NULL) { ?>
-                    <a class="btn btn-checkout" href="{{URL::to('/payment')}}">Check out</a>
+                    <a class="btn btn-checkout" href="{{URL::to('/payment')}}">Tiến hàng đặt hàng</a>
                 <?php }
                 else{ ?>
-                    <a class="btn btn-checkout" href="{{URL::to('/login')}}">Check out</a>
+                    <a class="btn btn-checkout" href="{{URL::to('/login')}}">Tiến hàng đặt hàng</a>
                 <?php } ?>
-                <a class="link-to-shop" href="{{ URL::to('/shop') }}">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                <a class="link-to-shop" href="{{ URL::to('/shop') }}">Tiếp tục mua sắm<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
             </div>
             <div class="update-clear">
                 <input type="submit" value="Update Shopping Cart" name="update_qty" class="btn btn-update">
@@ -97,7 +80,8 @@
             </div>
         </div>
     @else
-        <div class="alert alert-danger" role="alert"><p style="font-size:18px; text-align:center;">Empty cart. Please choose something product</p></div>
+        <div class="alert alert-danger" role="alert"><p style="font-size:18px; text-align:center;">Không có sản phẩm nào trong giỏ hàng của bạn</p></div>
+        <center><a class="btn btn-info" href="{{ URL::to('/shop') }}" style="font-size: 18px;">Tiếp tục mua sắm</a></center>
     @endif
     </form>
         <div class="wrap-show-advance-info-box style-1 box-in-site">

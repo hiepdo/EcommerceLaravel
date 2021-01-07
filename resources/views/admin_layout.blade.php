@@ -24,6 +24,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- <link href="{{asset('public/backend/css/font-awesome.css')}}" rel="stylesheet">  -->
 <link rel="stylesheet" href="{{asset('public/backend/css/morris.css')}}" type="text/css"/>
 <!-- calendar -->
+
+<!-- validation -->
+<link rel="stylesheet" href="{{asset('public/backend/css/formValidation.min.css')}}" type="text/css"/>
+
 <link rel="stylesheet" href="{{asset('public/backend/css/monthly.css')}}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -33,7 +37,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset('public/backend/js/raphael-min.js')}}"></script>
 <script src="{{asset('public/backend/js/morris.js')}}"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 <script type="text/javascript">
 
     $( function() {
@@ -48,6 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     
     
 </script>
+
 
 </head>
 <body>
@@ -148,6 +152,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="{{URL::to('/add-product')}}">Thêm sản phẩm</a></li>
                         <li><a href="{{URL::to('/all-product')}}">Liệt kê sản phẩm</a></li>
                     </ul>
+                </li><li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Đơn hàng</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{URL::to('/manage-order')}}">Quản lý đơn hàng</a></li>
+                    </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="{{URL::to('/all-customer-account')}}">
@@ -181,8 +193,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset('public/backend/js/scripts.js')}}"></script>
 <script src="{{asset('public/backend/js/jquery.slimscroll.js')}}"></script>
 <script src="{{asset('public/backend/js/jquery.nicescroll.js')}}"></script>
+<script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="{{asset('public/backend/js/jquery.scrollTo.js')}}"></script>
+<script type="text/javascript">
+        $.validate({
+            
+        });
+</script>
 <script type="text/javascript">
     $('.comment-check-btn').click(function(){
         var comment_status = $(this).data('comment_status');
@@ -206,8 +224,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				success:function(data)
 				{
                     location.reload();
-					$('#notify_comment').html('<div class="alert alert-danger" role="alert">'+ alert +'</div>');     
-                    /* $('#notify_comment ').fadeOut(10000); */
+					$('#notify_comment').html('<div style="text-align: center; font-size: 18px;" class="alert alert-success" role="alert">'+ alert +'</div>');     
+                    $('#notify_comment').fadeOut(50000);
                     
                 }
         });
@@ -230,7 +248,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 data:{comment:comment,comment_id:comment_id,comment_product_id:comment_product_id},
 				success:function(data)
 				{
-					$('#notify_comment').html('<div class="alert alert-danger" role="alert">'+ alert +'</div>');     
+					$('#notify_comment').html('<div style="text-align: center; font-size: 15px;" class="alert alert-success" role="alert">'+ alert +'</div>');     
                     $('.reply_comment_' + comment_id).val('');
                 }
         });
