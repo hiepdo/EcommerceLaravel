@@ -7,7 +7,7 @@
             <div class="wrap-breadcrumb">
                 <ul>
                     <li class="item-link"><a href="{{ URL::to('/Home') }}" class="link">Trang chủ</a></li>
-                    <li class="item-link"><span>Sản phẩm</span></li>
+                    <li class="item-link"><span>Sản phẩm </span></li>
                 </ul>
             </div>
             <div class="banner-shop">
@@ -20,7 +20,7 @@
                 <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
                     <div class="wrap-shop-control">
 
-                        <h1 class="shop-title">Sản phẩm</h1>
+                        <h1 class="shop-title">Sản phẩm - {!!$all_product_full->count()!!} item</h1>
 
                         <div class="wrap-right">
 
@@ -67,9 +67,10 @@
                         @endforeach
                         </ul>                  
                     </div>
-                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                    <div class="wrap-pagination-info">
                         {!!$all_product->links()!!}
-                      </ul>
+                        <small class="text-muted inline m-t-sm m-b-sm">showing {!!$all_product->count() !!} of {!!$all_product_full->count()!!} items in page {!!$all_product->currentPage() !!}</small>
+                      </div>
                 </div>
                 <!--end main products area-->
 

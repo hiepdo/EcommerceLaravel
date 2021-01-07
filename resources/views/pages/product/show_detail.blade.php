@@ -20,22 +20,11 @@
 							    <li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
 							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
 							    </li>
-
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
+								@foreach($gallery as $key =>$gal)
+								<li data-thumb="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}">
+							    	<img src="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}" width="720" heigh="720" alt="product thumbnail" />
 							    </li>
-								
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
-								</li>
-								
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
-								</li>
-								
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
-							    </li>
+								@endforeach
 							  </ul>
 							</div>
 						</div>

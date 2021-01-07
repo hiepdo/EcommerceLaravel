@@ -14,15 +14,15 @@ class CategoryProduct extends Controller
   
     public function AuthenLogin()
     {
-        $admin_id = Session::get('admin_id');
-        if($admin_id)
-        {
-           return Redirect::to('dashboard');
-        }
-        else
-        {
-           return Redirect::to('admin')-> send();
-        }
+        // $admin_id = Session::get('admin_id');
+        // if($admin_id)
+        // {
+        //    return Redirect::to('dashboard');
+        // }
+        // else
+        // {
+        //    return Redirect::to('admin')-> send();
+        // }
     }
   
     public function add_category_product(){
@@ -92,10 +92,9 @@ class CategoryProduct extends Controller
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
-
         $category_by_id = DB::table('tbl_product')->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')->where('tbl_product.category_id',$category_id)->paginate(6);
         $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id', $category_id)->limit(1)->get();
-        
-        return view('pages.category.show_category')->with('category',$cate_product)->with('brand',$brand_product)->with('category_by_id',$category_by_id)->with('category_name',$category_name);
+        $all_product_full= DB::table('tbl_product')->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')->where('tbl_product.category_id',$category_id)->get();
+        return view('pages.category.show_category')->with('category',$cate_product)->with('brand',$brand_product)->with('category_by_id',$category_by_id)->with('category_name',$category_name)->with('all_product_full',$all_product_full);
     }
 }

@@ -55,15 +55,10 @@
                         @endforeach
                         </ul>                  
                     </div>
-
+                  
                     <div class="wrap-pagination-info">
-                        <ul class="page-numbers">
-                            <li><span class="page-number-item current">1</span></li>
-                            <li><a class="page-number-item" href="#">2</a></li>
-                            <li><a class="page-number-item" href="#">3</a></li>
-                            <li><a class="page-number-item next-link" href="#">Next</a></li>
-                        </ul>
-                        <p class="result-count">Showing 1-8 of 12 result</p>
+                    {!!$search_product->appends(Request::all())->links()!!}
+                    <small class="text-muted inline m-t-sm m-b-sm">showing {!!$search_product->count() !!} of {!!$all_product_full->count()!!} items in page {!!$search_product->currentPage() !!}</small>
                     </div>
                 </div>
                 <!--end main products area-->
@@ -93,60 +88,9 @@
                             @foreach($brand as $key => $brand)
                                 <li class="list-item"><a class="filter-link" href="{{URL::to('/brand-product/'.$brand->brand_id) }}">{{$brand->brand_name}}</a></li>
                             @endforeach    
-                                <li class="list-item"><a data-label='Show less<i class="fa fa-angle-up" aria-hidden="true"></i>' class="btn-control control-show-more" href="#">Show more<i class="fa fa-angle-down" aria-hidden="true"></i></a></li>
                             </ul>					
                         </div>
                     </div>
-                    <!-- brand widget-->
-
-                    <div class="widget mercado-widget filter-widget price-filter">
-                        <h2 class="widget-title">Price</h2>
-                        <div class="widget-content">
-                            <div id="slider-range"></div>
-                            <p>
-                                <label for="amount">Price:</label>
-                                <input type="text" id="amount" readonly>
-                                <button class="filter-submit">Filter</button>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Price-->
-
-                    <div class="widget mercado-widget filter-widget">
-                        <h2 class="widget-title">Color</h2>
-                        <div class="widget-content">
-                            <ul class="list-style vertical-list has-count-index">
-                                <li class="list-item"><a class="filter-link " href="#">Red <span>(217)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Yellow <span>(179)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Black <span>(79)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Blue <span>(283)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Grey <span>(116)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Pink <span>(29)</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Color -->
-                    <div class="widget mercado-widget widget-product">
-                        <h2 class="widget-title">Popular Products</h2>
-                        <div class="widget-content">
-                            <ul class="products">
-                                <li class="product-item">
-                                    <div class="product product-widget-style">
-                                        <div class="thumbnnail">
-                                            <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                                <figure><img src="{{ asset('public/frontend/images/products/digital_01.jpg') }}" alt=""></figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                            <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- brand widget-->
 
                 </div>
                 <!--end sitebar-->

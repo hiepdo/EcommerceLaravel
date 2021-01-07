@@ -17,13 +17,14 @@ use Mail;
 
 class HomeController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status','0') ->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')  ->orderby('brand_id','desc')->get();
-        
-        $all_product  = DB::table('tbl_product')->where('product_status','0')  ->orderby('product_id','desc')->limit(6  )->get();
-        return view('pages.home')->with('category', $cate_product)->with('brand',$brand_product)->with('all_product',$all_product);
+        $all_product_topsale = DB::table('tbl_order_details')->select(DB::raw('sum(product_sales_quantity) as numbersale,product_id'))->groupBy('product_id')->orderby('numbersale','desc')->limit(10)->get();
+        $all_product_new  = DB::table('tbl_product')->where('product_status','0')->orderby('product_id','desc')->limit(10)->get();
+        $all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id','desc')->get();
+        return view('pages.home')->with('category', $cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with('all_product_new',$all_product_new)->with('all_product_topsale',$all_product_topsale);
     }
 
     public function to_login()
@@ -180,7 +181,8 @@ class HomeController extends Controller
         $cate_product = DB::table('tbl_category_product')->where('category_status','0') ->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')  ->orderby('brand_id','desc')->get();
         $all_product = DB::table('tbl_product')->where('product_status','0')->orderby(DB::raw('RAND()'))->paginate(6); 
-        return view('pages.product')->with('category', $cate_product)->with('brand',$brand_product)->with('all_product',$all_product);
+        $all_product_full =  DB::table('tbl_product')->get();
+        return view('pages.product')->with('category', $cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with('all_product_full',$all_product_full);
     }
     
     public function search(Request $request)
@@ -193,20 +195,39 @@ class HomeController extends Controller
         $cate_product = DB::table('tbl_category_product')->where('category_status','0') ->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')  ->orderby('brand_id','desc')->get();
         
-        $search_product  = DB::table('tbl_product')->where('product_name','like','%'.$keywords.'%')->get();
-        return view('pages.product.search')->with('category', $cate_product)->with('brand',$brand_product)->with('search_product',$search_product);//->with('
+        $search_product = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
+        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
+        ->where('product_id','like','%'.$keywords.'%')
+        ->orwhere('product_name','like','%'.$keywords.'%')
+        ->orwhere('tbl_brand.brand_name','like','%'.$keywords.'%')
+        ->orwhere('tbl_category_product.category_name','like','%'.$keywords.'%')
+        ->orderby('tbl_product.product_id','desc')->paginate(6);
+        $all_product_full =  DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
+        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
+        ->where('product_id','like','%'.$keywords.'%')
+        ->orwhere('product_name','like','%'.$keywords.'%')
+        ->orwhere('tbl_brand.brand_name','like','%'.$keywords.'%')
+        ->orwhere('tbl_category_product.category_name','like','%'.$keywords.'%')
+        ->orderby('tbl_product.product_id','desc')->get();
+        return view('pages.product.search')
+        ->with('category', $cate_product)
+        ->with('brand',$brand_product)
+        ->with('search_product',$search_product)
+        ->with('all_product_full',$all_product_full);//->with('
         //meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)
     }
     public function autocomplete_ajax(Request $request)
     {
         $data = $request->all();
         if($data['query']){
-            $product = Product::where('product_status',0)->where('product_name','LIKE','%'.$data['query'].'%')->get();
-            $output = '<ul class="dropdown-menu" style"display:block; position:relative">';
+            $product = DB::table('tbl_product')->where('product_status','0')->where('product_name','LIKE','%'.$data['query'].'%')->get();
+            $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
             foreach($product as $key => $val) {
                 $output.= '
                 <li><a href="#">'.$val->product_name.'</a></li>
-                ';
+                ';  
             }
             $output .= '</ul>';
             echo $output;
