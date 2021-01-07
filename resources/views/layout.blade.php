@@ -190,7 +190,7 @@
 								</li>
 								<?php }else { ?>
 								<li class="menu-item">
-									<a href="{{ URL::to('/login') }}" class="link-term mercado-item-title">Checkout</a>
+									<a href="{{ URL::to('/login-to-checkout') }}" class="link-term mercado-item-title">Checkout</a>
 								</li>
 								<?php } ?>
 								<li class="menu-item">

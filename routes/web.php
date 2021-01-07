@@ -25,10 +25,11 @@ Route::get('/about-us', 'HomeController@about_us');
 Route::get('/contact-us', 'HomeController@contact_us');
 
 //admin
-Route::get('/admin','AdminController@admin');
-Route::get('/dashboard','AdminController@show');
-Route::get('/logout','AdminController@logout');
-Route::post('/admin-dashboard','AdminController@dashboard');
+Route::get('/admin', 'AdminController@admin');
+Route::get('/dashboard', 'AdminController@show');
+Route::get('/logout', 'AdminController@logout');
+Route::post('/admin-dashboard', 'AdminController@dashboard');
+Route::post('/filter-by-date', 'AdminController@filter_by_date');
 
 //account
 Route::get('/verify', 'HomeController@verify_user');
@@ -122,10 +123,10 @@ Route::get('/delete-cart-ajax/{session_id}','CartController@delete_cart_ajax');
 Route::get('/clear-all-cart-ajax','CartController@clear_all_cart_ajax');
 
 //Checkout
-Route::get('/checkout','CheckoutController@show_checkout');
-Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer'); 
-Route::get('/payment','CheckoutController@payment');
-Route::post('/order-place','CheckoutController@order_place'); 
+Route::get('/checkout', 'CheckoutController@show_checkout');
+Route::get('/payment', 'CheckoutController@payment');
+Route::post('/order-place', 'CheckoutController@order_place'); 
+Route::post('/save-checkout-customer', 'CheckoutController@save_checkout_customer'); 
 
 //account
 Route::get('/verify', 'HomeController@verify_user');
