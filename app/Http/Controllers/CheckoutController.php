@@ -29,7 +29,7 @@ class CheckoutController extends Controller
         $data['shipping_phone'] = $request->shipping_phone;
         $data['shipping_address'] = $request->shipping_address;
         $data['shipping_notes'] = $request->shipping_notes;
-
+        
         $shipping_id = DB::table('tbl_shipping')->insertGetId($data);
 
         Session::put('shipping_id', $shipping_id);

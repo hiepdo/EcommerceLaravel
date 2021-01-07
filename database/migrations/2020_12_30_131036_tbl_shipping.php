@@ -20,7 +20,6 @@ class TblShipping extends Migration
             $table->string('shipping_phone');
             $table->string('shipping_email');
             $table->string('shipping_notes')->nullable();
-            $table->integer('customer_id');
             $table->timestamps();
         });
     }
