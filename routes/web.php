@@ -21,8 +21,8 @@ Route::get('/', 'HomeController@home');
 Route::get('/Home', 'HomeController@home');
 Route::get('/product', 'HomeController@products');
 Route::get('/shop', 'HomeController@shop');
-Route::get('/about-us', 'HomeController@about_us');
-Route::get('/contact-us', 'HomeController@contact_us');
+Route::get('/search', 'HomeController@search');
+Route::get('/autocomplete-ajax', 'HomeController@autocomplete_ajax');
 
 //admin
 Route::get('/admin', 'AdminController@admin');
@@ -71,6 +71,7 @@ Route::get('/add-product', 'ProductController@add_product');
 Route::get('/edit-product/{product_id}', 'ProductController@edit_product');
 Route::get('/delete-product/{product_id}', 'ProductController@delete_product');
 Route::get('/all-product', 'ProductController@all_product');
+Route::get('/search-product-admin', 'ProductController@search_product_admin');
 
 Route::get('/unactive-product/{product_id}', 'ProductController@unactive_product');
 Route::get('/active-product/{product_id}', 'ProductController@active_product');
@@ -140,4 +141,12 @@ Route::post('/register-user', 'HomeController@register_user');
 Route::post('/login-user', 'HomeController@login_user');
 Route::post('/recover-pass', 'HomeController@recover_pass');
 Route::post('/update-password', 'HomeController@update_password');
+
+//Gallery
+Route::get('add-gallery/{product_id}','GalleryController@add_gallery');
+Route::post('select-gallery','GalleryController@select_gallery');
+Route::post('insert-gallery/{pro_id}','GalleryController@insert_gallery');
+Route::post('update-gallery-name','GalleryController@update_gallery_name');
+Route::post('delete-gallery','GalleryController@delete_gallery');
+Route::post('update-gallery','GalleryController@update_gallery');
 
