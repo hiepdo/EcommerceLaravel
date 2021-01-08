@@ -179,7 +179,7 @@ class ProductController extends Controller
 
         return view('pages.product.show_detail')->with('category',$cate_product)->with('brand',$brand_product)
         ->with('product_details',$details_product)
-        ->with('relate',$related_brand)
+        ->with('relate',$related_product)
         ->with('gallery',$gallery);
     }
 

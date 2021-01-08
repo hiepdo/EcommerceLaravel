@@ -224,7 +224,7 @@
 						<h3 class="title-box">Sản phẩm liên quan</h3>
 						<div class="wrap-products">
 							<div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
-							@foreach($related_product as $key => $related)
+							@foreach($relate as $key => $related)
 								<div class="product product-style-2 equal-elem ">
 									<div class="product-thumnail">
 										<a href="{{$related->product_id}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
