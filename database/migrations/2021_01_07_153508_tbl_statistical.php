@@ -18,8 +18,6 @@ class TblStatistical extends Migration
             $table->Increments('id_statistical');
             $table->string('order_date');
             $table->string('sales');
-            $table->string('profit');
-            $table->integer('quantity');
             $table->integer('total_order');
             $table->timestamps();
         });

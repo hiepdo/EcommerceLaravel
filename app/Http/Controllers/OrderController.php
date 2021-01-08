@@ -8,9 +8,11 @@ use App\Models\Shipping;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Customer;
+use App\Models\Statistic;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 session_start();    
 
 class OrderController extends Controller
@@ -61,6 +63,7 @@ class OrderController extends Controller
     public function update_status_order($orderId, Request $request)
     {
         $order = Order::find($orderId);
+        $order_date = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
         if($request->wait_progress)
         {
             $order->order_status = "Chờ xử lý";
@@ -80,7 +83,30 @@ class OrderController extends Controller
         if($request->complete_progress)
         {
             $order->order_status = "Hoàn thành";
+            $statistic = Statistic::where('order_date', $order_date)->get();
+            if($statistic){
+                $statistic_count = $statistic->count();
+            }
+            else
+                $statistic_count = 0;
+            
+            // lay du lieu cho vao statistic
+            $sales = $order->order_total;
+            if($statistic_count > 0){
+                $statistic_update = Statistic::where('order_date', $order_date)->first();
+                $statistic_update->sales += $sales;
+                $statistic_update->total_order += 1;
+                $statistic_update->save();
+            }
+            else{
+                $statistic_new = new Statistic();
+                $statistic_new->order_date = $order_date;
+                $statistic_new->sales = $sales;
+                $statistic_new->total_order = 1;
+                $statistic_new->save();
+            }
         }
+
         $order->save();
         Session::put('message','Cập nhật trạng thái đơn hàng thành công');
         return Redirect::to('manage-order');

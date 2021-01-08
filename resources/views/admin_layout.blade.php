@@ -288,8 +288,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     fillOpacity: 1,
     parseTime: false,
     xkey: 'period',
-    ykeys: ['order', 'sales', 'profit', 'quantity'],
-    labels: ['đơn hàng', 'doanh số', 'lợi nhuận', 'số lượng']
+    ykeys: ['order', 'sales'],
+    labels: ['SL đơn hàng', 'doanh số']
     }); 
 
 </script>

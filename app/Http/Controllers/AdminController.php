@@ -78,8 +78,6 @@ class AdminController extends Controller
                 'period' => $val->order_date,
                 'order' => $val->total_order,
                 'sales' => $val->sales,
-                'profit' => $val->profit,
-                'quantity' => $val->quantity 
             );
         }
         echo $data = json_encode($chart_data);
