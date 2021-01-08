@@ -87,23 +87,32 @@
                 <p class="summary-info"><span class="title">Credit Cart (saved)</span></p>
                 <div class="choose-payment-methods">
                     <label class="payment-method">
-                        <input name="payment_option" id="payment-method-bank" value="1" type="radio">
+                        <input name="payment_option" id="payment-method-bank" value="1" type="radio" required>
                         <span>Thanh toán bằng thẻ tín dụng (ATM)</span>
                         <span class="payment-desc">Hình thức thanh toán áp dụng cho tất cả các ngân hàng được liên kết</span>
+                        <div class="invalid-feedback">
+                           
+                        </div>
                     </label>
                     <label class="payment-method">
-                        <input name="payment_option" id="payment-method-visa" value="2" type="radio">
+                        <input name="payment_option" id="payment-method-visa" value="2" type="radio" required>
                         <span>Thanh toán bằng thẻ Visa</span>
                         <span class="payment-desc">Hình thức thanh toán chỉ áp dụng khi bạn sở hữu thẻ Visa</span>
+                        <div class="invalid-feedback">
+                           
+                        </div>
                     </label>
                     <label class="payment-method">
-                        <input name="payment_option" id="payment-method-paypal" value="3" type="radio">
+                        <input name="payment_option" id="payment-method-paypal" value="3" type="radio" required>
                         <span>Thanh toán khi nhận hàng</span>
                         <span class="payment-desc">Bạn có thể kiểm tra hàng trước khi trả tiền</span>
+                        <div class="invalid-feedback">
+                           
+                        </div>
                     </label>
                 </div>
                 <p class="summary-info grand-total"><span>Tổng Hóa đơn:</span> <span class="grand-total-price">{{number_format($total).' '.'VNĐ'}}</span></p>
-                <input type="submit" name="order_place" class="btn btn-medium" value="Đặt hàng ngay bây giờ">
+                <input type="submit" name="order_place" class="btn btn-medium" value="Tiến hàng đặt hàng">
             </div>
         </form>
             <div class="summary-item shipping-method">

@@ -52,14 +52,14 @@ class CategoryProduct extends Controller
     public function unactive_category_product($category_product_id){
         $this->AuthenLogin();
         DB::table('tbl_category_product')->where('category_id',$category_product_id)->update(['category_status'=>1]);
-        Session::put('message','Không kích hoạt danh mục sản phẩm thành công');
+        Session::put('message','Cho phép hiển thị danh mục sản phẩm');
         return Redirect::to('all-category-product');
         $this->AuthenLogin();
     }
   
     public function active_category_product($category_product_id){
         DB::table('tbl_category_product')->where('category_id',$category_product_id)->update(['category_status'=>0]);
-        Session::put('message','Kích hoạt danh mục sản phẩm thành công');
+        Session::put('message','Không cho phép hiển thị danh mục sản phẩm');
         return Redirect::to('all-category-product');
     }
   

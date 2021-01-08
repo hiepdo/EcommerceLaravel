@@ -9,7 +9,7 @@
             <li class="item-link"><a href="{{URL::to('/Home')}}" class="link">Home</a></li>
             <li class="item-link"><span>Checkout</span></li>
         </ul>
-    </div>
+    </div>   
     <div class=" main-content-area">
         <div class="wrap-address-billing">
         <form action="{{URL::to('/save-checkout-customer')}}" method="POST" name="frm-billing">
@@ -17,19 +17,23 @@
             <h3 class="box-title">Thông tin giao hàng</h3>
                 <p class="row-in-form">
                     <label for="fname">Họ tên<span>*</span></label>
-                    <input id="fname" type="text" name="shipping_name" value="" placeholder="Họ tên của bạn">
+                    <input data-validation="length" data-validation-length="min1" data-validation-error-msg="Hãy nhập vào họ tên của bạn"
+                    id="fname" type="text" name="shipping_name" value="" placeholder="Họ tên của bạn">                            
                 </p>
                 <p class="row-in-form">
                     <label for="email">Địa chỉ email</label>
-                    <input id="email" type="email" name="shipping_email" value="" placeholder="Email của bạn">
+                    <input data-validation="email" data-validation-error-msg="Hãy nhập vào email của bạn"
+                    id="email" type="email" name="shipping_email" value="" placeholder="Email của bạn">
                 </p>
                 <p class="row-in-form">
                     <label for="phone">Số điện thoại<span>*</span></label>
-                    <input id="phone" type="text" name="shipping_phone" value="" placeholder="Số điện thoại của bạn">
+                    <input data-validation="number" data-validation-error-msg="Hãy nhập vào số điện thoại của bạn"
+                    id="phone" type="text" name="shipping_phone" value="" placeholder="Số điện thoại của bạn">
                 </p>
                 <p class="row-in-form">
                     <label for="add">Địa chỉ:</label>
-                    <input id="add" type="text" name="shipping_address" value="" placeholder="Địa chỉ của bạn đang ở">
+                    <input data-validation="length" data-validation-length="min1" data-validation-error-msg="Hãy nhập vào địa chỉ của bạn"
+                    id="add" type="text" name="shipping_address" value="" placeholder="Địa chỉ của bạn đang ở">
                 </p>
                 <div class="form-group">
                     <label style="font-weight: normal;" for="exampleFormControlTextarea1">Ghi chú thêm</label>
@@ -38,7 +42,6 @@
                 <input type="submit" value="Tiến hành thanh toán" name="send_order" class="btn btn-danger">
         </form>
         </div>
-       
         <div class="wrap-show-advance-info-box style-1 box-in-site">
             <h3 class="title-box">Most Viewed Products</h3>
             <div class="wrap-products">
