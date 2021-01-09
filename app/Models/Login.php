@@ -9,7 +9,7 @@ class Login extends Model
 {
    public $Timestamps=false;
    protected $fillable=[
-       'customer_email','customer_password','customer_name','customer_phone'
+    'customer_name', 'customer_email', 'customer_password', 'customer_phone'
    ];
    protected $primaryKey='customer_id';
    protected $table ='tbl_customers';

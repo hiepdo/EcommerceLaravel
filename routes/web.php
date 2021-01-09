@@ -21,14 +21,15 @@ Route::get('/', 'HomeController@home');
 Route::get('/Home', 'HomeController@home');
 Route::get('/product', 'HomeController@products');
 Route::get('/shop', 'HomeController@shop');
-Route::get('/about-us', 'HomeController@about_us');
-Route::get('/contact-us', 'HomeController@contact_us');
+Route::get('/search', 'HomeController@search');
+Route::get('/autocomplete-ajax', 'HomeController@autocomplete_ajax');
 
 //admin
-Route::get('/admin','AdminController@admin');
-Route::get('/dashboard','AdminController@show');
-Route::get('/logout','AdminController@logout');
-Route::post('/admin-dashboard','AdminController@dashboard');
+Route::get('/admin', 'AdminController@admin');
+Route::get('/dashboard', 'AdminController@show');
+Route::get('/logout', 'AdminController@logout');
+Route::post('/admin-dashboard', 'AdminController@dashboard');
+Route::post('/filter-by-date', 'AdminController@filter_by_date');
 
 //account
 Route::get('/verify', 'HomeController@verify_user');
@@ -70,6 +71,7 @@ Route::get('/add-product', 'ProductController@add_product');
 Route::get('/edit-product/{product_id}', 'ProductController@edit_product');
 Route::get('/delete-product/{product_id}', 'ProductController@delete_product');
 Route::get('/all-product', 'ProductController@all_product');
+Route::get('/search-product-admin', 'ProductController@search_product_admin');
 
 Route::get('/unactive-product/{product_id}', 'ProductController@unactive_product');
 Route::get('/active-product/{product_id}', 'ProductController@active_product');
@@ -122,10 +124,10 @@ Route::get('/delete-cart-ajax/{session_id}','CartController@delete_cart_ajax');
 Route::get('/clear-all-cart-ajax','CartController@clear_all_cart_ajax');
 
 //Checkout
-Route::get('/checkout','CheckoutController@show_checkout');
-Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer'); 
-Route::get('/payment','CheckoutController@payment');
-Route::post('/order-place','CheckoutController@order_place'); 
+Route::get('/checkout', 'CheckoutController@show_checkout');
+Route::get('/payment', 'CheckoutController@payment');
+Route::post('/order-place', 'CheckoutController@order_place'); 
+Route::post('/save-checkout-customer', 'CheckoutController@save_checkout_customer'); 
 
 //account
 Route::get('/verify', 'HomeController@verify_user');
@@ -139,4 +141,12 @@ Route::post('/register-user', 'HomeController@register_user');
 Route::post('/login-user', 'HomeController@login_user');
 Route::post('/recover-pass', 'HomeController@recover_pass');
 Route::post('/update-password', 'HomeController@update_password');
+
+//Gallery
+Route::get('add-gallery/{product_id}','GalleryController@add_gallery');
+Route::post('select-gallery','GalleryController@select_gallery');
+Route::post('insert-gallery/{pro_id}','GalleryController@insert_gallery');
+Route::post('update-gallery-name','GalleryController@update_gallery_name');
+Route::post('delete-gallery','GalleryController@delete_gallery');
+Route::post('update-gallery','GalleryController@update_gallery');
 

@@ -20,22 +20,11 @@
 							    <li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
 							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
 							    </li>
-
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
+								@foreach($gallery as $key =>$gal)
+								<li data-thumb="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}">
+							    	<img src="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}" width="720" heigh="720" alt="product thumbnail" />
 							    </li>
-								
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
-								</li>
-								
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
-								</li>
-								
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
-							    </li>
+								@endforeach
 							  </ul>
 							</div>
 						</div>
@@ -164,46 +153,6 @@
 				</div><!--end main products area-->
 			@endforeach
 				<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
-					<div class="widget widget-our-services ">
-						<div class="widget-content">
-							<ul class="our-services">
-
-								<li class="service">
-									<a class="link-to-service" href="#">
-										<i class="fa fa-truck" aria-hidden="true"></i>
-										<div class="right-content">
-											<b class="title">Free Shipping</b>
-											<span class="subtitle">On Oder Over $99</span>
-											<p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-										</div>
-									</a>
-								</li>
-
-								<li class="service">
-									<a class="link-to-service" href="#">
-										<i class="fa fa-gift" aria-hidden="true"></i>
-										<div class="right-content">
-											<b class="title">Special Offer</b>
-											<span class="subtitle">Get a gift!</span>
-											<p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-										</div>
-									</a>
-								</li>
-
-								<li class="service">
-									<a class="link-to-service" href="#">
-										<i class="fa fa-reply" aria-hidden="true"></i>
-										<div class="right-content">
-											<b class="title">Order Return</b>
-											<span class="subtitle">Return within 7 days</span>
-											<p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div><!-- Categories widget-->
-
 					<div class="widget mercado-widget widget-product">
 						<h2 class="widget-title">Sản phẩm phổ biến</h2>
 						<div class="widget-content">
@@ -275,7 +224,7 @@
 						<h3 class="title-box">Sản phẩm liên quan</h3>
 						<div class="wrap-products">
 							<div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
-							@foreach($related_product as $key => $related)
+							@foreach($relate as $key => $related)
 								<div class="product product-style-2 equal-elem ">
 									<div class="product-thumnail">
 										<a href="{{$related->product_id}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">

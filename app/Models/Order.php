@@ -9,7 +9,7 @@ class Order extends Model
 {
     public $timestamps = false; //set time to false
     protected $fillable = [
-    	'customer_id', 'shipping_id','order_total' ,'order_status','created_at'
+    	'customer_id', 'shipping_id', 'order_total' , 'order_status', 'order_date', 'created_at'
     ];
     protected $primaryKey = 'order_id';
     protected $table = 'tbl_order';
