@@ -20,6 +20,7 @@ class CreateTblComment extends Migration
             $table->integer('comment_status');
             $table->integer('comment_product_id');
             $table->integer('comment_parent_comment');
+            $table->timestamp('comment_date')->useCurrent();
             $table->timestamps();
         });
     }

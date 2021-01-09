@@ -19,7 +19,8 @@ class TblOrder extends Migration
             $table->integer('shipping_id');
             $table->integer('payment_id');
             $table->string('order_total');
-            $table->integer('order_status');
+            $table->string('order_status');
+            $table->string('order_date')->nullable();
             $table->timestamps();
         });
     }
