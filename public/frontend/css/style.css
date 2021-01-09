@@ -8140,3 +8140,7 @@ table.shop_attributes tbody {
     margin-bottom: 65px;
     padding-left: 40px;
 }
+.btn.btn-danger.add-to-wishlist
+{
+    width: 100%;
+}

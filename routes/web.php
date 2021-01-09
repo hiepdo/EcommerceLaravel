@@ -78,7 +78,6 @@ Route::get('/active-product/{product_id}', 'ProductController@active_product');
 Route::post('/save-product', 'ProductController@save_product');
 Route::post('/update-product/{product_id}', 'ProductController@update_product');
 
-
 //Home product category
 Route::get('/category-product/{category_id}','CategoryProduct@show_category_home');
 Route::get('/brand-product/{brand_id}','BrandProduct@show_brand_home');
@@ -91,6 +90,14 @@ Route::post('/reply-comment','ProductController@reply_comment');
 
 //Send mail
 Route::get('/send-mail', 'MailController@SendEmail');
+
+//Login facebook
+Route::get('/login-facebook','HomeController@login_facebook');
+Route::get('/login/callback','HomeController@callback_facebook');
+
+//Login  google
+Route::get('/login-google','HomeController@login_google');
+Route::get('/google/callback','HomeController@callback_google');
 
 //Comment
 Route::get('/comment','CommentController@list_comment');
@@ -121,4 +128,3 @@ Route::post('insert-gallery/{pro_id}','GalleryController@insert_gallery');
 Route::post('update-gallery-name','GalleryController@update_gallery_name');
 Route::post('delete-gallery','GalleryController@delete_gallery');
 Route::post('update-gallery','GalleryController@update_gallery');
-
