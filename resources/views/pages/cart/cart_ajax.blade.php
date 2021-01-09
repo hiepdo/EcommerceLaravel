@@ -26,7 +26,6 @@
                 </div>
             @endif -->
             <h3 class="box-title">Products Name</h3>
-            
                 <?php $total = 0; ?>
                 @foreach(Session::get('cart') as $key => $cart)       
                 <?php 
@@ -39,14 +38,17 @@
                             <figure><img src="{{ asset('public/uploads/product/'.$cart['product_image'])}}" alt="{{$cart['product_name']}}"></figure>
                         </div>
                         <div class="product-name">
-                            <a class="link-to-product" href="{{ URL::to('/chi-tiet-san-pham/'.$cart['product_id'])}}">{{$cart['product_name']}}</a>
+                            <a class="link-to-product" href="{{ URL::to('/detail-product/'.$cart['product_id'])}}">{{$cart['product_name']}}</a>
                         </div>
                         <div class="price-field produtc-price"><p class="price">{{number_format($cart['product_price']).' '.'VNĐ'}}</p></div>
                         <div class="quantity">
-                            <div class="quantity-input">
+                            <!-- <div class="quantity-input">
                                 <input type="text" name="cart_quatity[{{$cart['session_id']}}]" value="{{$cart['product_qty']}}" data-max="120" pattern="[0-9]*" >									
                                 <a class="btn btn-increase" href="#"></a>
                                 <a class="btn btn-reduce" href="#"></a>                         
+                            </div> -->
+                            <div class="form-group">
+                                <input type="number" name="cart_quatity[{{$cart['session_id']}}]" class="form-control" min="1" value="{{$cart['product_qty']}}">
                             </div>
                         </div>
                     
@@ -73,8 +75,21 @@
                 <label class="checkbox-field">
                     <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have promo code</span>
                 </label>
-                <a class="btn btn-checkout" href="checkout.html">Check out</a>
-                <a class="link-to-shop" href="shop.html">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                <?php 
+                    $customer_id = Session::get('customer_id');
+                    $shipping_id = Session::get('shipping_id');
+				if($customer_id!=NULL && $shipping_id==NULL)
+				{ ?>
+                    <a class="btn btn-checkout" href="{{URL::to('/checkout')}}">Check out</a>
+                <?php 
+                }
+                elseif($customer_id!=NULL && $shipping_id!=NULL) { ?>
+                    <a class="btn btn-checkout" href="{{URL::to('/payment')}}">Check out</a>
+                <?php }
+                else{ ?>
+                    <a class="btn btn-checkout" href="{{URL::to('/login')}}">Check out</a>
+                <?php } ?>
+                <a class="link-to-shop" href="{{ URL::to('/shop') }}">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
             </div>
             <div class="update-clear">
                 <input type="submit" value="Update Shopping Cart" name="update_qty" class="btn btn-update">

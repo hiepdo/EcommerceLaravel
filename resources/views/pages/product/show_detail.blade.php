@@ -20,22 +20,11 @@
 							    <li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
 							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
 							    </li>
-
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
+								@foreach($gallery as $key =>$gal)
+								<li data-thumb="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}">
+							    	<img src="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}" width="720" heigh="720" alt="product thumbnail" />
 							    </li>
-								
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
-								</li>
-								
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
-								</li>
-								
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
-							    </li>
+								@endforeach
 							  </ul>
 							</div>
 						</div>
@@ -63,20 +52,23 @@
                             <div class="stock-info in-stock">
                                 <p class="availability">Tình trạng: <b>Còn hàng</b></p>
                             </div>
-                            <form action="{{URL::to('/save-cart')}}" method="POST">
-								{{csrf_field()}}
+                            <form>
+							@csrf
 								<div class="quantity">
 									<span>Số lượng:</span>
+									<input type="hidden" name="" value="{{$value->product_id}}" class="cart_product_id">
+                                    <input type="hidden" name="" value="{{$value->product_name}}" class="cart_product_name">
+                                    <input type="hidden" name="" value="{{$value->product_image}}" class="cart_product_image">
+                                    <input type="hidden" name="" value="{{$value->product_price}}" class="cart_product_price">
 									<div class="quantity-input">
-										<input type="text" name="product_quatity" value="1" data-max="120" pattern="[0-9]*" >
-										<input type="hidden" name="product_id_hidden" value="{{$value->product_id}}">
+                                        <!-- <input type="hidden" name="" value="1" class="cart_product_qty"> -->
+										<input type="text" name="product_quatity" class="cart_product_qty" value="1" data-max="120" pattern="[0-9]*" >
 										<a class="btn btn-reduce" href="#"></a>
 										<a class="btn btn-increase" href="#"></a>
 									</div>
 								</div>
 								<div class="wrap-butons">
-									<button type="submit" class="btn add-to-cart">Thêm vào giỏ hàng</button>
-									<!-- <a href="#" class="btn add-to-cart">Thêm vào giỏ hàng</a> -->
+									<button type="button" class="btn add-to-cart add-to-cart-product-detail">Thêm vào giỏ hàng</button>
 									<div class="wrap-btn">
 										<a href="#" class="btn btn-compare">Thêm so sánh</a>
 										<a href="#" class="btn btn-wishlist">Thêm yêu thích</a>
@@ -174,46 +166,6 @@
 				</div><!--end main products area-->
 			@endforeach
 				<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
-					<div class="widget widget-our-services ">
-						<div class="widget-content">
-							<ul class="our-services">
-
-								<li class="service">
-									<a class="link-to-service" href="#">
-										<i class="fa fa-truck" aria-hidden="true"></i>
-										<div class="right-content">
-											<b class="title">Free Shipping</b>
-											<span class="subtitle">On Oder Over $99</span>
-											<p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-										</div>
-									</a>
-								</li>
-
-								<li class="service">
-									<a class="link-to-service" href="#">
-										<i class="fa fa-gift" aria-hidden="true"></i>
-										<div class="right-content">
-											<b class="title">Special Offer</b>
-											<span class="subtitle">Get a gift!</span>
-											<p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-										</div>
-									</a>
-								</li>
-
-								<li class="service">
-									<a class="link-to-service" href="#">
-										<i class="fa fa-reply" aria-hidden="true"></i>
-										<div class="right-content">
-											<b class="title">Order Return</b>
-											<span class="subtitle">Return within 7 days</span>
-											<p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div><!-- Categories widget-->
-
 					<div class="widget mercado-widget widget-product">
 						<h2 class="widget-title">Sản phẩm phổ biến</h2>
 						<div class="widget-content">

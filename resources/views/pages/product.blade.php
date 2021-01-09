@@ -7,22 +7,20 @@
             <div class="wrap-breadcrumb">
                 <ul>
                     <li class="item-link"><a href="{{ URL::to('/Home') }}" class="link">Trang chủ</a></li>
-                    <li class="item-link"><span>Sản phẩm</span></li>
+                    <li class="item-link"><span>Sản phẩm </span></li>
                 </ul>
             </div>
-            <div class="row">
-
-                <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
-
-                    <div class="banner-shop">
+            <div class="banner-shop">
                         <a href="#" class="banner-link">
                             <figure><img src="{{ asset('public/frontend/images/shop-banner.jpg') }}" alt=""></figure>
                         </a>
                     </div>
+            <div class="row">
 
+                <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
                     <div class="wrap-shop-control">
 
-                        <h1 class="shop-title">Sản phẩm</h1>
+                        <h1 class="shop-title">Sản phẩm - {!!$all_product_full->count()!!} item</h1>
 
                         <div class="wrap-right">
 
@@ -36,24 +34,6 @@
 									<option value="price-desc">Giá: Từ cao đến thấp</option>
 								</select>
                             </div>
-
-                            <div class="sort-item product-per-page">
-                                <select name="post-per-page" class="use-chosen">
-									<option value="12" selected="selected">12 per page</option>
-									<option value="16">16 per page</option>
-									<option value="18">18 per page</option>
-									<option value="21">21 per page</option>
-									<option value="24">24 per page</option>
-									<option value="30">30 per page</option>
-									<option value="32">32 per page</option>
-								</select>
-                            </div>
-
-                            <div class="change-display-mode">
-                                <a href="#" class="grid-mode display-mode active"><i class="fa fa-th"></i>Grid</a>
-                                <a href="list.html" class="list-mode display-mode"><i class="fa fa-th-list"></i>List</a>
-                            </div>
-
                         </div>
 
                     </div>
@@ -72,15 +52,14 @@
                                         <input type="hidden" id="wishlist_productprice{{$product->product_id}}" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
                                         <input type="hidden" name="" value="1" class="cart_product_qty_{{$product->product_id}}">
                                         <div class="product-thumnail">
-                                            <a id="wishlist_producturl{{$product->product_id}}"href="{{ URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                            <a id="wishlist_producturl{{$product->product_id}}" href="{{ URL::to('/detail-product/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
                                                 <figure><img id="wishlist_productimage{{$product->product_id}}" src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt=""></figure>
                                             </a>
                                         </div>
                                         <div class="product-info">
                                             <a href="#" class="product-name"><span>{{($product->product_name)}}</span></a>
-                                            <div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} Đ</span></div>
-                                            <!-- <a href="#" class="btn add-to-cart">Thêm vào giỏ hàng</a> -->
-                                            <button type="button" id="{{$product->product_id}}" class="btn btn-danger add-to-cart" name="add_to_cart">Thêm vào giỏ hàng</button>
+                                            <div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} VNĐ</span></div>
+                                            <button type="button" data-id_product="{{$product->product_id}}" class="btn btn-danger add-to-cart" name="add_to_cart">Thêm vào giỏ hàng</button>
                                             <button type="button" class="btn btn-danger add-to-wishlist" id="{{$product->product_id}}" onclick="add_wishlist(this.id);" >Thêm vào yêu thích </button>
                                         </div>
                                     </form>
@@ -89,16 +68,10 @@
                         @endforeach
                         </ul>                  
                     </div>
-
                     <div class="wrap-pagination-info">
-                        <ul class="page-numbers">
-                            <li><span class="page-number-item current">1</span></li>
-                            <li><a class="page-number-item" href="#">2</a></li>
-                            <li><a class="page-number-item" href="#">3</a></li>
-                            <li><a class="page-number-item next-link" href="#">Next</a></li>
-                        </ul>
-                        <p class="result-count">Showing 1-8 of 12 result</p>
-                    </div>
+                        {!!$all_product->links()!!}
+                        <small class="text-muted inline m-t-sm m-b-sm">showing {!!$all_product->count() !!} of {!!$all_product_full->count()!!} items in page {!!$all_product->currentPage() !!}</small>
+                      </div>
                 </div>
                 <!--end main products area-->
 
@@ -110,7 +83,7 @@
                             <ul class="list-category">
 							
                                 <li class="category-item has-child-cate">
-                                    <a href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id) }}" class="cate-link">{{$cate->category_name}}</a>
+                                    <a href="{{URL::to('/category-product/'.$cate->category_id) }}" class="cate-link">{{$cate->category_name}}</a>
                                 </li>
 																	
 							</ul>
@@ -125,14 +98,13 @@
                        
                             <ul class="list-style vertical-list list-limited" data-show="6">
                             @foreach($brand as $key => $brand)
-                                <li class="list-item"><a class="filter-link" href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id) }}">{{$brand->brand_name}}</a></li>
+                                <li class="list-item"><a class="filter-link" href="{{URL::to('/brand-product/'.$brand->brand_id) }}">{{$brand->brand_name}}</a></li>
                             @endforeach    
-                                <li class="list-item"><a data-label='Show less<i class="fa fa-angle-up" aria-hidden="true"></i>' class="btn-control control-show-more" href="#">Show more<i class="fa fa-angle-down" aria-hidden="true"></i></a></li>
                             </ul>					
                         </div>
                     </div>
                     <!-- brand widget-->
-
+<!-- 
                     <div class="widget mercado-widget filter-widget price-filter">
                         <h2 class="widget-title">Price</h2>
                         <div class="widget-content">
@@ -143,7 +115,7 @@
                                 <button class="filter-submit">Filter</button>
                             </p>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Price-->
                     <div class="widget mercado-widget filter-widget brand-widget">
                         <h2 class="widget-title">Sản phẩm yêu thích</h2>
@@ -154,8 +126,10 @@
                         </div>
                     </div>
                    
+                    </div> -->
+
                     <!-- Color -->
-                    <div class="widget mercado-widget widget-product">
+                    <!-- <div class="widget mercado-widget widget-product">
                         <h2 class="widget-title">Popular Products</h2>
                         <div class="widget-content">
                             <ul class="products">
@@ -174,7 +148,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- brand widget-->
 
                 </div>
