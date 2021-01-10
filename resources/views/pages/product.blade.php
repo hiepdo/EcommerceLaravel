@@ -43,7 +43,7 @@
                         <ul class="product-list grid-products equal-container">
                         @foreach($all_product as $key => $product)
                             <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                                <div class="product product-style-3 equal-elem ">
+                                <div class="product product-style-3 equal-elem">
                                     <form>
                                     @csrf
                                         <input type="hidden" name="" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
@@ -57,7 +57,7 @@
                                             </a>
                                         </div>
                                         <div class="product-info">
-                                            <a href="#" class="product-name"><span>{{($product->product_name)}}</span></a>
+                                            <span>{{($product->product_name)}}</span>
                                             <div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} VNĐ</span></div>
                                             <button type="button" data-id_product="{{$product->product_id}}" class="btn btn-danger add-to-cart" name="add_to_cart">Thêm vào giỏ hàng</button>
                                         </div>
@@ -102,56 +102,6 @@
                             </ul>					
                         </div>
                     </div>
-                    <!-- brand widget-->
-<!-- 
-                    <div class="widget mercado-widget filter-widget price-filter">
-                        <h2 class="widget-title">Price</h2>
-                        <div class="widget-content">
-                            <div id="slider-range"></div>
-                            <p>
-                                <label for="amount">Price:</label>
-                                <input type="text" id="amount" readonly>
-                                <button class="filter-submit">Filter</button>
-                            </p>
-                        </div>
-                    </div> -->
-                    <!-- Price-->
-
-                    <!-- <div class="widget mercado-widget filter-widget">
-                        <h2 class="widget-title">Color</h2>
-                        <div class="widget-content">
-                            <ul class="list-style vertical-list has-count-index">
-                                <li class="list-item"><a class="filter-link " href="#">Red <span>(217)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Yellow <span>(179)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Black <span>(79)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Blue <span>(283)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Grey <span>(116)</span></a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Pink <span>(29)</span></a></li>
-                            </ul>
-                        </div>
-                    </div> -->
-                    <!-- Color -->
-                    <!-- <div class="widget mercado-widget widget-product">
-                        <h2 class="widget-title">Popular Products</h2>
-                        <div class="widget-content">
-                            <ul class="products">
-                                <li class="product-item">
-                                    <div class="product product-widget-style">
-                                        <div class="thumbnnail">
-                                            <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                                <figure><img src="{{ asset('public/frontend/images/products/digital_01.jpg') }}" alt=""></figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                            <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> -->
-                    <!-- brand widget-->
 
                 </div>
                 <!--end sitebar-->
