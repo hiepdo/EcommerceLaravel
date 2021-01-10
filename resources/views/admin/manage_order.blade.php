@@ -16,9 +16,8 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th>Mã đơn hàng</th>
-            <!-- <th>Ngày đặt hàng</th> -->
-            <!-- <th>Tổng tiền</th>    -->
+            <th>Mã ĐH</th>
+            <th>Ngày đặt hàng</th>
             <th>Chờ xử lý</th>  
             <th>Đang xử lý</th>  
             <th>Đang giao hàng</th>
@@ -34,8 +33,7 @@
           {{ csrf_field() }}
           <tr>
             <td>{{ $ord->order_id }}</td>
-            <!-- <td>{{ $ord->created_at }}</td> -->
-            <!-- <td>{{number_format($ord->order_total).' '.'VNĐ'}}</td> -->
+            <td>{{ $ord->created_at }}</td>
             <td><input type="checkbox" name="wait_progress" {{$ord->order_status=="Chờ xử lý" ? 'checked' : ''}}></td>
             <td><input type="checkbox" name="waiting_progress" {{$ord->order_status=="Đang xử lý" ? 'checked' : ''}}></td>
             <td><input type="checkbox" name="shipping" {{$ord->order_status=="Đang giao hàng" ? 'checked' : ''}}></td>

@@ -8,7 +8,7 @@
         }
     </style>
 <div class="row">
-        <h3 class="title_thongke">Thống kê đơn hàng doanh số</h3></br>
+        <h3 class="title_thongke">Thống kê doanh số đơn hàng</h3></br>
         <form autocomplete="off">
             @csrf
             <div class="col-md-2">
