@@ -54,7 +54,7 @@
                 <h4 class="title-box">Phiếu thanh toán</h4>
                 <p class="summary-info"><span class="title">Tạm tính</span><b class="index">{{number_format($total).' '.'VNĐ'}}</b></p>
                 <p class="summary-info"><span class="title">Thuế</span><b class="index">0</b></p>
-                <p class="summary-info"><span class="title">Phí ship</span><b class="index">Free Shipping</b></p>
+                <p class="summary-info"><span class="title">Phí ship</span><b class="index">Miễn phí</b></p>
                 <p class="summary-info total-info "><span class="title">Thành tiền</span><b class="index">{{number_format($total).' '.'VNĐ'}}</b></p>
             </div>
             <div class="checkout-info">
@@ -75,8 +75,8 @@
                 <a class="link-to-shop" href="{{ URL::to('/shop') }}">Tiếp tục mua sắm<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
             </div>
             <div class="update-clear">
-                <input type="submit" value="Update Shopping Cart" name="update_qty" class="btn btn-update">
-                <a class="btn btn-clear" href="{{url('/clear-all-cart-ajax')}}">Clear Shopping Cart</a>
+                <input type="submit" value="Cập nhật giỏ hàng" name="update_qty" class="btn btn-update">
+                <a class="btn btn-clear" href="{{url('/clear-all-cart-ajax')}}">Xóa giỏ hàng</a>
             </div>
         </div>
     @else
@@ -85,7 +85,7 @@
     @endif
     </form>
         <div class="wrap-show-advance-info-box style-1 box-in-site">
-            <h3 class="title-box">Most Viewed Products</h3>
+            <h3 class="title-box">Sản phẩm được xem nhiều nhất</h3>
             <div class="wrap-products">
                 <div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
 
@@ -95,10 +95,10 @@
                                 <figure><img src="{{ asset('public/frontend/images/products/digital_17.jpg')}}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item new-label">new</span>
+                                <span class="flash-item new-label">mới</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -113,10 +113,10 @@
                                 <figure><img src="{{ asset('public/frontend/images/products/digital_17.jpg')}}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item sale-label">sale</span>
+                                <span class="flash-item sale-label">giảm giá</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -131,11 +131,11 @@
                                 <figure><img src="{{ asset('public/frontend/images/products/digital_17.jpg')}}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item new-label">new</span>
-                                <span class="flash-item sale-label">sale</span>
+                                <span class="flash-item new-label">mới</span>
+                                <span class="flash-item sale-label">giảm giá</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">

@@ -20,7 +20,7 @@
                 <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
                     <div class="wrap-shop-control">
 
-                        <h1 class="shop-title">Sản phẩm - {!!$all_product_full->count()!!} item</h1>
+                        <h1 class="shop-title">Sản phẩm - {!!$all_product_full->count()!!} sản phẩm</h1>
 
                         <div class="wrap-right">
 
@@ -69,7 +69,7 @@
                     </div>
                     <div class="wrap-pagination-info">
                         {!!$all_product->links()!!}
-                        <small class="text-muted inline m-t-sm m-b-sm">showing {!!$all_product->count() !!} of {!!$all_product_full->count()!!} items in page {!!$all_product->currentPage() !!}</small>
+                        <small class="text-muted inline m-t-sm m-b-sm">Hiển thị {!!$all_product->count() !!} trong {!!$all_product_full->count()!!} sản phẩm trên trang {!!$all_product->currentPage() !!}</small>
                       </div>
                 </div>
                 <!--end main products area-->

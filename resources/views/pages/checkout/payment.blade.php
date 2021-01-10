@@ -6,8 +6,8 @@
 <div class="container">
     <div class="wrap-breadcrumb">
         <ul>
-            <li class="item-link"><a href="{{URL::to('/Home')}}" class="link">Home</a></li>
-            <li class="item-link"><span>Payment</span></li>
+            <li class="item-link"><a href="{{URL::to('/Home')}}" class="link">Trang chủ</a></li>
+            <li class="item-link"><span>Thanh toán</span></li>
         </ul>
     </div>
     <div class=" main-content-area">
@@ -117,7 +117,7 @@
         </div>
 
         <div class="wrap-show-advance-info-box style-1 box-in-site">
-            <h3 class="title-box">Most Viewed Products</h3>
+            <h3 class="title-box">Sản phẩm được xem nhiều nhất</h3>
             <div class="wrap-products">
                 <div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
 
@@ -127,10 +127,10 @@
                                 <figure><img src="assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item new-label">new</span>
+                                <span class="flash-item new-label">mới</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -145,10 +145,10 @@
                                 <figure><img src="assets/images/products/digital_17.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item sale-label">sale</span>
+                                <span class="flash-item sale-label">giảm giá</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -163,11 +163,11 @@
                                 <figure><img src="assets/images/products/digital_15.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item new-label">new</span>
-                                <span class="flash-item sale-label">sale</span>
+                                <span class="flash-item new-label">mới</span>
+                                <span class="flash-item sale-label">giảm giá</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -182,10 +182,10 @@
                                 <figure><img src="assets/images/products/digital_01.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item bestseller-label">Bestseller</span>
+                                <span class="flash-item bestseller-label">Bán chạy</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -200,7 +200,7 @@
                                 <figure><img src="assets/images/products/digital_21.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -215,10 +215,10 @@
                                 <figure><img src="assets/images/products/digital_03.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item sale-label">sale</span>
+                                <span class="flash-item sale-label">giảm giá</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">giảm giá</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -233,10 +233,10 @@
                                 <figure><img src="assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item new-label">new</span>
+                                <span class="flash-item new-label">mơi</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -251,10 +251,10 @@
                                 <figure><img src="assets/images/products/digital_05.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item bestseller-label">Bestseller</span>
+                                <span class="flash-item bestseller-label">Bán chạy</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">

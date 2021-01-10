@@ -23,6 +23,14 @@ session_start();
 class HomeController extends Controller
 {
     
+    public function to_contact_us()
+    {
+        return view('pages.contact_us');
+    }
+    public function to_about_us()
+    {
+        return view('pages.about_us');
+    }
     public function login_facebook(){
         return Socialite::driver('facebook')->redirect();
     }
