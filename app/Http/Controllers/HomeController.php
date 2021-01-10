@@ -20,9 +20,6 @@ use Socialite; //sử dụng Socialite
 use App\Models\Login;
 session_start();
 
-
-
-
 class HomeController extends Controller
 {
     

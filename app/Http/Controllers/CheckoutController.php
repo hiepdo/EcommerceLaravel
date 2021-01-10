@@ -48,73 +48,79 @@ class CheckoutController extends Controller
 
     public function order_place(Request $request)
     {
-        //insert payment
-        $data = array();
-        $data['payment_method'] = $request->payment_option;
-        if($data['payment_method'] == 1)
+        if(Session::get('cart')==true)
         {
-            $data['payment_method'] = 'ATM';
-        }
-        else if($data['payment_method'] == 2)
-        {
-            $data['payment_method'] = 'VISA';
+            //insert payment
+            $data = array();
+            $data['payment_method'] = $request->payment_option;
+            if($data['payment_method'] == 1)
+            {
+                $data['payment_method'] = 'ATM';
+            }
+            else if($data['payment_method'] == 2)
+            {
+                $data['payment_method'] = 'VISA';
+            }
+            else if($data['payment_method'] == 3)
+            {
+                $data['payment_method'] = 'HandCash';
+            }
+            $data['payment_status'] = 'Đang chờ xử lý';
+            $payment_id = DB::table('tbl_payment')->insertGetId($data);
+
+            //insert order
+            $total = 0;
+            foreach(Session::get('cart') as $key => $cart)       
+            {
+                $subtotal = $cart['product_qty'] * $cart['product_price'];
+                $total += $subtotal;
+            }
+            $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+            $order_date = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
+    
+            $order_data = array();
+            $order_data['customer_id'] = Session::get('customer_id');
+            $order_data['shipping_id'] = Session::get('shipping_id');
+            $order_data['payment_id'] = $payment_id;
+            $order_data['order_total'] = $total;
+            $order_data['order_status'] = 'Chờ xử lý';
+            $order_data['order_date'] = $order_date;
+            $order_data['created_at'] = $today;
+            $order_id = DB::table('tbl_order')->insertGetId($order_data);
+    
+            //insert order_detail
+            foreach(Session::get('cart') as $key => $cart)
+            {
+                $order_detail_data = array();
+                $order_detail_data['order_id'] = $order_id;
+                $order_detail_data['product_id'] = $cart['product_id'];
+                $order_detail_data['product_name'] = $cart['product_name'];
+                $order_detail_data['product_price'] = $cart['product_price'];
+                $order_detail_data['product_sales_quantity'] = $cart['product_qty'];
+                DB::table('tbl_order_details')->insert($order_detail_data);
+            }
+            if($data['payment_method']==1)
+            {
+                Session::forget('cart');
+                Session::forget('shipping_id');
+                return view('pages.checkout.thankyou');
+            }
+            else if($data['payment_method']==2)
+            {
+                Session::forget('cart');
+                Session::forget('shipping_id');
+                return view('pages.checkout.thankyou');
+            }
+            else
+            {
+                Session::forget('cart');
+                Session::forget('shipping_id');
+                return view('pages.checkout.thankyou');
+            }
         }
         else
         {
-            $data['payment_method'] = 'HandCash';
-        }
-        $data['payment_status'] = 'Đang chờ xử lý';
-        $payment_id = DB::table('tbl_payment')->insertGetId($data);
-
-        //insert order
-        $total = 0;
-        foreach(Session::get('cart') as $key => $cart)       
-        {
-            $subtotal = $cart['product_qty'] * $cart['product_price'];
-            $total += $subtotal;
-        }
-
-        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $order_date = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
-
-        $order_data = array();
-        $order_data['customer_id'] = Session::get('customer_id');
-        $order_data['shipping_id'] = Session::get('shipping_id');
-        $order_data['payment_id'] = $payment_id;
-        $order_data['order_total'] = $total;
-        $order_data['order_status'] = 'Chờ xử lý';
-        $order_data['order_date'] = $order_date;
-        $order_data['created_at'] = $today;
-        $order_id = DB::table('tbl_order')->insertGetId($order_data);
-
-        //insert order_detail
-        foreach(Session::get('cart') as $key => $cart)
-        {
-            $order_detail_data = array();
-            $order_detail_data['order_id'] = $order_id;
-            $order_detail_data['product_id'] = $cart['product_id'];
-            $order_detail_data['product_name'] = $cart['product_name'];
-            $order_detail_data['product_price'] = $cart['product_price'];
-            $order_detail_data['product_sales_quantity'] = $cart['product_qty'];
-            DB::table('tbl_order_details')->insert($order_detail_data);
-        }
-        if($data['payment_method']==1)
-        {
-            Session::forget('cart');
-            Session::forget('shipping_id');
-            return view('pages.checkout.thankyou');
-        }
-        else if($data['payment_method']==2)
-        {
-            Session::forget('cart');
-            Session::forget('shipping_id');
-            return view('pages.checkout.thankyou');
-        }
-        else
-        {
-            Session::forget('cart');
-            Session::forget('shipping_id');
-            return view('pages.checkout.thankyou');
+            return Redirect('/payment');
         }
     }
 }

@@ -48,7 +48,7 @@
 								@else
 								<li class="dropdown">
 									<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-										<img alt="" src="{{asset('public/backend/images/2.png')}}" style="width:30px; height:30px;">
+										<img alt="" src="{{asset('public/frontend/images/icon-customer.png')}}" style="width:30px; height:30px;">
 									<span class="username">
 										<?php
 											$name= Session::get('customer_name');
@@ -171,7 +171,7 @@
 								</li>
 								<?php }else { ?>
 								<li class="menu-item">
-									<a href="{{ URL::to('/login-to-checkout') }}" class="link-term mercado-item-title">Checkout</a>
+									<a href="{{ URL::to('/login') }}" class="link-term mercado-item-title">Checkout</a>
 								</li>
 								<?php } ?>
 								<li class="menu-item">
@@ -198,6 +198,33 @@
 	<script src="{{ asset('public/frontend/js/jquery.sticky.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/functions.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/sweetalert.js') }}"></script>
+	<script src="{{ asset('public/frontend/js/jquery.form-validator.min.js')}}"></script>
+	<script type="text/javascript">
+		$.validate({
+				
+		});
+	</script>
+	<script type="text/javascript">
+            function send() 
+			{
+                var payment = document.getElementsByName('payment_option');
+				var paymentValue = false;
+
+				for(var i=0; i<payment.length;i++){
+					if(payment[i].checked == true){
+						paymentValue = true;    
+					}
+				}
+				if(!paymentValue){
+					var msg = '<span style="color:red;">Bạn hãy chọn 1 trong 3 hình thức thanh toán ở trên!</span><br /><br />';
+                    document.getElementById('msg').innerHTML = msg;
+				}
+			}
+
+            function reset_msg() {
+                document.getElementById('msg').innerHTML = '';
+            }
+    </script>
 	<script type="text/javascript">
 		$('#keywords').keyup(function() {
 			var query = $(this).val();
@@ -220,18 +247,7 @@
 			$('#keywords').val($(this).text());
 			$('#search_ajax').fadeOut();
   </script>
-	<script src="{{ asset('public/frontend/js/jquery.form-validator.min.js')}}"></script>
-	<div id="map"></div>
-	<script src="https://maps.googleapis.com/maps/api/js" async defer></script>
-
-	<script>
-	function initMap() {}
-	</script>
-	<script type="text/javascript">
-		$.validate({
-				
-		});
-	</script>
+	
 	<script type="text/javascript">
 		$(document).ready(function()
 		{
@@ -268,7 +284,7 @@
 						$('.comment_content').val('');				
 					}
             	});
-			}); 
+			}); 		
 		});
 	</script>
 	<script type="text/javascript">

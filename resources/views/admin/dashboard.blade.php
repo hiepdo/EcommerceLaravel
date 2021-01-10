@@ -13,7 +13,7 @@
             @csrf
             <div class="col-md-2">
                 <p>Từ ngày: <input type="text" id="datepicker" class="form-control"></p>
-                <input type="button" id="btn-dashboard-filter" class="btn btn-primary btn-sm" value="Lọc kết quả"></p>
+                <input style="margin-top: 10px;" type="button" id="btn-dashboard-filter" class="btn btn-primary btn-sm" value="Lọc kết quả"></p>
             </div>
 
             <div class="col-md-2">

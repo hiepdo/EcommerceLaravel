@@ -17,8 +17,7 @@
         <thead>
           <tr>
             <th>Mã đơn hàng</th>
-            <!-- <th>Ngày đặt hàng</th> -->
-            <!-- <th>Tổng tiền</th>    -->
+            <th>Ngày đặt hàng</th>
             <th>Chờ xử lý</th>  
             <th>Đang xử lý</th>  
             <th>Đang giao hàng</th>
@@ -34,10 +33,9 @@
           {{ csrf_field() }}
           <tr>
             <td>{{ $ord->order_id }}</td>
-            <!-- <td>{{ $ord->created_at }}</td> -->
-            <!-- <td>{{number_format($ord->order_total).' '.'VNĐ'}}</td> -->
-            <td><input type="checkbox" name="wait_progress" {{$ord->order_status=="Chờ xử lý" ? 'checked' : ''}}></td>
-            <td><input type="checkbox" name="waiting_progress" {{$ord->order_status=="Đang xử lý" ? 'checked' : ''}}></td>
+            <td>{{ $ord->created_at }}</td>
+            <td><input type="checkbox" name="wait_progress" {{$ord->order_status=="Chờ xử lý" ? 'checked' : ''}} ></td>
+            <td><input type="checkbox" name="waiting_progress" {{$ord->order_status=="Đang xử lý" ? 'checked' : ''}} ></td>
             <td><input type="checkbox" name="shipping" {{$ord->order_status=="Đang giao hàng" ? 'checked' : ''}}></td>
             <td><input type="checkbox" name="Cancel" {{$ord->order_status=="Hủy" ? 'checked' : ''}}></td>
             <td><input type="checkbox" name="complete_progress" {{$ord->order_status=="Hoàn thành" ? 'checked' : ''}}></td>

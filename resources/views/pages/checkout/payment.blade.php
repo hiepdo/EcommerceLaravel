@@ -59,66 +59,54 @@
                 @endforeach        
         </div>
     @else
-        <div class="alert alert-danger" role="alert"><p style="font-size:18px; text-align:center;">Empty cart. Please choose something product</p></div>
+        <div class="alert alert-danger" role="alert"><p style="font-size:18px; text-align:center;">Không có sản phẩm nào trong giỏ hàng của bạn</p></div>
     @endif
         <div class="wrap-address-billing">
         <h3>Thanh toán giỏ hàng</h3>
         
-        <!-- <h3 class="">Thanh toán giỏ hàng</h3> -->
-        <!-- <form action="{{URL::to('/save-checkout-customer')}}" method="POST" name="frm-billing">
-            {{ csrf_field() }}
-            
-                <input type="submit" value="Thanh toán" name="send_order" class="btn btn-danger">
-        </form> -->
         </div>
         <div class="summary summary-checkout">
         <?php $total = 0; ?>
+        @if(Session::get('cart') == true)
                 @foreach(Session::get('cart') as $key => $cart)       
                 <?php 
                     $subtotal = $cart['product_qty'] * $cart['product_price'];
                     $total += $subtotal;
                 ?>
                 @endforeach
+        @else
+           
+        @endif
         <form action="{{URL::to('/order-place')}}" method="POST">
             <div class="summary-item payment-method">
                 {{ csrf_field() }}
                 <h4 class="title-box">Hình thức thanh toán</h4>
-                <p class="summary-info"><span class="title">Check / Money order</span></p>
-                <p class="summary-info"><span class="title">Credit Cart (saved)</span></p>
                 <div class="choose-payment-methods">
                     <label class="payment-method">
-                        <input name="payment_option" id="payment-method-bank" value="1" type="radio" required>
+                        <input name="payment_option" id="payment-method-bank" value="1" type="radio" onclick="reset_msg();" required>
                         <span>Thanh toán bằng thẻ tín dụng (ATM)</span>
                         <span class="payment-desc">Hình thức thanh toán áp dụng cho tất cả các ngân hàng được liên kết</span>
-                        <div class="invalid-feedback">
-                           
-                        </div>
+                        <div class="invalid-feedback"></div>
                     </label>
                     <label class="payment-method">
-                        <input name="payment_option" id="payment-method-visa" value="2" type="radio" required>
+                        <input name="payment_option" id="payment-method-visa" value="2" type="radio" onclick="reset_msg();" required>
                         <span>Thanh toán bằng thẻ Visa</span>
                         <span class="payment-desc">Hình thức thanh toán chỉ áp dụng khi bạn sở hữu thẻ Visa</span>
-                        <div class="invalid-feedback">
-                           
-                        </div>
+                        <div class="invalid-feedback"></div>
                     </label>
                     <label class="payment-method">
-                        <input name="payment_option" id="payment-method-paypal" value="3" type="radio" required>
+                        <input name="payment_option" id="payment-method-paypal" value="3" type="radio" onclick="reset_msg();" required>
                         <span>Thanh toán khi nhận hàng</span>
                         <span class="payment-desc">Bạn có thể kiểm tra hàng trước khi trả tiền</span>
-                        <div class="invalid-feedback">
-                           
-                        </div>
-                    </label>
+                        <div class="invalid-feedback"></div>
+                    </label> 
+                    <div id="msg"></div>                
                 </div>
                 <p class="summary-info grand-total"><span>Tổng Hóa đơn:</span> <span class="grand-total-price">{{number_format($total).' '.'VNĐ'}}</span></p>
-                <input type="submit" name="order_place" class="btn btn-medium" value="Tiến hàng đặt hàng">
+                <input type="submit" name="order_place" class="btn btn-medium" value="Tiến hàng đặt hàng" onclick="return send();">
             </div>
         </form>
             <div class="summary-item shipping-method">
-                <h4 class="title-box f-title">Hình thức vận chuyển</h4>
-                <p class="summary-info"><span class="title">Flat Rate</span></p>
-                <p class="summary-info"><span class="title">Fixed $50.00</span></p>
                 <h4 class="title-box">Mã giảm giá</h4>
                 <p class="row-in-form">
                     <label for="coupon-code">Nhập vào mã giảm giá của bạn:</label>
