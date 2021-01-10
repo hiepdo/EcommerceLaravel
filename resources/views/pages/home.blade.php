@@ -36,7 +36,7 @@
 				</div>
 			</div>
 
-			<!--BANNER-->
+			<!--BANNER-->flex justify-between flex-1 sm:hidden
 			<div class="wrap-banner style-twin-default">
 				<div class="banner-item">
 					<a href="#" class="link-banner banner-effect-1">

@@ -4,19 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TblPayment extends Migration
+class CreateTblGallery extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
+    protected $primaryKey='gallery_id';
     public function up()
     {
-        Schema::create('tbl_payment', function (Blueprint $table) {
-            $table->bigIncrements('payment_id');
-            $table->string('payment_method');
-            $table->string('payment_status');
+        Schema::create('tbl_gallery', function (Blueprint $table) {
+            $table->Increments('gallery_id');
+            $table->string('gallery_name');
+            $table->string('gallery_image');
+            $table->integer('product_id');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class TblPayment extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_payment');
+        Schema::dropIfExists('tbl_gallery');
     }
 }

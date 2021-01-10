@@ -8,9 +8,10 @@ use DB;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 use Validator;
 use Carbon\Carbon;
-use App\Customer;
+use App\Models\Customer;
 use Mail;
 use App\Models\Social;
 /*use App\Social; //sử dụng model Social*/
@@ -19,12 +20,18 @@ use Socialite; //sử dụng Socialite
 use App\Models\Login;
 session_start();
 
-
-
-
 class HomeController extends Controller
 {
-
+    
+    public function to_contact_us()
+    {
+        return view('pages.contact_us');
+    }
+    public function to_about_us()
+    {
+        return view('pages.about_us');
+    }
+    
     public function login_facebook(){
         return Socialite::driver('facebook')->redirect();
     }
@@ -34,8 +41,13 @@ class HomeController extends Controller
         $account = Social::where('provider','facebook')->where('provider_user_id',$provider->getId())->first();
         if($account){
             $account_name = Login::where('customer_id',$account->user)->first();
-            Session::put('customer_name',$account_name->customer_name);
-            Session::put('customer_id',$account_name->customer_id);
+            if($account_name)
+            {
+                Session::put('customer_id', $account_name->customer_id);
+                Session::put('customer_name', $account_name->customer_name);
+                Session::put('logged', true);
+                return redirect(Session::get('previousUrl'));            
+            } 
         }else{
 
             $customer_new = new Social([
@@ -55,12 +67,18 @@ class HomeController extends Controller
             }
             $customer_new->login()->associate($orang);
             $customer_new->save();
-
             $account_name = Login::where('customer_id',$customer_new->user)->first();
-            Session::put('customer_name',$account_name->customer_name);
-             Session::put('customer_id',$account_name->customer_id);
+            if($account_name)
+            {
+                Session::put('customer_id', $account_name->customer_id);
+                Session::put('customer_name', $account_name->customer_name);               
+                Session::put('logged', true);
+                return redirect(Session::get('previousUrl'));
+            }
+            else
+                return redirect('/login')->with('message', 'Đăng nhập không thành công');    
         } 
-        return redirect('/Home')->with('message', 'Đăng nhập thành công');
+        return redirect('/login')->with('message', 'Đăng nhập không thành công');
     }
     public function login_google(){
         return Socialite::driver('google')->redirect();
@@ -72,23 +90,32 @@ class HomeController extends Controller
         if($authUser)
         {
             $account_name = Login::where('customer_id',$authUser->user)->first();
-            Session::put('customer_name',$account_name->customer_name);
-            Session::put('customer_id',$account_name->customer_id);
+            if($account_name)
+            {
+                Session::put('customer_id',$account_name->customer_id);
+                Session::put('customer_name',$account_name->customer_name);
+                Session::put('logged', true);
+                return redirect(Session::get('previousUrl'));
+            }
+            
         }else if($customer_new)
         {
             $account_name = Login::where('customer_id',$authUser->user)->first();
-            Session::put('customer_name',$account_name->customer_name);
-            Session::put('customer_id',$account_name->customer_id);
+            if($account_name)
+            {
+                Session::put('customer_id',$account_name->customer_id);
+                Session::put('customer_name',$account_name->customer_name);
+                Session::put('logged', true);
+                return redirect(Session::get('previousUrl'));
+            }
         }
-
-        return redirect('/Home')->with('message', 'Đăng nhập thành công');
+        return redirect('/login')->with('message', 'Đăng nhập không thành công');
       
-       
     }
+  
     public function findOrCreateUser($users,$provider){
         $authUser = Social::where('provider_user_id', $users->id)->first();
         if($authUser){
-
             return $authUser;
         }
         else{
@@ -116,8 +143,6 @@ class HomeController extends Controller
         Session::put('customer_name',$account_name->customer_name);
         Session::put('customer_id)',$account_name->customer_id);
         return redirect('/Home')->with('message', 'Đăng nhập thành công');
-
-
     }
 
     public function home(Request $request)
@@ -145,6 +170,8 @@ class HomeController extends Controller
 
     public function to_login()
     {
+        $preUrl = URL::previous();
+        Session::put('previousUrl', $preUrl);
         return view('pages.login_user');
     }
 
@@ -194,9 +221,7 @@ class HomeController extends Controller
             $customer->save();
             return redirect('/login');
         }
-
         
-        // return redirect()->back()->with('message', 'Đăng ký thành công');
         return Redirect('/login');
 
     }
@@ -211,12 +236,11 @@ class HomeController extends Controller
             Session::put('customer_id', $result->customer_id);
             Session::put('customer_name', $result->customer_name);
             Session::put('logged', true);
-            return Redirect('/Home');
+            return redirect(Session::get('previousUrl'));
     	}else{
     		return redirect()->back()->with('error', 'Sai tên tài khoản hoặc mật khẩu, vui lòng kiểm tra lại');
     	}
         Session::save();
-
     }
 
     public function recover_pass(Request $request)
@@ -283,7 +307,7 @@ class HomeController extends Controller
     }
 
     public function logout_checkout(){
-    	Session::forget('customer_id');
+        Session::forget('customer_id');
     	return Redirect::to('/login');
     }
 
@@ -372,6 +396,37 @@ class HomeController extends Controller
         Session::put('customer_id',null);
         Session::put('customer_name',null);
         Session::put('logged', false);
+        Session::forget('cart');
         return Redirect::to('/Home');
+    }
+
+    public function all_customer_account(){
+        $this->AuthenLogin();
+        $all_customer_account = DB::table('tbl_customers')->get();
+        $manager_customer_account  = view('admin.all_customer_account')->with('all_customer_account',$all_customer_account);
+        return view('admin_layout')->with('admin.all_customer_account', $manager_customer_account);
+    }
+
+    public function about_us()
+    {
+        return view('pages.about_us');
+    }
+
+    public function contact_us()
+    {
+        return view('pages.contact_us');
+    }
+
+    public function AuthenLogin()
+    {
+        $admin_id = Session::get('admin_id');
+        if($admin_id)
+        {
+           return Redirect::to('dashboard');
+        }
+        else
+        {
+           return Redirect::to('admin')-> send();
+        }
     }
 }

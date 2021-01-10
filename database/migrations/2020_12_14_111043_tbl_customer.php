@@ -35,6 +35,6 @@ class TblCustomer extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_customer');
+        Schema::dropIfExists('tbl_customers');
     }
 }

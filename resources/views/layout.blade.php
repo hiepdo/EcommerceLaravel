@@ -36,9 +36,7 @@
 					<div class="container">
 						<div class="topbar-menu left-menu">
 							<ul>
-								<li class="menu-item" >
-									<a title="Hotline: (+123) 456 789" href="#" ><span class="icon label-before fa fa-mobile"></span>Hotline: (+123) 456 789</a>
-								</li>
+								
 							</ul>
 						</div>
 						<div class="topbar-menu right-menu">
@@ -50,7 +48,7 @@
 								@else
 								<li class="dropdown">
 									<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-										<img alt="" src="{{asset('public/backend/images/2.png')}}">
+										<img alt="" src="{{asset('public/frontend/images/icon-customer.png')}}" style="width:30px; height:30px;">
 									<span class="username">
 										<?php
 											$name= Session::get('customer_name');
@@ -78,7 +76,7 @@
 					<div class="mid-section main-info-area">
 
 						<div class="wrap-logo-top left-section">
-							<a href="{{ URL::to('/Home') }}" class="link-to-home"><img src="{{ asset('public/frontend/images/logo-top-1.png') }}" alt="mercado"></a>
+							<a href="{{ URL::to('/Home') }}" class="link-to-home"><img src="{{ asset('public/frontend/images/logo-top-4.png') }}" alt="mercado"></a>
 						</div>
 
 						<div class="wrap-search center-section">
@@ -86,7 +84,7 @@
 								<form action="{{URL::to('/search')}}" method="GET" id="form-search-top" name="form-search-top">
 									{{ csrf_field() }}
 									<div class="search_box">
-									<input type="text" name="search" id="keywords" placeholder="Search here..."/>
+									<input type="text" name="search" id="keywords" placeholder="Tìm kiếm..."/>
 									<div id="search_ajax"></div>
 									<button type="submit" class="btn btn-primary" ><i class="fa fa-search"></i>
 									</div>
@@ -112,11 +110,16 @@
 								</a>
 							</div>
 							<div class="wrap-icon-section minicart">
-								<a href="#" class="link-direction">
+							
+								<a href="{{URL::to('/show-cart-ajax')}}" class="link-direction">
 									<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 									<div class="left-info">
-										<span class="index">4 items</span>
-										<span class="title">CART</span>
+										@if(Session::get('cart') == true)											
+										<span class="index">{{count(Session::get('cart'))}} item</span>	
+										@else
+										<span class="index">0 sản phẩm</span>
+										@endif
+										<span class="title">Giỏ hàng</span>
 									</div>
 								</a>
 							</div>
@@ -136,11 +139,11 @@
 					<div class="header-nav-section">
 						<div class="container">
 							<ul class="nav menu-nav clone-main-menu" id="mercado_haead_menu" data-menuname="Sale Info" >
-								<li class="menu-item"><a href="#" class="link-term">Weekly Featured</a><span class="nav-label hot-label">hot</span></li>
-								<li class="menu-item"><a href="#" class="link-term">Hot Sale items</a><span class="nav-label hot-label">hot</span></li>
-								<li class="menu-item"><a href="#" class="link-term">Top new items</a><span class="nav-label hot-label">hot</span></li>
-								<li class="menu-item"><a href="#" class="link-term">Top Selling</a><span class="nav-label hot-label">hot</span></li>
-								<li class="menu-item"><a href="#" class="link-term">Top rated items</a><span class="nav-label hot-label">hot</span></li>
+								<li class="menu-item"><a href="{{ URL::to('/Home') }}" class="link-term">Nổi bật trong tuần</a><span class="nav-label hot-label">hot</span></li>
+								<li class="menu-item"><a href="{{ URL::to('/Home') }}" class="link-term">Giảm giá sốc</a><span class="nav-label hot-label">hot</span></li>
+								<li class="menu-item"><a href="{{ URL::to('/Home') }}" class="link-term">Sản phẩm mới</a><span class="nav-label hot-label">hot</span></li>
+								<li class="menu-item"><a href="{{ URL::to('/Home') }}" class="link-term">Bán chạy</a><span class="nav-label hot-label">hot</span></li>
+								<li class="menu-item"><a href="{{ URL::to('/Home') }}" class="link-term">Xếp hạng</a><span class="nav-label hot-label">hot</span></li>
 							</ul>
 						</div>
 					</div>
@@ -152,13 +155,13 @@
 									<a href="{{ URL::to('/Home') }}" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
 								</li>
 								<li class="menu-item">
-									<a href="about-us.html" class="link-term mercado-item-title">About Us</a>
+									<a href="{{URL::to('/about-us')}}" class="link-term mercado-item-title">Giới thiệu</a>
 								</li>
 								<li class="menu-item">
-									<a href="{{ URL::to('/shop') }}" class="link-term mercado-item-title">Shop</a>
+									<a href="{{ URL::to('/shop') }}" class="link-term mercado-item-title">Sản phẩm</a>
 								</li>
 								<li class="menu-item">
-									<a href="{{URL::to('/show-cart-ajax')}}" class="link-term mercado-item-title">Cart</a>
+									<a href="{{URL::to('/show-cart-ajax')}}" class="link-term mercado-item-title">Giỏ hàng</a>
 								</li>
 								<?php 
 									$customer_id = Session::get('customer_id');
@@ -167,19 +170,19 @@
 									{
 								?>
 								<li class="menu-item">
-									<a href="{{ URL::to('/checkout') }}" class="link-term mercado-item-title">Checkout</a>
+									<a href="{{ URL::to('/checkout') }}" class="link-term mercado-item-title">Thanh toán</a>
 								</li>
 								<?php }elseif($customer_id != NULL && $shipping_id != NULL) { ?>
 								<li class="menu-item">
-									<a href="{{ URL::to('/payment') }}" class="link-term mercado-item-title">Checkout</a>
+									<a href="{{ URL::to('/payment') }}" class="link-term mercado-item-title">Thanh toán</a>
 								</li>
 								<?php }else { ?>
 								<li class="menu-item">
-									<a href="{{ URL::to('/login') }}" class="link-term mercado-item-title">Checkout</a>
+									<a href="{{ URL::to('/login') }}" class="link-term mercado-item-title">Thanh toán</a>
 								</li>
 								<?php } ?>
 								<li class="menu-item">
-									<a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
+									<a href="{{ URL::to('/contact-us') }}" class="link-term mercado-item-title">Liên hệ</a>
 								</li>																	
 							</ul>
 						</div>
@@ -188,8 +191,142 @@
 			</div>
 		</div>
 	</header>
-
 	@yield('content')
+	<footer id="footer">
+		<div class="wrap-footer-content footer-style-1">
+
+			<div class="wrap-function-info">
+				<div class="container">
+					<ul>
+						<li class="fc-info-item">
+							<i class="fa fa-truck" aria-hidden="true"></i>
+							<div class="wrap-left-info">
+								<h4 class="fc-name">Miễn phí giao hàng</h4>
+								<p class="fc-desc">Miễn phí với đơn hàng từ 99k</p>
+							</div>
+
+						</li>
+						<li class="fc-info-item">
+							<i class="fa fa-recycle" aria-hidden="true"></i>
+							<div class="wrap-left-info">
+								<h4 class="fc-name">Bảo hành</h4>
+								<p class="fc-desc">Miễn phí đổi trả 30 ngày</p>
+							</div>
+
+						</li>
+						<li class="fc-info-item">
+							<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+							<div class="wrap-left-info">
+								<h4 class="fc-name">Thanh toán an toàn</h4>
+								<p class="fc-desc">Thanh toán trực tuyến an toàn</p>
+							</div>
+
+						</li>
+						<li class="fc-info-item">
+							<i class="fa fa-life-ring" aria-hidden="true"></i>
+							<div class="wrap-left-info">
+								<h4 class="fc-name">Hỗ trợ trực tuyến</h4>
+								<p class="fc-desc">Chúng tôi hỗ trợ 24/7</p>
+							</div>
+
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--End function info-->
+
+			<div class="main-footer-content">
+
+				<div class="container">
+
+					<div class="row">
+
+						<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+							<div class="wrap-footer-item">
+								<h3 class="item-header">Chi tiết liên hệ</h3>
+								<div class="item-content">
+									<div class="wrap-contact-detail">
+										<ul>
+											<li>
+												<i class="fa fa-map-marker" aria-hidden="true"></i>
+												<p class="contact-txt">227 Nguyễn Văn Cừ, phường 4, quận 5, Hồ Chí Minh</p>
+											</li>
+											<li>
+												<i class="fa fa-phone" aria-hidden="true"></i>
+												<p class="contact-txt">(+123) 456 789 - (+123) 666 888</p>
+											</li>
+											<li>
+												<i class="fa fa-envelope" aria-hidden="true"></i>
+												<p class="contact-txt">ltweb1082@gmail.com</p>
+											</li>										
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+
+							<div class="wrap-footer-item">
+								<h3 class="item-header">Đường dây nóng</h3>
+								<div class="item-content">
+									<div class="wrap-hotline-footer">
+										<span class="desc">Gọi miễn phí</span>
+										<b class="phone-number">(+123) 456 789 - (+123) 666 888</b>
+									</div>
+								</div>
+							</div>
+
+							<!-- <div class="wrap-footer-item footer-item-second">
+								<h3 class="item-header">Sign up for newsletter</h3>
+								<div class="item-content">
+									<div class="wrap-newletter-footer">
+										<form action="#" class="frm-newletter" id="frm-newletter">
+											<input type="email" class="input-email" name="email" value="" placeholder="Enter your email address">
+											<button class="btn-submit">Subscribe</button>
+										</form>
+									</div>
+								</div>
+							</div> -->
+
+						</div>
+
+						<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 box-twin-content ">
+							<div class="row">
+								<div class="wrap-footer-item twin-item">
+									<h3 class="item-header">Tài khoản</h3>
+									<div class="item-content">
+										<div class="wrap-vertical-nav">
+											<ul>
+												<li class="menu-item"><a href="#" class="link-term">Tài khoản của tôi</a></li>
+												<li class="menu-item"><a href="#" class="link-term">Thương hiệu</a></li>
+												<li class="menu-item"><a href="#" class="link-term">Phiếu quà tặng</a></li>
+												<li class="menu-item"><a href="#" class="link-term">Yêu thích</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="wrap-footer-item twin-item">
+									<h3 class="item-header">Thông tin</h3>
+									<div class="item-content">
+										<div class="wrap-vertical-nav">
+											<ul>
+												<li class="menu-item"><a href="#" class="link-term">Liên hệ</a></li>
+												<li class="menu-item"><a href="#" class="link-term">Vị trí</a></li>
+												<li class="menu-item"><a href="#" class="link-term">Lịch sử đặt hàng</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 
     
 	<script src="{{ asset('public/frontend/js/jquery-1.12.4.minb8ff.js?ver=1.12.4') }}"></script>
@@ -202,7 +339,33 @@
 	<script src="{{ asset('public/frontend/js/jquery.sticky.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/functions.js') }}"></script>
 	<script src="{{ asset('public/frontend/js/sweetalert.js') }}"></script>
+	<script src="{{ asset('public/frontend/js/jquery.form-validator.min.js')}}"></script>
+	<script type="text/javascript">
+		$.validate({
+				
+		});
+	</script>
+	<script type="text/javascript">
+            function send() 
+			{
+                var payment = document.getElementsByName('payment_option');
+				var paymentValue = false;
 
+				for(var i=0; i<payment.length;i++){
+					if(payment[i].checked == true){
+						paymentValue = true;    
+					}
+				}
+				if(!paymentValue){
+					var msg = '<span style="color:red;">Bạn hãy chọn 1 trong 3 hình thức thanh toán ở trên!</span><br /><br />';
+                    document.getElementById('msg').innerHTML = msg;
+				}
+			}
+
+            function reset_msg() {
+                document.getElementById('msg').innerHTML = '';
+            }
+    </script>
 	<script type="text/javascript">
 		$('#keywords').keyup(function() {
 			var query = $(this).val();
@@ -224,8 +387,8 @@
 		$(document).on('click', 'li',function(){
 			$('#keywords').val($(this).text());
 			$('#search_ajax').fadeOut();
-		});
-	</script>
+  </script>
+	
 	<script type="text/javascript">
 		$(document).ready(function()
 		{
@@ -262,7 +425,7 @@
 						$('.comment_content').val('');				
 					}
             	});
-			}); 
+			}); 		
 		});
 	</script>
 	<script type="text/javascript">
@@ -582,6 +745,7 @@
                 });
 			});
 		});
+		
 	</script>
 </body>
 </html>

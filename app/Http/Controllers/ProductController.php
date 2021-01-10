@@ -69,8 +69,6 @@ class ProductController extends Controller
         $all_product_full =  DB::table('tbl_product')->get();
     	$manager_product  = view('admin.all_product')->with('all_product',$all_product)->with('all_product_full',$all_product_full);
     	return view('admin_layout')->with('admin.all_product', $manager_product);
-
-
     }
     public function save_product(Request $request){   
         $this->AuthenLogin();   
@@ -102,13 +100,13 @@ class ProductController extends Controller
     public function unactive_product($product_id){
         $this->AuthenLogin();
         DB::table('tbl_product')->where('product_id',$product_id)->update(['product_status'=>1]);
-        Session::put('message','Không kích hoạt sản phẩm thành công');
+        Session::put('message','Không cho phép hiển thị sản phẩm');
         return Redirect::to('all-product');
 
     }
     public function active_product($product_id){
         DB::table('tbl_product')->where('product_id',$product_id)->update(['product_status'=>0]);
-        Session::put('message','Kích hoạt sản phẩm thành công');
+        Session::put('message','Cho phép hiển thị sản phẩm');
         return Redirect::to('all-product');
 
     }
@@ -180,12 +178,13 @@ class ProductController extends Controller
 
         foreach($details_product as $key => $value)
         {
-            $brand_id = $value->brand_id;
+            $category_id = $value->category_id;
         }
 
-        $related_brand = DB::table('tbl_product')
+        $related_product = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-        ->where('tbl_brand.brand_id',$brand_id)->get();
+        ->where('tbl_category_product.category_id',$category_id)->whereNotin('tbl_product.product_id',[$product_id])->limit(10)->get();
 
         $all_product_toplike = DB::table('tbl_wishlist')
         ->select(DB::raw('count(product_id) as numberlike,product_id'))
@@ -196,13 +195,13 @@ class ProductController extends Controller
         $all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id','desc')->get();
         return view('pages.product.show_detail')->with('category',$cate_product)->with('brand',$brand_product)
         ->with('product_details',$details_product)
-        ->with('relate',$related_brand)
+
+        ->with('relate',$related_product)
         ->with('gallery',$gallery)
         ->with('all_product_toplike',$all_product_toplike)
         ->with('Like_Not_Like',$Like_Not_Like)
         ->with('all_product_topsale',$all_product_topsale)
         ->with('all_product',$all_product);
-
     }
 
     //Load comment

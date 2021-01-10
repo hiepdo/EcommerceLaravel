@@ -18,17 +18,21 @@ use App\Http\Controllers\UserController;
 
 //homepage
 Route::get('/', 'HomeController@home');
-Route::get('/Home', 'HomeController@home');
+Route::get('/home', 'HomeController@home');
 Route::get('/product', 'HomeController@products');
 Route::get('/shop', 'HomeController@shop');
 Route::get('/search', 'HomeController@search');
+Route::get('/about-us', 'HomeController@to_about_us');
+Route::get('/contact-us', 'HomeController@to_contact_us');
 Route::get('/autocomplete-ajax', 'HomeController@autocomplete_ajax');
 
+
 //admin
-Route::get('/admin','AdminController@admin');
-Route::get('/dashboard','AdminController@show');
-Route::get('/logout','AdminController@logout');
-Route::post('/admin-dashboard','AdminController@dashboard');
+Route::get('/admin', 'AdminController@admin');
+Route::get('/dashboard', 'AdminController@show');
+Route::get('/logout', 'AdminController@logout');
+Route::post('/admin-dashboard', 'AdminController@dashboard');
+Route::post('/filter-by-date', 'AdminController@filter_by_date');
 
 //account
 Route::get('/verify', 'HomeController@verify_user');
@@ -78,15 +82,22 @@ Route::get('/active-product/{product_id}', 'ProductController@active_product');
 Route::post('/save-product', 'ProductController@save_product');
 Route::post('/update-product/{product_id}', 'ProductController@update_product');
 
+//order
+Route::get('/manage-order', 'OrderController@manage_order');
+Route::get('/view-order/{orderId}', 'OrderController@view_order');
+Route::get('/delete-order/{orderId}', 'OrderController@delete_order');
+Route::post('/update-status-order/{orderId}','OrderController@update_status_order');
+
 //Home product category
 Route::get('/category-product/{category_id}','CategoryProduct@show_category_home');
 Route::get('/brand-product/{brand_id}','BrandProduct@show_brand_home');
 Route::get('/detail-product/{product_id}','ProductController@detail_product');
 
-Route::post('/load-comment','ProductController@load_comment');
-Route::post('/sent-comment','ProductController@sent_comment'); 
-Route::post('/allow-comment','ProductController@allow_comment'); 
-Route::post('/reply-comment','ProductController@reply_comment'); 
+//Comment
+Route::post('/load-comment','CommentController@load_comment');
+Route::post('/sent-comment','CommentController@sent_comment'); 
+Route::post('/allow-comment','CommentController@allow_comment'); 
+Route::post('/reply-comment','CommentController@reply_comment'); 
 
 //Send mail
 Route::get('/send-mail', 'MailController@SendEmail');
@@ -120,10 +131,23 @@ Route::get('/show-wishlist-localstorage','WishListController@show_wishlist_local
 Route::post('/delete-wishlist-ajax','WishListController@delete_wishlist_ajax'); 
 
 //Checkout
-Route::get('/checkout','CheckoutController@show_checkout');
-Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer'); 
-Route::get('/payment','CheckoutController@payment');
-Route::post('/order-place','CheckoutController@order_place'); 
+Route::get('/checkout', 'CheckoutController@show_checkout');
+Route::get('/payment', 'CheckoutController@payment');
+Route::post('/order-place', 'CheckoutController@order_place'); 
+Route::post('/save-checkout-customer', 'CheckoutController@save_checkout_customer'); 
+
+//account
+Route::get('/verify', 'HomeController@verify_user');
+Route::get('/login', 'HomeController@to_login');
+Route::get('/logout', 'HomeController@logout');
+Route::get('/forget-password', 'HomeController@to_forget_password');
+Route::get('/reset-password', 'HomeController@reset_password');
+Route::get('/register', 'HomeController@to_register');
+Route::get('/all-customer-account', 'HomeController@all_customer_account');
+Route::post('/register-user', 'HomeController@register_user');
+Route::post('/login-user', 'HomeController@login_user');
+Route::post('/recover-pass', 'HomeController@recover_pass');
+Route::post('/update-password', 'HomeController@update_password');
 
 //Gallery
 Route::get('add-gallery/{product_id}','GalleryController@add_gallery');

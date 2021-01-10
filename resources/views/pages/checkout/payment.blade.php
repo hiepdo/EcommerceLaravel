@@ -6,8 +6,8 @@
 <div class="container">
     <div class="wrap-breadcrumb">
         <ul>
-            <li class="item-link"><a href="{{URL::to('/Home')}}" class="link">Home</a></li>
-            <li class="item-link"><span>Payment</span></li>
+            <li class="item-link"><a href="{{URL::to('/Home')}}" class="link">Trang chủ</a></li>
+            <li class="item-link"><span>Thanh toán</span></li>
         </ul>
     </div>
     <div class=" main-content-area">
@@ -59,57 +59,54 @@
                 @endforeach        
         </div>
     @else
-        <div class="alert alert-danger" role="alert"><p style="font-size:18px; text-align:center;">Empty cart. Please choose something product</p></div>
+        <div class="alert alert-danger" role="alert"><p style="font-size:18px; text-align:center;">Không có sản phẩm nào trong giỏ hàng của bạn</p></div>
     @endif
         <div class="wrap-address-billing">
         <h3>Thanh toán giỏ hàng</h3>
         
-        <!-- <h3 class="">Thanh toán giỏ hàng</h3> -->
-        <!-- <form action="{{URL::to('/save-checkout-customer')}}" method="POST" name="frm-billing">
-            {{ csrf_field() }}
-            
-                <input type="submit" value="Thanh toán" name="send_order" class="btn btn-danger">
-        </form> -->
         </div>
         <div class="summary summary-checkout">
         <?php $total = 0; ?>
+        @if(Session::get('cart') == true)
                 @foreach(Session::get('cart') as $key => $cart)       
                 <?php 
                     $subtotal = $cart['product_qty'] * $cart['product_price'];
                     $total += $subtotal;
                 ?>
                 @endforeach
+        @else
+           
+        @endif
         <form action="{{URL::to('/order-place')}}" method="POST">
             <div class="summary-item payment-method">
                 {{ csrf_field() }}
                 <h4 class="title-box">Hình thức thanh toán</h4>
-                <p class="summary-info"><span class="title">Check / Money order</span></p>
-                <p class="summary-info"><span class="title">Credit Cart (saved)</span></p>
                 <div class="choose-payment-methods">
                     <label class="payment-method">
-                        <input name="payment_option" id="payment-method-bank" value="1" type="radio">
+                        <input name="payment_option" id="payment-method-bank" value="1" type="radio" onclick="reset_msg();" required>
                         <span>Thanh toán bằng thẻ tín dụng (ATM)</span>
                         <span class="payment-desc">Hình thức thanh toán áp dụng cho tất cả các ngân hàng được liên kết</span>
+                        <div class="invalid-feedback"></div>
                     </label>
                     <label class="payment-method">
-                        <input name="payment_option" id="payment-method-visa" value="2" type="radio">
+                        <input name="payment_option" id="payment-method-visa" value="2" type="radio" onclick="reset_msg();" required>
                         <span>Thanh toán bằng thẻ Visa</span>
                         <span class="payment-desc">Hình thức thanh toán chỉ áp dụng khi bạn sở hữu thẻ Visa</span>
+                        <div class="invalid-feedback"></div>
                     </label>
                     <label class="payment-method">
-                        <input name="payment_option" id="payment-method-paypal" value="3" type="radio">
+                        <input name="payment_option" id="payment-method-paypal" value="3" type="radio" onclick="reset_msg();" required>
                         <span>Thanh toán khi nhận hàng</span>
                         <span class="payment-desc">Bạn có thể kiểm tra hàng trước khi trả tiền</span>
-                    </label>
+                        <div class="invalid-feedback"></div>
+                    </label> 
+                    <div id="msg"></div>                
                 </div>
                 <p class="summary-info grand-total"><span>Tổng Hóa đơn:</span> <span class="grand-total-price">{{number_format($total).' '.'VNĐ'}}</span></p>
-                <input type="submit" name="order_place" class="btn btn-medium" value="Đặt hàng ngay bây giờ">
+                <input type="submit" name="order_place" class="btn btn-medium" value="Tiến hàng đặt hàng" onclick="return send();">
             </div>
         </form>
             <div class="summary-item shipping-method">
-                <h4 class="title-box f-title">Hình thức vận chuyển</h4>
-                <p class="summary-info"><span class="title">Flat Rate</span></p>
-                <p class="summary-info"><span class="title">Fixed $50.00</span></p>
                 <h4 class="title-box">Mã giảm giá</h4>
                 <p class="row-in-form">
                     <label for="coupon-code">Nhập vào mã giảm giá của bạn:</label>
@@ -120,7 +117,7 @@
         </div>
 
         <div class="wrap-show-advance-info-box style-1 box-in-site">
-            <h3 class="title-box">Most Viewed Products</h3>
+            <h3 class="title-box">Sản phẩm được xem nhiều nhất</h3>
             <div class="wrap-products">
                 <div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
 
@@ -130,10 +127,10 @@
                                 <figure><img src="assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item new-label">new</span>
+                                <span class="flash-item new-label">mới</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -148,10 +145,10 @@
                                 <figure><img src="assets/images/products/digital_17.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item sale-label">sale</span>
+                                <span class="flash-item sale-label">giảm giá</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -166,11 +163,11 @@
                                 <figure><img src="assets/images/products/digital_15.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item new-label">new</span>
-                                <span class="flash-item sale-label">sale</span>
+                                <span class="flash-item new-label">mới</span>
+                                <span class="flash-item sale-label">giảm giá</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -185,10 +182,10 @@
                                 <figure><img src="assets/images/products/digital_01.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item bestseller-label">Bestseller</span>
+                                <span class="flash-item bestseller-label">Bán chạy</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -203,7 +200,7 @@
                                 <figure><img src="assets/images/products/digital_21.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -218,10 +215,10 @@
                                 <figure><img src="assets/images/products/digital_03.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item sale-label">sale</span>
+                                <span class="flash-item sale-label">giảm giá</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">giảm giá</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -236,10 +233,10 @@
                                 <figure><img src="assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item new-label">new</span>
+                                <span class="flash-item new-label">mơi</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -254,10 +251,10 @@
                                 <figure><img src="assets/images/products/digital_05.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>
                             <div class="group-flash">
-                                <span class="flash-item bestseller-label">Bestseller</span>
+                                <span class="flash-item bestseller-label">Bán chạy</span>
                             </div>
                             <div class="wrap-btn">
-                                <a href="#" class="function-link">quick view</a>
+                                <a href="#" class="function-link">xem nhanh</a>
                             </div>
                         </div>
                         <div class="product-info">

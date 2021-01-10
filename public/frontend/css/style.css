@@ -59,6 +59,11 @@ body {
     overflow-x: hidden;
 }
 
+.error {
+    color: red;
+    font-family: verdana, Helvetica;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -5601,7 +5606,12 @@ table.shop_attributes tbody {
     width: calc( 50% - 15px);
     width: -webkit-calc( 50% - 15px);
     width: -moz-calc( 50% - 15px);
-    margin-bottom: 23px;
+    margin-bottom: 15px;
+}
+
+.wrap-address-billing .is-danger {
+    color: red;
+    font-size: 15px;
 }
 
 .wrap-address-billing .row-in-form.fill-wife {
@@ -8140,7 +8150,9 @@ table.shop_attributes tbody {
     margin-bottom: 65px;
     padding-left: 40px;
 }
-.btn.btn-danger.add-to-wishlist
-{
+
+<<<<<<< HEAD .btn.btn-danger.add-to-wishlist {
     width: 100%;
 }
+
+=======>>>>>>>f0b6fa7e2accd64e5dbc78e5280931b33c24d888
