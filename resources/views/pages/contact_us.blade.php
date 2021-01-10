@@ -7,8 +7,8 @@
 
     <div class="wrap-breadcrumb">
         <ul>
-            <li class="item-link"><a href="#" class="link">home</a></li>
-            <li class="item-link"><span>Contact us</span></li>
+            <li class="item-link"><a href="{{URL::to('/Home')}}" class="link">Trang chủ</a></li>
+            <li class="item-link"><span>Liên hệ</span></li>
         </ul>
     </div>
     <div class="row">
@@ -16,22 +16,22 @@
             <div class="wrap-contacts ">
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                     <div class="contact-box contact-form">
-                        <h2 class="box-title">Leave a Message</h2>
+                        <h2 class="box-title">Để lại lời nhắn</h2>
                         <form action="#" method="get" name="frm-contact">
 
-                            <label for="name">Name<span>*</span></label>
+                            <label for="name">Tên<span>*</span></label>
                             <input type="text" value="" id="name" name="name" >
 
                             <label for="email">Email<span>*</span></label>
                             <input type="text" value="" id="email" name="email" >
 
-                            <label for="phone">Number Phone</label>
+                            <label for="phone">Điện thoại</label>
                             <input type="text" value="" id="phone" name="phone" >
 
-                            <label for="comment">Comment</label>
+                            <label for="comment">Bình luận</label>
                             <textarea name="comment" id="comment"></textarea>
 
-                            <input type="submit" name="ok" value="Submit" >
+                            <input type="submit" name="ok" value="Gửi" >
                             
                         </form>
                     </div>
@@ -58,21 +58,21 @@
                                  data-map-height="263">
                             </div>
                         </div>
-                        <h2 class="box-title">Contact Detail</h2>
+                        <h2 class="box-title">Chi tiết liên hệ</h2>
                         <div class="wrap-icon-box">
 
                             <div class="icon-box-item">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                 <div class="right-info">
                                     <b>Email</b>
-                                    <p>Support1@Mercado.com</p>
+                                    <p>ltweb1082@gmail.com</p>
                                 </div>
                             </div>
 
                             <div class="icon-box-item">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div class="right-info">
-                                    <b>Phone</b>
+                                    <b>Điện thoại</b>
                                     <p>0123-465-789-111</p>
                                 </div>
                             </div>
@@ -80,8 +80,8 @@
                             <div class="icon-box-item">
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                                 <div class="right-info">
-                                    <b>Mail Office</b>
-                                    <p>Sed ut perspiciatis unde omnis<br />Street Name, Los Angeles</p>
+                                    <b>Trụ sở làm việc</b>
+                                    <p>227 Nguyễn Văn Cừ, phường 4, quận 5, Hồ Chí Minh</p>
                                 </div>
                             </div>
 

@@ -1,6 +1,13 @@
 @extends('layout')
 @section('content')
 <div class="our-team-info">
+<div class="container">
+    <div class="wrap-breadcrumb">
+        <ul>
+            <li class="item-link"><a href="{{URL::to('/Home')}}" class="link">Trang chủ</a></li>
+            <li class="item-link"><span>Giới thiệu</span></li>
+        </ul>
+    </div>
 					<h4 class="title-box">Our teams</h4>
 					<div class="our-staff">
 						<div 
@@ -20,8 +27,8 @@
 								</div>
 								<div class="info">
 									<b class="name">Nguyễn Mạnh Cường</b>
-									<span class="title">Fucboizz</span>
-									<p class="desc">fuck boizz DakLak</p>
+									<span class="title">Designer</span>
+									<p class="desc">18600037</p>
 								</div>
 							</div>
 
@@ -67,5 +74,6 @@
 
 					</div>
 
-                </div>
+				</div>
+</div>
 @endsection
