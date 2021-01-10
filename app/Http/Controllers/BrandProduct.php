@@ -92,13 +92,28 @@ class BrandProduct extends Controller
 
     public function show_brand_home(Request $request,$brand_id)
     {
+        $customer_id = session::get('customer_id');
+        $Like_Not_Like = DB::table('tbl_wishlist')->where('customers_id',$customer_id)->get();
+        $customer_id = session::get('customer_id');
+        $numberlike_customer = DB::table('tbl_wishlist')->select(DB::raw('count(product_id) as numberlike'))->where('customers_id',$customer_id)->get();
+        $numberlike = Session::get('numberlike_customer');
+        foreach($numberlike_customer as $key=>$value){
+            $numberlike =$value->numberlike;
+        }
+        Session::put('numberlike_customer', $numberlike);
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
 
         $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id',$brand_id)->paginate(6);
         $brand_name = DB::table('tbl_brand')->where('tbl_brand.brand_id', $brand_id)->limit(1)->get();    
         $all_product_full =DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id',$brand_id)->get();
-        return view('pages.brand.show_brand')->with('category',$cate_product)->with('brand_product',$brand_product)->with('brand_by_id',$brand_by_id)->with('brand_name',$brand_name)->with('all_product_full',$all_product_full);
+        return view('pages.brand.show_brand')
+        ->with('category',$cate_product)
+        ->with('brand_product',$brand_product)
+        ->with('brand_by_id',$brand_by_id)
+        ->with('brand_name',$brand_name)
+        ->with('all_product_full',$all_product_full)
+        ->with('Like_Not_Like',$Like_Not_Like);
     }
 
 }

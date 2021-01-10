@@ -16,8 +16,10 @@ class CheckoutController extends Controller
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status','0') ->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')  ->orderby('brand_id','desc')->get();
+        $all_product_topsale = DB::table('tbl_order_details')->select(DB::raw('sum(product_sales_quantity) as numbersale,product_id'))->groupBy('product_id')->orderby('numbersale','desc')->limit(10)->get();
+        $all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id','desc')->get();
 
-        return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand',$brand_product);
+        return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand',$brand_product)->with('product_topsale',$all_product_topsale)->with('all_product',$all_product);
     }
 
     public function save_checkout_customer(Request $request)

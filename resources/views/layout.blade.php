@@ -96,10 +96,17 @@
 
 						<div class="wrap-icon right-section">
 							<div class="wrap-icon-section wishlist">
-								<a href="#" class="link-direction">
+								<a href="{{ URL::to('/show-wishlist-localstorage') }}" class="link-direction">
 									<i class="fa fa-heart" aria-hidden="true"></i>
 									<div class="left-info">
-										<span class="index">0 item</span>
+									<?php $customer_id = session::get('customer_id'); 
+										if($customer_id!=null){
+										
+									?>
+										<span class="index">{{session::get('numberlike_customer')}} item</span>
+										<?php } else { ?>
+											<span class="index">0 item</span>
+										<?php } ?>
 										<span class="title">Wishlist</span>
 									</div>
 								</a>
@@ -258,7 +265,7 @@
 			}); 
 		});
 	</script>
-	<script type="text/javascript">t
+	<script type="text/javascript">
 		function view()
 		{
 			if(localStorage.getItem('data')!=null)
@@ -266,7 +273,8 @@
 				var data = JSON.parse(localStorage.getItem('data'));
 				data.reverse();
 				document.getElementById('row_wishlist').style.overflow='scroll';
-				document.getElementById('row_wishlist').style.height='300px';
+				document.getElementById('row_wishlist').style.height='600px';
+				
 
 				for(i=0;i<data.length;i++)
 				{
@@ -274,12 +282,19 @@
 					var price=data[i].price;
 					var image=data[i].image;
 					var url=data[i].url;
-					$("#row_wishlist").append('<div class="row" style="margin:10px 0"><div class="col-md-4"><img width="100%" src="'+image+'"></div><div class="col-md-8 info_wishlist"><p style="color:#444444">'+name+'</p><p style="color:#d9534f;font-weight: bold">'+price+'</p><a href="'+url+'">Xem sản phẩm</a></div>');
+					var id = data[i].id;
+					$("#row_wishlist").append('<div class="row" style="margin:10px 0"><div class="col-md-4"><img id="wishlist_productimage{{'+image+'}}" width="100%" src="'
+					+image+'"></div><div class="col-md-8 info_wishlist"><p id="wishlist_productname{{'+name+'}}" style="color:#444444">'
+					+name+'</p><p id="wishlist_productprice{{'+price+'}} " style="color:#d9534f;font-weight: bold">'+price+' <button type="button"  class="btn btn-primary" id="'
+					+id+'" onclick="delete_wishlist(this.id);" ><i class="fa fa-remove	" aria-hidden="true"></i></button></p><a id="wishlist_producturl{{'+url+'}}" href="'
+					+url+'">Xem sản phẩm </a></div>');		
+
 				}
 
 			}
 		}
-view();
+		view();
+		
 		function add_wishlist(clicked_id)
 		{
 			var id=clicked_id;
@@ -310,12 +325,122 @@ view();
 			}
 			else{
 				old_data.push(newItem);
-				$("#row_wishlist").append('<div class="row" style="margin:10px 0"><div class="col-md-4"><img width="100%" src="'+newItem.image+'"></div><div class="col-md-8 info_wishlist"><p style="color:#444444">'+newItem.name+'</p><p style="color:#d9534f;font-weight: bold">'+newItem.price+'</p><a href="'+newItem.url+'">Xem sản phẩm</a></div>');
-			}
+				$("#row_wishlist").append('<div class="row" style="margin:10px 0"><div class="col-md-4"><img id="wishlist_productimage{{'+newItem.image+'}}" width="100%" src="'
+					+newItem.image+'"></div><div class="col-md-8 info_wishlist"><p id="wishlist_productname{{'+newItem.name+'}}" style="color:#444444">'
+					+newItem.name+'</p><p id="wishlist_productprice{{'+newItem.price+'}} " style="color:#d9534f;font-weight: bold">'+newItem.price+' <button type="button"  class="btn btn-primary" id="'
+					+newItem.id+'" onclick="delete_wishlist(this.id);" ><i class="fa fa-remove	" aria-hidden="true"></i></button></p><a id="wishlist_producturl{{'+newItem.url+'}}" href="'
+					+newItem.url+'">Xem sản phẩm </a></div>');
+				}
 			localStorage.setItem('data',JSON.stringify(old_data));
+			document.getElementById('row_wishlist').style.overflow='scroll';
+			document.getElementById('row_wishlist').style.height='300px';
 		}
+		function all_clear_wishlist(){
+			localStorage.clear();
+			var url = document.getElementById('wishlist_deleteurl').href;
+			window.location.href = url;
+		}
+		function delete_wishlist(clicked_id)
+		{
+			var id=clicked_id;
+			var url = document.getElementById('wishlist_deleteurl'+id).href;
+			var old_data=JSON.parse(localStorage.getItem('data'));
+			localStorage.clear();
+			localStorage.setItem('data','[]');
+			var old_data_temp = JSON.parse(localStorage.getItem('data'));
+			var matches=$.grep(old_data,function(obj){
+					return obj.id == id;
+			});
+			if(matches.length)
+			{
+				for(i=0;i<old_data.length;i++)
+				{
+					if(old_data[i].id!=id)
+					{
+						old_data_temp.push(old_data[i]);
+						localStorage.setItem('data',JSON.stringify(old_data_temp));
+					}
+					else{
+						delete old_data[i];
+						alert('Đã xóa sản phẩm thành công');
+					}
+				}
+			}
+             window.location.href = url;
 
+		}
+		$(document).ready(function()
+		{
+			$('.add-to-wishlist-product-detail').click(function()
+			{
+				var id_product = $(this).data('id_product');
+				var product_id = $('.wishlist_product_id_' + id_product).val();
+				var _token = $('input[name="_token"]').val();
+				$.ajax({
+					url: '{{url('/add-wishlist-ajax')}}',
+                    method: 'POST',
+					data:{product_id:product_id,
+						_token:_token},
+                    success:function(){
+ 					 	swal({
+                                title: "Thêm yêu thích thành công",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Xem tiếp",
+                                closeOnConfirm: false
+							});
+						}
+				});
+			});
+		});
+		$(document).ready(function()
+		{
+			$('.add-to-wishlist-ajax').click(function()
+			{
+				var id_product = $(this).data('id_product');
+				var product_id = $('.wishlist_product_id_' + id_product).val();
+				var _token = $('input[name="_token"]').val();
+				$.ajax({
+					url: '{{url('/add-wishlist-ajax')}}',
+                    method: 'POST',
+					data:{product_id:product_id,
+						_token:_token},
+                    success:function(){
+ 					 	swal({
+                                title: "Thêm yêu thích thành công",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Xem tiếp",
+                                closeOnConfirm: false
+							});
+						}
+				});
+			});
+		});
+		$(document).ready(function()
+		{
+			$('.delete-to-wishlist-ajax').click(function()
+			{
+				var id_product = $(this).data('id_product');
+				var product_id = $('.wishlist_product_id_' + id_product).val();
+				var _token = $('input[name="_token"]').val();
+				$.ajax({
+					url: '{{url('/delete-wishlist-ajax')}}',
+                    method: 'POST',
+					data:{product_id:product_id,
+						_token:_token},
+                    success:function(){
+ 					 	swal({
+                                title: "Xóa yêu thích thành công",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Xem tiếp",
+                                closeOnConfirm: false
+							});
+						}
+				});
+			});
+		});
 </script>
+
+
 	<script type="text/javascript">
 		//add product to cart in product page
 		$(document).ready(function()
@@ -332,7 +457,12 @@ view();
 				$.ajax({
                     url: '{{url('/add-cart-ajax')}}',
                     method: 'POST',
-                    data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token},
+					data:{cart_product_id:cart_product_id,
+						cart_product_name:cart_product_name,
+						cart_product_image:cart_product_image,
+						cart_product_price:cart_product_price,
+						cart_product_qty:cart_product_qty,
+						_token:_token},
                     success:function(){
  					 	swal({
                                 title: "Thêm giỏ hàng thành công",
@@ -345,7 +475,8 @@ view();
                             },
                             function() {
                                 window.location.href = "{{url('/show-cart-ajax')}}";
-						}); 
+							}
+						); 
                     }
                 });
 			});

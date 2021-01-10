@@ -22,7 +22,7 @@
 
                     <div class="wrap-shop-control">
 
-                        <h1 class="shop-title">Tìm Kiếm Sản phẩm</h1>
+                        <h1 class="shop-title">Tìm Kiếm Sản phẩm - {!!$all_product_full->count()!!} item</h1>
 
                     </div>
                     <!--end wrap shop control-->
@@ -30,18 +30,37 @@
                     <div class="row">
                         <ul class="product-list grid-products equal-container">
                         @foreach($search_product as $key => $product)
-                            <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+                        <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
                                 <div class="product product-style-3 equal-elem ">
                                     <form>
                                     @csrf
-                                        <input type="hidden" name="" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
-                                        <input type="hidden" name="" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}">
+                                        <input type="hidden" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
+                                        <input type="hidden" id="wishlist_productname{{$product->product_id}}" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}">
                                         <input type="hidden" name="" value="{{$product->product_image}}" class="cart_product_image_{{$product->product_id}}">
-                                        <input type="hidden" name="" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
+                                        <input type="hidden" id="wishlist_productprice{{$product->product_id}}" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
                                         <input type="hidden" name="" value="1" class="cart_product_qty_{{$product->product_id}}">
+                                        <input type="hidden" value="{{$product->product_id}}" class="wishlist_product_id_{{$product->product_id}}">
+                                        <a id="wishlist_deleteurl{{$product->product_id}}" href="{{ URL::full()}}" class="product-name"><span></span></a>
+                                        <?php  $like = 0; ?>
+                                        @foreach($Like_Not_Like as $key => $pro_toplike)
+                                            <?php
+                                            if($product->product_id == $pro_toplike->product_id) 
+											{ $like = $pro_toplike->product_id; }?>
+											@endforeach
+											<?php 
+                                                $customer_id = Session::get('customer_id');
+                                                if($customer_id!=NULL && $like!=$product->product_id )
+                                                {
+                                            ?>
+                                            <button type="button" data-id_product="{{$product->product_id}}" class="btn btn-danger add-to-wishlist-product-detail" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+											<?php  }else if ($customer_id!=NULL && $like == $product->product_id ) { ?>
+											<button type="button" data-id_product="{{$product->product_id}}" class="btn btn-primary delete-to-wishlist-ajax" name="add_to_wishlist" ><i class="fa fa-remove" aria-hidden="true"></i></button>
+											<?php }else{?>
+												<button type="button"  class="btn btn-danger" id="{{$product->product_id}}" onclick="add_wishlist(this.id);" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+											<?php } ?>
                                         <div class="product-thumnail">
-                                            <a href="{{ URL::to('/detail-product/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                                <figure><img src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt=""></figure>
+                                            <a id="wishlist_producturl{{$product->product_id}}" href="{{ URL::to('/detail-product/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                                <figure><img id="wishlist_productimage{{$product->product_id}}" src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt=""></figure>
                                             </a>
                                         </div>
                                         <div class="product-info">
@@ -91,7 +110,17 @@
                             </ul>					
                         </div>
                     </div>
-
+                    <div class="widget mercado-widget filter-widget brand-widget">
+                    <h2 class="widget-title">Sản phẩm yêu thích tạm thời</h2>
+                        <a id="wishlist_deleteurl" href="{{ URL::full()}}" class="product-name"><span></span></a>
+                        <button type="button"  class="btn btn-danger"  onclick="all_clear_wishlist();" >All Clear <i class="fa fa-remove" aria-hidden="true"></i></button>
+                        <p></p>
+                        <div class="widget-content">
+                            <div id="row_wishlist" class="row">
+                                
+                            </div>		
+                        </div>
+                    </div>
                 </div>
                 <!--end sitebar-->
 

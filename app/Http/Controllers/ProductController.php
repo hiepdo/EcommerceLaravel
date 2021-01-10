@@ -47,6 +47,7 @@ class ProductController extends Controller
         ->orwhere('tbl_brand.brand_name','like','%'.$keywords.'%')
         ->orwhere('tbl_category_product.category_name','like','%'.$keywords.'%')
         ->orderby('tbl_product.product_id','desc')->paginate(5);
+
         $all_product_full =  DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
@@ -55,6 +56,7 @@ class ProductController extends Controller
         ->orwhere('tbl_brand.brand_name','like','%'.$keywords.'%')
         ->orwhere('tbl_category_product.category_name','like','%'.$keywords.'%')
         ->orderby('tbl_product.product_id','desc')->get();
+
     	$manager_product  = view('admin.search_product')->with('search_product',$search_product)->with('all_product_full',$all_product_full);
         return view('admin_layout')->with('admin.search_product', $manager_product);
         //meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)
@@ -160,6 +162,13 @@ class ProductController extends Controller
     //End admin page
     public function detail_product($product_id)
     {
+        $customer_id = session::get('customer_id');
+        $numberlike_customer = DB::table('tbl_wishlist')->select(DB::raw('count(product_id) as numberlike'))->where('customers_id',$customer_id)->get();
+        $numberlike = Session::get('numberlike_customer');
+        foreach($numberlike_customer as $key=>$value){
+            $numberlike =$value->numberlike;
+        }
+        Session::put('numberlike_customer', $numberlike);
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
         $gallery = DB::table('tbl_gallery')->where('product_id',$product_id)->get(); 
@@ -178,10 +187,22 @@ class ProductController extends Controller
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         ->where('tbl_brand.brand_id',$brand_id)->get();
 
+        $all_product_toplike = DB::table('tbl_wishlist')
+        ->select(DB::raw('count(product_id) as numberlike,product_id'))
+        ->groupBy('product_id')->orderby('numberlike','desc')->get();
+
+        $Like_Not_Like = DB::table('tbl_wishlist')->where('customers_id',$customer_id)->get();
+        $all_product_topsale = DB::table('tbl_order_details')->select(DB::raw('sum(product_sales_quantity) as numbersale,product_id'))->groupBy('product_id')->orderby('numbersale','desc')->limit(5)->get();
+        $all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id','desc')->get();
         return view('pages.product.show_detail')->with('category',$cate_product)->with('brand',$brand_product)
         ->with('product_details',$details_product)
         ->with('relate',$related_brand)
-        ->with('gallery',$gallery);
+        ->with('gallery',$gallery)
+        ->with('all_product_toplike',$all_product_toplike)
+        ->with('Like_Not_Like',$Like_Not_Like)
+        ->with('all_product_topsale',$all_product_topsale)
+        ->with('all_product',$all_product);
+
     }
 
     //Load comment

@@ -16,13 +16,14 @@
 						<div class="detail-media">
 							<div class="product-gallery">
 							  <ul class="slides">
-							  
+							  <a id="wishlist_deleteurl{{$value->product_id}}" href="{{ URL::full()}}" class="product-name"><span></span></a>
+							  <a id="wishlist_producturl{{$value->product_id}}" href="{{ URL::to('/detail-product/'.$value->product_id)}}" class="product-name"><span></span></a>
 							    <li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
+							    	<img  src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
 							    </li>
 								@foreach($gallery as $key =>$gal)
-								<li data-thumb="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}">
-							    	<img src="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}" width="720" heigh="720" alt="product thumbnail" />
+								<li  data-thumb="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}">
+							    	<img id="wishlist_productimage{{$value->product_id}}" src="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}" width="720" heigh="720" alt="product thumbnail" />
 							    </li>
 								@endforeach
 							  </ul>
@@ -30,12 +31,15 @@
 						</div>
 						<div class="detail-info">
 							<div class="product-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <a href="#" class="count-review">(05 review)</a>
+
+								<?php $numberlike = 0 ;?>
+								<b>Lượt Yêu Thích:
+								@foreach($all_product_toplike as $key => $pro_toplike)
+								<?php if($value->product_id == $pro_toplike->product_id) 
+								{ $numberlike = $pro_toplike->numberlike; }?>
+								@endforeach
+								<?php echo $numberlike; ?>
+								<i class="fa fa-heart" aria-hidden="true"></i></b>
                             </div>
                             <h2 class="product-name">{{$value->product_name}}</h2>
                             <div class="short-desc">
@@ -57,9 +61,10 @@
 								<div class="quantity">
 									<span>Số lượng:</span>
 									<input type="hidden" name="" value="{{$value->product_id}}" class="cart_product_id">
-                                    <input type="hidden" name="" value="{{$value->product_name}}" class="cart_product_name">
+                                    <input type="hidden" name="" id="wishlist_productname{{$value->product_id}}" value="{{$value->product_name}}" class="cart_product_name">
                                     <input type="hidden" name="" value="{{$value->product_image}}" class="cart_product_image">
-                                    <input type="hidden" name="" value="{{$value->product_price}}" class="cart_product_price">
+                                    <input type="hidden" name="" id="wishlist_productprice{{$value->product_id}}" value="{{$value->product_price}}" class="cart_product_price">
+									<input type="hidden" value="{{$value->product_id}}" class="wishlist_product_id_{{$value->product_id}}">
 									<div class="quantity-input">
                                         <!-- <input type="hidden" name="" value="1" class="cart_product_qty"> -->
 										<input type="text" name="product_quatity" class="cart_product_qty" value="1" data-max="120" pattern="[0-9]*" >
@@ -69,10 +74,28 @@
 								</div>
 								<div class="wrap-butons">
 									<button type="button" class="btn add-to-cart add-to-cart-product-detail">Thêm vào giỏ hàng</button>
-									<div class="wrap-btn">
-										<a href="#" class="btn btn-compare">Thêm so sánh</a>
-										<a href="#" class="btn btn-wishlist">Thêm yêu thích</a>
-									</div>
+									<p> </p>
+											<?php  $like = 0; ?>
+											@foreach($Like_Not_Like as $key => $pro_toplike)
+											<?php
+											if($value->product_id == $pro_toplike->product_id) 
+											{ $like = $pro_toplike->product_id; }?>
+											@endforeach
+											<?php 
+                                                $customer_id = Session::get('customer_id');
+                                                if($customer_id!=NULL && $like!=$value->product_id )
+                                                {
+                                            ?>
+											<b>
+                                            <button type="button" data-id_product="{{$value->product_id}}" class="btn btn-danger add-to-wishlist-product-detail" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+                                            Chưa yêu thích
+											<?php }else if ($customer_id!=NULL && $like ==$value->product_id ) { ?>
+											<button type="button" data-id_product="{{$value->product_id}}" class="btn btn-primary delete-to-wishlist-ajax" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+                                            Đã yêu thích
+											<?php }else{?>
+												<button type="button"  class="btn btn-danger" id="{{$value->product_id}}" onclick="add_wishlist(this.id);" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+											<?php } ?>
+										</b>
 								</div>
 							</form>
 						</div>
@@ -170,62 +193,25 @@
 						<h2 class="widget-title">Sản phẩm phổ biến</h2>
 						<div class="widget-content">
 							<ul class="products">
+							@foreach($all_product_topsale as $key => $pro_topsale)
+							@foreach($all_product as $key => $product)
+							<?php if($product->product_id == $pro_topsale->product_id) { ?>
 								<li class="product-item">
 									<div class="product product-widget-style">
 										<div class="thumbnnail">
-											<a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="{{ asset('public/frontend/images/products/digital_01.jpg') }}" alt=""></figure>
+											<a href="{{ URL::to('/detail-product/'.$pro_topsale->product_id)}}" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
+												<figure><img src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt=""></figure>
 											</a>
 										</div>
 										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
+										<a href="#" class="product-name"><span>{{$product->product_name}}</span></a>
+										<div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} VNĐ</span></div>
+									</div>
 									</div>
 								</li>
-
-								<li class="product-item">
-									<div class="product product-widget-style">
-										<div class="thumbnnail">
-											<a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="{{ asset('public/frontend/images/products/digital_01.jpg') }}" alt=""></figure>
-											</a>
-										</div>
-										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
-									</div>
-								</li>
-
-								<li class="product-item">
-									<div class="product product-widget-style">
-										<div class="thumbnnail">
-											<a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="{{ asset('public/frontend/images/products/digital_01.jpg') }}" alt=""></figure>
-											</a>
-										</div>
-										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
-									</div>
-								</li>
-
-								<li class="product-item">
-									<div class="product product-widget-style">
-										<div class="thumbnnail">
-											<a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="{{ asset('public/frontend/images/products/digital_01.jpg') }}" alt=""></figure>
-											</a>
-										</div>
-										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
-									</div>
-								</li>
-
+								<?php } ?>
+								@endforeach 
+								@endforeach 
 							</ul>
 						</div>
 					</div>

@@ -7,7 +7,7 @@
             <div class="wrap-breadcrumb">
                 <ul>
                     <li class="item-link"><a href="{{ URL::to('/Home') }}" class="link">Trang chủ</a></li>
-                    <li class="item-link"><span>Sản phẩm </span></li>
+                    <li class="item-link"><span>Sản phẩm yêu thích </span></li>
                 </ul>
             </div>
             <div class="banner-shop">
@@ -16,11 +16,10 @@
                         </a>
                     </div>
             <div class="row">
-
-                <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
+            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
                     <div class="wrap-shop-control">
 
-                        <h1 class="shop-title">Sản phẩm - {!!$all_product_full->count()!!} item</h1>
+                        <h1 class="shop-title">Sản Phẩm Yêu Thích</h1>
 
                         <div class="wrap-right">
 
@@ -37,8 +36,8 @@
                         </div>
 
                     </div>
+               
                     <!--end wrap shop control-->
-
                     <div class="row">
                         <ul class="product-list grid-products equal-container">
                         @foreach($all_product as $key => $product)
@@ -66,7 +65,7 @@
                                             ?>
                                             <button type="button" data-id_product="{{$product->product_id}}" class="btn btn-danger add-to-wishlist-product-detail" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
 											<?php  }else if ($customer_id!=NULL && $like == $product->product_id ) { ?>
-											<button type="button" data-id_product="{{$product->product_id}}" class="btn btn-primary delete-to-wishlist-ajax" name="add_to_wishlist" ><i class="fa fa-remove" aria-hidden="true"></i></button>
+											<button type="button" data-id_product="{{$product->product_id}}" class="btn btn-danger delete-to-wishlist-ajax" name="add_to_wishlist" ><i class="fa fa-remove" aria-hidden="true"></i></button>
 											<?php }else{?>
 												<button type="button"  class="btn btn-danger" id="{{$product->product_id}}" onclick="add_wishlist(this.id);" ><i class="fa fa-heart" aria-hidden="true"></i></button>
 											<?php } ?>
@@ -92,6 +91,40 @@
                         {!!$all_product->links()!!}
                         <small class="text-muted inline m-t-sm m-b-sm">showing {!!$all_product->count() !!} of {!!$all_product_full->count()!!} items in page {!!$all_product->currentPage() !!}</small>
                       </div>
+                      <div class="wrap-shop-control">
+
+                        <h1 class="shop-title">Sản Phẩm Yêu Thích Tạm Thời</h1>
+                        <button type="button"  class="btn btn-danger"  onclick="all_clear_wishlist();" >All Clear <i class="fa fa-remove" aria-hidden="true"></i></button>
+
+                        <div class="wrap-right">
+
+                            <div class="sort-item orderby ">
+                                <select name="orderby" class="use-chosen">
+									<option value="menu_order" selected="selected">Mặc định</option>
+									<option value="popularity">Phổ biến</option>
+									<option value="rating">Lượt yêu thích</option>
+									<option value="date">Mới ra mắt</option>
+									<option value="price">Giá: Từ thấp đến cao</option>
+									<option value="price-desc">Giá: Từ cao đến thấp</option>
+								</select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <ul class="product-list grid-products equal-container">
+                        <div class="widget mercado-widget filter-widget brand-widget">
+                        <a id="wishlist_deleteurl" href="{{ URL::full()}}" class="product-name"><span></span></a>
+                        <div class="widget-content">
+                            <div id="row_wishlist" class="row">
+                            
+                            </div>		
+                        </div>
+                    </div>
+
+                        </ul>                  
+                    </div>
+
                 </div>
                 <!--end main products area-->
 
@@ -137,17 +170,7 @@
                         </div>
                     </div> -->
                     <!-- Price-->
-                    <div class="widget mercado-widget filter-widget brand-widget">
-                        <h2 class="widget-title">Sản phẩm yêu thích tạm thời</h2>
-                        <a id="wishlist_deleteurl" href="{{ URL::full()}}" class="product-name"><span></span></a>
-                        <button type="button"  class="btn btn-danger"  onclick="all_clear_wishlist();" >All Clear <i class="fa fa-remove" aria-hidden="true"></i></button>
-                        <p></p>
-                        <div class="widget-content">
-                            <div id="row_wishlist" class="row">
-                                
-                            </div>		
-                        </div>
-                    </div>
+
                    
                     </div>
 

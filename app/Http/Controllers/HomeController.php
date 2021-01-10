@@ -122,12 +122,25 @@ class HomeController extends Controller
 
     public function home(Request $request)
     {
+        $customer_id = session::get('customer_id');
         $cate_product = DB::table('tbl_category_product')->where('category_status','0') ->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')  ->orderby('brand_id','desc')->get();
         $all_product_topsale = DB::table('tbl_order_details')->select(DB::raw('sum(product_sales_quantity) as numbersale,product_id'))->groupBy('product_id')->orderby('numbersale','desc')->limit(10)->get();
+        $all_product_toplike = DB::table('tbl_wishlist')->select(DB::raw('count(product_id) as numberlike,product_id'))->groupBy('product_id')->orderby('numberlike','desc')->limit(10)->get();
+        $numberlike_customer = DB::table('tbl_wishlist')->select(DB::raw('count(product_id) as numberlike'))->where('customers_id',$customer_id)->get();
+        $numberlike = Session::get('numberlike_customer');
+        foreach($numberlike_customer as $key=>$value){
+            $numberlike =$value->numberlike;
+        }
+        Session::put('numberlike_customer', $numberlike);
         $all_product_new  = DB::table('tbl_product')->where('product_status','0')->orderby('product_id','desc')->limit(10)->get();
         $all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id','desc')->get();
-        return view('pages.home')->with('category', $cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with('all_product_new',$all_product_new)->with('all_product_topsale',$all_product_topsale);
+        return view('pages.home')->with('category', $cate_product)
+        ->with('brand',$brand_product)
+        ->with('all_product',$all_product)
+        ->with('all_product_new',$all_product_new)
+        ->with('all_product_topsale',$all_product_topsale)
+        ->with('all_product_toplike',$all_product_toplike);
     }
 
     public function to_login()
@@ -281,19 +294,35 @@ class HomeController extends Controller
 
     public function shop(Request $request)
     {
+        $customer_id = session::get('customer_id');
+        $numberlike_customer = DB::table('tbl_wishlist')->select(DB::raw('count(product_id) as numberlike'))->where('customers_id',$customer_id)->get();
+        $numberlike = Session::get('numberlike_customer');
+        foreach($numberlike_customer as $key=>$value){
+            $numberlike =$value->numberlike;
+        }
+        Session::put('numberlike_customer', $numberlike);
+        $customer_id = Session::get('customer_id');
         $cate_product = DB::table('tbl_category_product')->where('category_status','0') ->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')  ->orderby('brand_id','desc')->get();
         $all_product = DB::table('tbl_product')->where('product_status','0')->orderby(DB::raw('RAND()'))->paginate(6); 
         $all_product_full =  DB::table('tbl_product')->get();
-        return view('pages.product')->with('category', $cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with('all_product_full',$all_product_full);
+        $Like_Not_Like = DB::table('tbl_wishlist')->where('customers_id',$customer_id)->get();
+        return view('pages.product')
+        ->with('category', $cate_product)
+        ->with('brand',$brand_product)
+        ->with('all_product',$all_product)
+        ->with('all_product_full',$all_product_full)
+        ->with('Like_Not_Like',$Like_Not_Like);
     }
     
     public function search(Request $request)
     {
+        $customer_id = session::get('customer_id');
         // $meta_desc = "Tìm kiếm sản phẩm";
         // $meta_keywords = "Tìm kiếm sản phẩm";
         // $meta_title = "Tìm kiếm sản phẩm";
         // $url_canonical = $request->url();
+        $Like_Not_Like = DB::table('tbl_wishlist')->where('customers_id',$customer_id)->get();
         $keywords = $request->search;
         $cate_product = DB::table('tbl_category_product')->where('category_status','0') ->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')  ->orderby('brand_id','desc')->get();
@@ -318,7 +347,8 @@ class HomeController extends Controller
         ->with('category', $cate_product)
         ->with('brand',$brand_product)
         ->with('search_product',$search_product)
-        ->with('all_product_full',$all_product_full);//->with('
+        ->with('all_product_full',$all_product_full)
+        ->with('Like_Not_Like',$Like_Not_Like);//->with('
         //meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)
     }
     public function autocomplete_ajax(Request $request)

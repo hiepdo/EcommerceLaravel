@@ -114,6 +114,10 @@ Route::get('/show-cart-ajax','CartController@show_cart_ajax');
 Route::post('/update-cart-ajax','CartController@update_cart_ajax'); 
 Route::get('/delete-cart-ajax/{session_id}','CartController@delete_cart_ajax'); 
 Route::get('/clear-all-cart-ajax','CartController@clear_all_cart_ajax');
+//WishList Ajax
+Route::post('/add-wishlist-ajax','WishListController@add_wishlist_ajax'); 
+Route::get('/show-wishlist-localstorage','WishListController@show_wishlist_localstorage');
+Route::post('/delete-wishlist-ajax','WishListController@delete_wishlist_ajax'); 
 
 //Checkout
 Route::get('/checkout','CheckoutController@show_checkout');
