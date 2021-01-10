@@ -95,7 +95,6 @@
 										
 										<div id="comments">
 											<h2 class="woocommerce-Reviews-title">Tất cả bình luận của sản phẩm  <span>{{$value->product_name}}</span></h2>
-											
 											<form action="#">
 												@csrf
 												<input type="hidden" name="comment_product_id" class="comment_product_id" value="{{$value->product_id}}">
@@ -106,13 +105,11 @@
 										<div id="review_form_wrapper">
 											<div id="review_form">
 												<div id="respond" class="comment-respond"> 
-
 													<form action="#" id="commentform" class="comment-form" >
 														
 														<div class="comment-form-rating">
 															<span>Điểm đánh giá</span>
 															<p class="stars">
-																
 																<label for="rated-1"></label>
 																<input type="radio" id="rated-1" name="rating" value="1">
 																<label for="rated-2"></label>
@@ -136,11 +133,21 @@
 															</label>
 															<textarea name="comment" class="comment_content" id="comment"  cols="45" rows="8"></textarea>
 														</p>
+														<?php $customer_id = Session::get('customer_id'); 
+														if($customer_id != NULL)
+														{ ?>
 														<button type="button" class="btn btn-primary btn-comment pull-left sent-comment">
 															Gửi bình luận
 														</button>
+														<?php } 
+														else { ?>
+														<a href="{{URL::to('/login')}}">
+														<button type="button" class="btn btn-primary btn-comment pull-left">
+															Gửi bình luận
+														</button>
+														</a>
+														<?php }?>
 													</form>
-
 												</div><!-- .comment-respond-->
 											</div><!-- #review_form -->
 										</div><!-- #review_form_wrapper -->
@@ -161,7 +168,7 @@
 									<div class="product product-widget-style">
 										<div class="thumbnnail">
 											<a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="{{ asset('public/frontend/images/products/digital_01.jpg') }}" alt=""></figure>
+												<img src="{{ asset('public/frontend/images/products/digital_01.jpg') }}" alt="">
 											</a>
 										</div>
 										<div class="product-info">

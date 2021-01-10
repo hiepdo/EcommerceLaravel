@@ -59,6 +59,11 @@ body {
     overflow-x: hidden;
 }
 
+.error {
+    color: red;
+    font-family: verdana, Helvetica;
+}
+
 img {
     max-width: 100%;
     height: auto;

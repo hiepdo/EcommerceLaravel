@@ -18,7 +18,7 @@ use App\Http\Controllers\UserController;
 
 //homepage
 Route::get('/', 'HomeController@home');
-Route::get('/Home', 'HomeController@home');
+Route::get('/home', 'HomeController@home');
 Route::get('/product', 'HomeController@products');
 Route::get('/shop', 'HomeController@shop');
 Route::get('/search', 'HomeController@search');
