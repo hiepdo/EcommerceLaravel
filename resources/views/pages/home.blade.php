@@ -51,16 +51,14 @@
 			</div>
 
 			<!--Best seller products-->
-			<div class="wrap-show-advance-info-box style-1 has-countdown">
+			<div class="single-advance-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="wrap-show-advance-info-box style-1 box-in-site">
 				<h3 class="title-box">Sản phẩm bán chạy nhất</h3>
-				<div class="wrap-main-slide">
-				<div class="slide-carousel owl-carousel style-nav-1" data-items="4" data-loop="1" data-nav="true" data-dots="false">
+				<div class="wrap-products">
+				<div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}'>
 				@foreach($all_product_topsale as $key => $pro_topsale)
 				@foreach($all_product as $key => $product)
 					<?php if($product->product_id == $pro_topsale->product_id) { ?>
-					<div class="item-slide">
-					<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                                <div class="product product-style-3 equal-elem ">
 								<form>
                                     @csrf
 										<input type="hidden" name="" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
@@ -68,36 +66,32 @@
                                         <input type="hidden" name="" value="{{$product->product_image}}" class="cart_product_image_{{$product->product_id}}">
                                         <input type="hidden" name="" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
                                         <input type="hidden" name="" value="1" class="cart_product_qty_{{$product->product_id}}">
-                                        <div class="product-thumnail">
-                                            <a href="{{ URL::to('/detail-product/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                                <figure><img src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt="" ></figure>
-                                            </a>
-                                        </div>
-										<div class="product-info">
-                                            <a href="{{ URL::to('/detail-product/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim" class="product-name"><span>{{($product->product_name)}}</span></a>
-                                            <div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} VNĐ</span></div>
-                                        </div>	
-                                    </form>
-									</div>
-                            </li>
-					</div>
+										<div class="product product-style-2 equal-elem ">
+											<div class="product-thumnail">
+												<a href="{{ URL::to('/detail-product/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+													<img src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt="" >
+												</a>
+											</div>
+											<div class="product-info">
+												<a href="{{ URL::to('/detail-product/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim" class="product-name"><span>{{($product->product_name)}}</span></a>
+												<div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} VNĐ</span></div>
+											</div>	
+										</div>
+                                </form>			
 					<?php } ?>
 				@endforeach
 				@endforeach
 				</div>
 				</div>
 			</div>
-
+			</div>
 			<!--Latest Products-->
-			<div class="wrap-show-advance-info-box style-1">
+			<div class="single-advance-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="wrap-show-advance-info-box style-1 box-in-site">
 				<h3 class="title-box">Sản phẩm mới ra mắt</h3>
-				<div class="wrap-main-slide">
-				<div class="slide-carousel owl-carousel style-nav-1" data-items="4" data-loop="1" data-nav="true" data-dots="false">
+				<div class="wrap-products">
+				<div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}'>
 				@foreach($all_product_new as $key => $product)
-
-					<div class="item-slide">
-					<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                                <div class="product product-style-3 equal-elem ">
 								<form>
                                     @csrf
 										<input type="hidden" name="" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
@@ -105,28 +99,25 @@
                                         <input type="hidden" name="" value="{{$product->product_image}}" class="cart_product_image_{{$product->product_id}}">
                                         <input type="hidden" name="" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
                                         <input type="hidden" name="" value="1" class="cart_product_qty_{{$product->product_id}}">
-                                        <div class="product-thumnail">
+                                        <div class="product product-style-2 equal-elem ">
+										<div class="product-thumnail">
                                             <a href="{{ URL::to('/detail-product/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                                <figure><img src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt="" ></figure>
+                                                <img src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt="" >
                                             </a>
                                         </div>
 										<div class="product-info">
                                             <a href="{{ URL::to('/detail-product/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim" class="product-name"><span>{{($product->product_name)}}</span></a>
                                             <div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} VNĐ</span></div>
                                         </div>	
-                                    </form>
-									</div>
-                            </li>
-					</div>
+										</div>	
+                                </form>
 				@endforeach
 				</div>
 				</div>
-				<div class="wrap-top-banner">
-					<a  class="link-banner banner-effect-2">
-						<figure><img src="{{ asset('public/frontend/images/digital-electronic-banner.jpg') }}" width="1170" height="240" alt=""></figure>
-					</a>
-				</div>
+				
 			</div>
+			</div>
+
 			<!--Hot Products-->
 			<div class="wrap-show-advance-info-box style-1">
 				<h3 class="title-box">Sản phẩm được yêu thích nhất</h3>

@@ -43,7 +43,7 @@
                         <ul class="product-list grid-products equal-container">
                         @foreach($all_product as $key => $product)
                             <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                                <div class="product product-style-3 equal-elem ">
+                                <div class="product product-style-3 equal-elem">
                                     <form>
                                     @csrf
                                         <input type="hidden" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
@@ -124,7 +124,6 @@
                         </div>
                     </div>
                     <!-- brand widget-->
-<!-- 
                     <div class="widget mercado-widget filter-widget price-filter">
                         <h2 class="widget-title">Price</h2>
                         <div class="widget-content">
@@ -173,7 +172,6 @@
                         </div>
                     </div> -->
                     <!-- brand widget-->
-
                 </div>
                 <!--end sitebar-->
 
