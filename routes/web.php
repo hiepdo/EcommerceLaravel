@@ -22,7 +22,10 @@ Route::get('/Home', 'HomeController@home');
 Route::get('/product', 'HomeController@products');
 Route::get('/shop', 'HomeController@shop');
 Route::get('/search', 'HomeController@search');
+Route::get('/about-us', 'HomeController@to_about_us');
+Route::get('/contact-us', 'HomeController@to_contact_us');
 Route::get('/autocomplete-ajax', 'HomeController@autocomplete_ajax');
+
 
 //admin
 Route::get('/admin', 'AdminController@admin');

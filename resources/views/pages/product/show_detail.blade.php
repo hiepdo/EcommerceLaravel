@@ -29,14 +29,14 @@
 							</div>
 						</div>
 						<div class="detail-info">
-							<div class="product-rating">
+							<!-- <div class="product-rating">
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <a href="#" class="count-review">(05 review)</a>
-                            </div>
+                            </div> -->
                             <h2 class="product-name">{{$value->product_name}}</h2>
                             <div class="short-desc">
                                 <ul>
