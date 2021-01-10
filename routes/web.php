@@ -18,11 +18,14 @@ use App\Http\Controllers\UserController;
 
 //homepage
 Route::get('/', 'HomeController@home');
-Route::get('/Home', 'HomeController@home');
+Route::get('/home', 'HomeController@home');
 Route::get('/product', 'HomeController@products');
 Route::get('/shop', 'HomeController@shop');
 Route::get('/search', 'HomeController@search');
+Route::get('/about-us', 'HomeController@to_about_us');
+Route::get('/contact-us', 'HomeController@to_contact_us');
 Route::get('/autocomplete-ajax', 'HomeController@autocomplete_ajax');
+
 
 //admin
 Route::get('/admin', 'AdminController@admin');
@@ -122,6 +125,10 @@ Route::get('/show-cart-ajax','CartController@show_cart_ajax');
 Route::post('/update-cart-ajax','CartController@update_cart_ajax'); 
 Route::get('/delete-cart-ajax/{session_id}','CartController@delete_cart_ajax'); 
 Route::get('/clear-all-cart-ajax','CartController@clear_all_cart_ajax');
+//WishList Ajax
+Route::post('/add-wishlist-ajax','WishListController@add_wishlist_ajax'); 
+Route::get('/show-wishlist-localstorage','WishListController@show_wishlist_localstorage');
+Route::post('/delete-wishlist-ajax','WishListController@delete_wishlist_ajax'); 
 
 //Checkout
 Route::get('/checkout', 'CheckoutController@show_checkout');
@@ -149,4 +156,3 @@ Route::post('insert-gallery/{pro_id}','GalleryController@insert_gallery');
 Route::post('update-gallery-name','GalleryController@update_gallery_name');
 Route::post('delete-gallery','GalleryController@delete_gallery');
 Route::post('update-gallery','GalleryController@update_gallery');
-

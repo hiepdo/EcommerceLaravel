@@ -36,7 +36,7 @@
 				</div>
 			</div>
 
-			<!--BANNER-->
+			<!--BANNER-->flex justify-between flex-1 sm:hidden
 			<div class="wrap-banner style-twin-default">
 				<div class="banner-item">
 					<a href="#" class="link-banner banner-effect-1">
@@ -121,6 +121,45 @@
 			<!--Hot Products-->
 			<div class="wrap-show-advance-info-box style-1">
 				<h3 class="title-box">Sản phẩm được yêu thích nhất</h3>
+				<div class="wrap-main-slide">
+				<div class="slide-carousel owl-carousel style-nav-1" data-items="4" data-loop="1" data-nav="true" data-dots="false">
+				@foreach($all_product_toplike as $key => $pro_toplike)
+				@foreach($all_product as $key => $product)
+					<?php if($product->product_id == $pro_toplike->product_id) { ?>
+					<div class="item-slide">
+					<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+                                <div class="product product-style-3 equal-elem ">
+								<form>
+                                    @csrf
+										<input type="hidden" name="" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
+                                        <input type="hidden" name="" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}">
+                                        <input type="hidden" name="" value="{{$product->product_image}}" class="cart_product_image_{{$product->product_id}}">
+                                        <input type="hidden" name="" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
+                                        <input type="hidden" name="" value="1" class="cart_product_qty_{{$product->product_id}}">
+                                        <div class="product-thumnail">
+                                            <a href="{{ URL::to('/detail-product/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                                <figure><img src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt="" ></figure>
+                                            </a>
+                                        </div>
+										<div class="product-info">
+                                            <a href="{{ URL::to('/detail-product/'.$product->product_id)}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim" class="product-name"><span>{{($product->product_name)}}</span></a>
+                                            <div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} VNĐ</span></div>
+											<div class="wrap-price"><span class="product-price">{{$pro_toplike->numberlike}} <i class="fa fa-heart" aria-hidden="true"></i></span></div>
+									    </div>	
+                                    </form>
+									</div>
+                            </li>
+					</div>
+					<?php } ?>
+				@endforeach
+				@endforeach
+				</div>
+				</div>
+				<div class="wrap-top-banner">
+					<a href="#" class="link-banner banner-effect-2">
+						<figure><img src="{{ asset('public/frontend/images/fashion-accesories-banner.jpg') }}" width="1170" height="240" alt=""></figure>
+					</a>
+				</div>
 			</div>
 		</div>
 
