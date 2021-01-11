@@ -19,6 +19,25 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/color-01.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/sweetalert.css') }}">
 </head>
+<style>
+.my-btn {
+    background-color: #fff;
+    color: red;
+    font-size: 25px;
+}
+
+.my-btn--liked {
+    background-color: red;
+    color: #fff;
+    font-size: 25px;
+	border: none;
+	
+}
+#btn-customer-notlike:focus{
+background-color: red !important;
+color: #fff !important;
+}
+</style>
 <body class="home-page home-01 detail page shopping-cart">
 	<!-- mobile menu -->
     <div class="mercado-clone-wrap">
@@ -601,6 +620,8 @@
 				});
 			});
 		});
+
+
 </script>
 
 

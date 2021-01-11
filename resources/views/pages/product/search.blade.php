@@ -52,9 +52,9 @@
                                                 if($customer_id!=NULL && $like!=$product->product_id )
                                                 {
                                             ?>
-                                            <button type="button" data-id_product="{{$product->product_id}}" class="btn btn-danger add-to-wishlist-product-detail" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+                                            <button type="button" data-id_product="{{$product->product_id}}" class="btn btn-danger my-btn--liked add-to-wishlist-product-detail" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
 											<?php  }else if ($customer_id!=NULL && $like == $product->product_id ) { ?>
-											<button type="button" data-id_product="{{$product->product_id}}" class="btn btn-primary delete-to-wishlist-ajax" name="add_to_wishlist" ><i class="fa fa-remove" aria-hidden="true"></i></button>
+											<button type="button" data-id_product="{{$product->product_id}}" class="btn btn-danger my-btn delete-to-wishlist-ajax" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
 											<?php }else{?>
 												<button type="button"  class="btn btn-danger" id="{{$product->product_id}}" onclick="add_wishlist(this.id);" ><i class="fa fa-heart" aria-hidden="true"></i></button>
 											<?php } ?>

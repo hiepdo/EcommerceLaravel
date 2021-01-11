@@ -1,19 +1,6 @@
 @extends('layout')
 @section('content')
-<style>
-.my-btn{
-    background-color: #fff; 
-    color : red; 
-    font-size: 25px; 
-}
-.my-btn--liked{
-    background-color: red; 
-    color : #fff; 
-    font-size: 25px; 
-    border: none;
-}
 
-</style>
 <main id="main" class="main-site left-sidebar">
 
     <div class="container">
@@ -78,12 +65,13 @@
                                                 if($customer_id!=NULL && $like!=$product->product_id )
                                                 {
                                             ?>
-                                            <button type="button" data-id_product="{{$product->product_id}}"  
-                                                    class="btn btn-danger my-btn add-to-wishlist-product-detail" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+                                            <button type="button" data-id_product="{{$product->product_id}}" id="btn-customer-notlike" 
+                                                    class="btn btn-danger my-btn add-to-wishlist-ajax" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
 											<?php  }else if ($customer_id!=NULL && $like == $product->product_id ) { ?>
-											<button type="button" data-id_product="{{$product->product_id}}" class="btn btn-primary my-btn--liked delete-to-wishlist-ajax" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+											<button type="button" data-id_product="{{$product->product_id}}" id="btn-customer-like" 
+                                                class="btn btn-primary my-btn--liked delete-to-wishlist-ajax" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
 											<?php }else{?>
-												<button type="button"  class="btn  btn-danger" 
+												<button type="button"  class="btn btn-danger my-btn" 
                                                 id="{{$product->product_id}}" onclick="add_wishlist(this.id);" ><i class="fa fa-heart" aria-hidden="true"></i></button>
 											<?php } ?>
                                         <div class="product-thumnail">

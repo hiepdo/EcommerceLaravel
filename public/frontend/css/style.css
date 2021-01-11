@@ -695,6 +695,19 @@ textarea {
     color: #fff;
 }
 
+.my-btn {
+    background-color: #fff;
+    color: red;
+    font-size: 25px;
+}
+
+.my-btn--liked {
+    background-color: red;
+    color: #fff;
+    font-size: 25px;
+    border: none;
+}
+
 .header .main-info-area .right-section,
 .header .main-info-area .center-section,
 .header .main-info-area .left-section {
