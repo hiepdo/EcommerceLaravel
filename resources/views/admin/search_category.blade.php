@@ -5,8 +5,8 @@
     <div class="panel-heading">
       Liệt kê danh mục sản phẩm
     </div>
-    <!-- <div class="row w3-res-tb">
-       <div class="col-sm-5 m-b-xs">
+    <div class="row w3-res-tb">
+      <!-- <div class="col-sm-5 m-b-xs">
         <select class="input-sm form-control w-sm inline v-middle">
           <option value="0">Bulk action</option>
           <option value="1">Delete selected</option>
@@ -14,19 +14,19 @@
           <option value="3">Export</option>
         </select>
         <button class="btn btn-sm btn-default">Apply</button>                
-      </div> 
+      </div> -->
       <div class="col-sm-8">
       </div>
       <div class="col-sm-4">
         <div class="input-group">
-          <form action="{{URL::to('/search-category-admin')}}" method="Get" >
+          <form action="{{URL::to('/search-category-admin')}}" method="get" >
                     {{ csrf_field() }}
               <input type="text" name="search" placeholder="Nhập mã danh mục"/>
-              <input class="btn btn-default  "  type="submit" value="Go!" name="search_item" >
+              <input class="btn btn-default "  type="submit" value="Go!" name="search_item" />
             </form>
           </div>
         </div>
-    </div> -->
+    </div>
     <br></br>
     <div class="table-responsive">
                       <?php
@@ -46,7 +46,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($all_category_product as $key => $cate_pro)
+          @foreach($search_category as $key => $cate_pro)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{ $cate_pro->category_name }}</td>
@@ -80,11 +80,11 @@
       <div class="row">
         
         <div class="col-sm-5 text-center">
-          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+        <small class="text-muted inline m-t-sm m-b-sm">showing {!!$search_category->count() !!} of {!!$all_category_full->count()!!} items in page {!!$search_category->currentPage() !!}</small>
         </div>
         <div class="col-sm-7 text-right text-center-xs">                
           <ul class="pagination pagination-sm m-t-none m-b-none">
-             {!!$all_category_product->links()!!}
+             {!!$all_category_full->links()!!}
           </ul>
         </div>
       </div>

@@ -92,6 +92,7 @@ Route::post('/update-status-order/{orderId}','OrderController@update_status_orde
 Route::get('/category-product/{category_id}','CategoryProduct@show_category_home');
 Route::get('/brand-product/{brand_id}','BrandProduct@show_brand_home');
 Route::get('/detail-product/{product_id}','ProductController@detail_product');
+Route::get('/search-category-admin', 'CategoryProduct@search_category_admin');
 
 //Comment
 Route::post('/load-comment','CommentController@load_comment');

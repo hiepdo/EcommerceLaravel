@@ -33,7 +33,7 @@ class BrandProduct extends Controller
   
     public function all_brand_product(){
       $this->AuthenLogin();
-      $all_brand_product = DB::table('tbl_brand')->paginate(5);
+      $all_brand_product = DB::table('tbl_brand')->orderBy('brand_id', 'desc')->paginate(5);
     	$manager_brand_product  = view('admin.all_brand_product')->with('all_brand_product',$all_brand_product);
       
     	return view('admin_layout')->with('admin.all_brand_product', $manager_brand_product);
