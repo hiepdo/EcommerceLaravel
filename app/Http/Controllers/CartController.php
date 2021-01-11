@@ -13,62 +13,23 @@ session_start();
 
 class CartController extends Controller
 {
-    public function save_cart(Request $request)
-    {
-        $product_id = $request->product_id_hidden; 
-       
-        $quantity = $request->product_quatity;
-
-        $product_info = DB::table('tbl_product')->where('product_id',$product_id)->first();
-
-        $data['id'] = $product_info->product_id;
-        $data['qty'] = $quantity;
-        $data['name'] = $product_info->product_name;
-        $data['price'] = $product_info->product_price;
-        $data['weight'] = '100';
-        $data['options']['image'] = $product_info->product_image;
-        
-        Cart::add($data);
-        return Redirect::to('/show-cart'); 
-    }
-
-    public function show_cart()
-    {
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
-        
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
-
-        return view('pages.cart.show_cart')->with('category', $cate_product)->with('brand',$brand_product);
-    }
-        
-    public function delete_cart($rowId)
-    {
-        Cart::update($rowId, 0); 
-        return Redirect::to('/show-cart');
-    }
-
-    public function update_cart(Request $request)
-    {
-        $rowId = $request->rowId_cart;
-        $qty = $request->cart_quatity;
-        Cart::update($rowId, $qty); 
-        return Redirect::to('/show-cart');
-    }
-
     //Cart Ajax
     public function add_cart_ajax(Request $request)
     {
         $data = $request->all();
         $session_id = substr(md5(microtime()),rand(0,26),5);
         $cart = Session::get('cart');
-        if($cart==true){
+        if($cart==true)
+        {
             $is_avaiable = 0;
-            foreach($cart as $key => $val){
+            foreach($cart as $key => $val)
+            {
                 if($val['product_id']==$data['cart_product_id']){
                     $is_avaiable++;
                 }
             }
-            if($is_avaiable == 0){
+            if($is_avaiable == 0)
+            {
                 $cart[] = array(
                 'session_id' => $session_id,
                 'product_name' => $data['cart_product_name'],
@@ -93,7 +54,6 @@ class CartController extends Controller
             );
             Session::put('cart',$cart);
         }
-        
         Session::save();
     }
 
@@ -102,8 +62,10 @@ class CartController extends Controller
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
         
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
+        $all_product_topsale = DB::table('tbl_order_details')->select(DB::raw('sum(product_sales_quantity) as numbersale,product_id'))->groupBy('product_id')->orderby('numbersale','desc')->limit(10)->get();
+        $all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id','desc')->get();
 
-        return view('pages.cart.cart_ajax')->with('category', $cate_product)->with('brand',$brand_product);
+        return view('pages.cart.cart_ajax')->with('category', $cate_product)->with('brand',$brand_product)->with('product_topsale',$all_product_topsale)->with('all_product',$all_product);
     }
 
     public function delete_cart_ajax($session_id)

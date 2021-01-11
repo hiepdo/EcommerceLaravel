@@ -6,7 +6,7 @@
       Liệt kê sản phẩm
     </div>
     <div class="row w3-res-tb">
-      <div class="col-sm-5 m-b-xs">
+      <!-- <div class="col-sm-5 m-b-xs">
         <select class="input-sm form-control w-sm inline v-middle">
           <option value="0">Bulk action</option>
           <option value="1">Delete selected</option>
@@ -14,23 +14,24 @@
           <option value="3">Export</option>
         </select>
         <button class="btn btn-sm btn-default">Apply</button>                
+      </div> -->
+      <div class="col-sm-8">
       </div>
       <div class="col-sm-4">
-      </div>
-      <div class="col-sm-3">
         <div class="input-group">
-          <input type="text" class="input-sm form-control" placeholder="Search">
-          <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
-          </span>
+          <form action="{{URL::to('/search-product-admin')}}" method="Get" >
+                    {{ csrf_field() }}
+              <input type="text" name="search" placeholder="Nhập mã sản phẩm"/>
+              <input class="btn btn-default  "  type="submit" value="Go!" name="search_item" >
+            </form>
+          </div>
         </div>
-      </div>
     </div>
     <div class="table-responsive">
                       <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<div style="text-align: center; font-size: 18px;" class="alert alert-success" role="alert">'.$message.'</div>';
                                 Session::put('message',null);
                             }
                             ?>
@@ -43,10 +44,12 @@
               </label>
             </th>
             <th>Tên sản phẩm</th>
+            <th>Thư viện ảnh</th>
             <th>Giá sản phẩm</th>
             <th>Hình sản phẩm</th>
             <th>Danh Mục sản phẩm</th>
             <th>Thương Hiệu sản phẩm</th>
+            <th>Mã sản phẩm</th>
             <th>Hiển thị</th>
             
             <th style="width:30px;"></th>
@@ -57,11 +60,12 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{ $pro->product_name }}</td>
+            <td><a href="{{url('/add-gallery/'.$pro->product_id)}}">Thêm thư viện ảnh</a></td>
             <td>{{ $pro->product_price }}</td>
-            <td><img src="public/uploads/product/{{$pro->product_image }}" height="100" width="100"</td>
+            <td><img src="public/uploads/product/{{$pro->product_image }}" height="100" width="100"></td>
             <td>{{ $pro->category_name }}</td>
             <td>{{ $pro->brand_name }}</td>
-
+            <td>{{ $pro->product_id }}</td>
             <td><span class="text-ellipsis">
               <?php
                if($pro->product_status==0){
@@ -89,22 +93,20 @@
       </table>
     </div>
     <footer class="panel-footer">
+
       <div class="row">
-        
+
         <div class="col-sm-5 text-center">
-          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+          <small class="text-muted inline m-t-sm m-b-sm">showing {!!$all_product->count() !!} of {!!$all_product_full->count()!!} items in page {!!$all_product->currentPage() !!}</small>
+          
         </div>
         <div class="col-sm-7 text-right text-center-xs">                
           <ul class="pagination pagination-sm m-t-none m-b-none">
-            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+            {!!$all_product->links()!!}
           </ul>
         </div>
       </div>
+
     </footer>
   </div>
 </div>

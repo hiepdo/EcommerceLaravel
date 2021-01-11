@@ -9,13 +9,13 @@
     <div id="notify_comment"></div>
 
     <div class="table-responsive">
-                      <?php
+                     <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<div style="text-align: center; font-size: 18px;" class="alert alert-danger" role="alert">'.$message.'</div>';
                                 Session::put('message',null);
                             }
-                            ?>
+                      ?> 
       <table class="table table-striped b-t b-light" id="myTable">
         <thead>
           <tr>           
@@ -66,7 +66,7 @@
             </td>
             
             <td>{{ $cmt->comment_date }}</td>
-            <td><a href="{{'chi-tiet-san-pham/'}}" target="_blank">{{ $cmt->product->product_name }}</a></td>         
+            <td><a href="{{'detail-product/'.$cmt->product->product_id}}" target="_blank">{{ $cmt->product->product_name }}</a></td>         
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i></a>

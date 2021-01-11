@@ -59,6 +59,11 @@ body {
     overflow-x: hidden;
 }
 
+.error {
+    color: red;
+    font-family: verdana, Helvetica;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -690,6 +695,19 @@ textarea {
     color: #fff;
 }
 
+.my-btn {
+    background-color: #fff;
+    color: red;
+    font-size: 25px;
+}
+
+.my-btn--liked {
+    background-color: red;
+    color: #fff;
+    font-size: 25px;
+    border: none;
+}
+
 .header .main-info-area .right-section,
 .header .main-info-area .center-section,
 .header .main-info-area .left-section {
@@ -869,6 +887,7 @@ li.menu-item .nav-label.sale-label::before {
 
 .header-style-1 .primary-nav-section {
     background: #444444;
+    display: flex;
 }
 
 .primary {
@@ -5600,7 +5619,12 @@ table.shop_attributes tbody {
     width: calc( 50% - 15px);
     width: -webkit-calc( 50% - 15px);
     width: -moz-calc( 50% - 15px);
-    margin-bottom: 23px;
+    margin-bottom: 15px;
+}
+
+.wrap-address-billing .is-danger {
+    color: red;
+    font-size: 15px;
 }
 
 .wrap-address-billing .row-in-form.fill-wife {
@@ -8139,3 +8163,9 @@ table.shop_attributes tbody {
     margin-bottom: 65px;
     padding-left: 40px;
 }
+
+<<<<<<< HEAD .btn.btn-danger.add-to-wishlist {
+    width: 100%;
+}
+
+=======>>>>>>>f0b6fa7e2accd64e5dbc78e5280931b33c24d888

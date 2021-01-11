@@ -9,44 +9,37 @@
 				</ul>
 			</div>
 		
-			<div class="row">
+		<div class="row">
 			@foreach($product_details as $key => $value)
 				<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
 					<div class="wrap-product-detail">
 						<div class="detail-media">
 							<div class="product-gallery">
 							  <ul class="slides">
-							  
+							  <a id="wishlist_deleteurl{{$value->product_id}}" href="{{ URL::full()}}" class="product-name"><span></span></a>
+							  <a id="wishlist_producturl{{$value->product_id}}" href="{{ URL::to('/detail-product/'.$value->product_id)}}" class="product-name"><span></span></a>
 							    <li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
+							    	<img  src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
 							    </li>
-
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
+								@foreach($gallery as $key =>$gal)
+								<li  data-thumb="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}">
+							    	<img id="wishlist_productimage{{$value->product_id}}" src="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}" width="720" heigh="720" alt="product thumbnail" />
 							    </li>
-								
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
-								</li>
-								
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
-								</li>
-								
-								<li data-thumb="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-							    	<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="product thumbnail" />
-							    </li>
+								@endforeach
 							  </ul>
 							</div>
 						</div>
 						<div class="detail-info">
 							<div class="product-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <a href="#" class="count-review">(05 review)</a>
+
+								<?php $numberlike = 0 ;?>
+								<b>Lượt Yêu Thích:
+								@foreach($all_product_toplike as $key => $pro_toplike)
+								<?php if($value->product_id == $pro_toplike->product_id) 
+								{ $numberlike = $pro_toplike->numberlike; }?>
+								@endforeach
+								<?php echo $numberlike; ?>
+								<i class="fa fa-heart" aria-hidden="true"></i></b>
                             </div>
                             <h2 class="product-name">{{$value->product_name}}</h2>
                             <div class="short-desc">
@@ -63,24 +56,46 @@
                             <div class="stock-info in-stock">
                                 <p class="availability">Tình trạng: <b>Còn hàng</b></p>
                             </div>
-                            <form action="{{URL::to('/save-cart')}}" method="POST">
-								{{csrf_field()}}
+                            <form>
+							@csrf
 								<div class="quantity">
 									<span>Số lượng:</span>
+									<input type="hidden" name="" value="{{$value->product_id}}" class="cart_product_id">
+                                    <input type="hidden" name="" id="wishlist_productname{{$value->product_id}}" value="{{$value->product_name}}" class="cart_product_name">
+                                    <input type="hidden" name="" value="{{$value->product_image}}" class="cart_product_image">
+                                    <input type="hidden" name="" id="wishlist_productprice{{$value->product_id}}" value="{{$value->product_price}}" class="cart_product_price">
+									<input type="hidden" value="{{$value->product_id}}" class="wishlist_product_id_{{$value->product_id}}">
 									<div class="quantity-input">
-										<input type="text" name="product_quatity" value="1" data-max="120" pattern="[0-9]*" >
-										<input type="hidden" name="product_id_hidden" value="{{$value->product_id}}">
+                                        <!-- <input type="hidden" name="" value="1" class="cart_product_qty"> -->
+										<input type="text" name="product_quatity" class="cart_product_qty" value="1" data-max="120" pattern="[0-9]*" >
 										<a class="btn btn-reduce" href="#"></a>
 										<a class="btn btn-increase" href="#"></a>
 									</div>
 								</div>
 								<div class="wrap-butons">
-									<button type="submit" class="btn add-to-cart">Thêm vào giỏ hàng</button>
-									<!-- <a href="#" class="btn add-to-cart">Thêm vào giỏ hàng</a> -->
-									<div class="wrap-btn">
-										<a href="#" class="btn btn-compare">Thêm so sánh</a>
-										<a href="#" class="btn btn-wishlist">Thêm yêu thích</a>
-									</div>
+									<button type="button" class="btn add-to-cart add-to-cart-product-detail">Thêm vào giỏ hàng</button>
+									<p> </p>
+											<?php  $like = 0; ?>
+											@foreach($Like_Not_Like as $key => $pro_toplike)
+											<?php
+											if($value->product_id == $pro_toplike->product_id) 
+											{ $like = $pro_toplike->product_id; }?>
+											@endforeach
+											<?php 
+                                                $customer_id = Session::get('customer_id');
+                                                if($customer_id!=NULL && $like!=$value->product_id )
+                                                {
+                                            ?>
+											<b>
+                                            <button type="button" data-id_product="{{$value->product_id}}" class="btn btn-danger add-to-wishlist-product-detail" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+                                            Chưa yêu thích
+											<?php }else if ($customer_id!=NULL && $like ==$value->product_id ) { ?>
+											<button type="button" data-id_product="{{$value->product_id}}" class="btn btn-primary delete-to-wishlist-ajax" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+                                            Đã yêu thích
+											<?php }else{?>
+												<button type="button"  class="btn btn-danger" id="{{$value->product_id}}" onclick="add_wishlist(this.id);" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+											<?php } ?>
+										</b>
 								</div>
 							</form>
 						</div>
@@ -95,19 +110,6 @@
 									<p>{!!$value->product_desc!!}</p>
 								</div>
 								<div class="tab-content-item " id="add_infomation">
-									<!-- <table class="shop_attributes">
-										<tbody>
-											<tr>
-												<th>Weight</th><td class="product_weight">1 kg</td>
-											</tr>
-											<tr>
-												<th>Dimensions</th><td class="product_dimensions">12 x 15 x 23 cm</td>
-											</tr>
-											<tr>
-												<th>Color</th><td><p>Black, Blue, Grey, Violet, Yellow</p></td>
-											</tr>
-										</tbody>
-									</table> -->
 									<p>{!!$value->product_content!!}</p>	 
 								</div>
 								<div class="tab-content-item active" id="review">
@@ -116,7 +118,6 @@
 										
 										<div id="comments">
 											<h2 class="woocommerce-Reviews-title">Tất cả bình luận của sản phẩm  <span>{{$value->product_name}}</span></h2>
-											
 											<form action="#">
 												@csrf
 												<input type="hidden" name="comment_product_id" class="comment_product_id" value="{{$value->product_id}}">
@@ -127,13 +128,11 @@
 										<div id="review_form_wrapper">
 											<div id="review_form">
 												<div id="respond" class="comment-respond"> 
-
 													<form action="#" id="commentform" class="comment-form" >
 														
 														<div class="comment-form-rating">
 															<span>Điểm đánh giá</span>
 															<p class="stars">
-																
 																<label for="rated-1"></label>
 																<input type="radio" id="rated-1" name="rating" value="1">
 																<label for="rated-2"></label>
@@ -157,11 +156,21 @@
 															</label>
 															<textarea name="comment" class="comment_content" id="comment"  cols="45" rows="8"></textarea>
 														</p>
+														<?php $customer_id = Session::get('customer_id'); 
+														if($customer_id != NULL)
+														{ ?>
 														<button type="button" class="btn btn-primary btn-comment pull-left sent-comment">
 															Gửi bình luận
 														</button>
+														<?php } 
+														else { ?>
+														<a href="{{URL::to('/login')}}">
+														<button type="button" class="btn btn-primary btn-comment pull-left">
+															Gửi bình luận
+														</button>
+														</a>
+														<?php }?>
 													</form>
-
 												</div><!-- .comment-respond-->
 											</div><!-- #review_form -->
 										</div><!-- #review_form_wrapper -->
@@ -174,106 +183,29 @@
 				</div><!--end main products area-->
 			@endforeach
 				<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
-					<div class="widget widget-our-services ">
-						<div class="widget-content">
-							<ul class="our-services">
-
-								<li class="service">
-									<a class="link-to-service" href="#">
-										<i class="fa fa-truck" aria-hidden="true"></i>
-										<div class="right-content">
-											<b class="title">Free Shipping</b>
-											<span class="subtitle">On Oder Over $99</span>
-											<p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-										</div>
-									</a>
-								</li>
-
-								<li class="service">
-									<a class="link-to-service" href="#">
-										<i class="fa fa-gift" aria-hidden="true"></i>
-										<div class="right-content">
-											<b class="title">Special Offer</b>
-											<span class="subtitle">Get a gift!</span>
-											<p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-										</div>
-									</a>
-								</li>
-
-								<li class="service">
-									<a class="link-to-service" href="#">
-										<i class="fa fa-reply" aria-hidden="true"></i>
-										<div class="right-content">
-											<b class="title">Order Return</b>
-											<span class="subtitle">Return within 7 days</span>
-											<p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div><!-- Categories widget-->
-
 					<div class="widget mercado-widget widget-product">
 						<h2 class="widget-title">Sản phẩm phổ biến</h2>
 						<div class="widget-content">
 							<ul class="products">
+							@foreach($all_product_topsale as $key => $pro_topsale)
+							@foreach($all_product as $key => $product)
+							<?php if($product->product_id == $pro_topsale->product_id) { ?>
 								<li class="product-item">
 									<div class="product product-widget-style">
 										<div class="thumbnnail">
-											<a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="{{ asset('public/frontend/images/products/digital_01.jpg') }}" alt=""></figure>
+											<a href="{{ URL::to('/detail-product/'.$pro_topsale->product_id)}}" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
+												<figure><img src="{{ URL::to('public/uploads/product/'.$product->product_image)}}" alt=""></figure>
 											</a>
 										</div>
 										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
+										<a href="#" class="product-name"><span>{{$product->product_name}}</span></a>
+										<div class="wrap-price"><span class="product-price">{{number_format($product->product_price)}} VNĐ</span></div>
+									</div>
 									</div>
 								</li>
-
-								<li class="product-item">
-									<div class="product product-widget-style">
-										<div class="thumbnnail">
-											<a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="{{ asset('public/frontend/images/products/digital_01.jpg') }}" alt=""></figure>
-											</a>
-										</div>
-										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
-									</div>
-								</li>
-
-								<li class="product-item">
-									<div class="product product-widget-style">
-										<div class="thumbnnail">
-											<a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="{{ asset('public/frontend/images/products/digital_01.jpg') }}" alt=""></figure>
-											</a>
-										</div>
-										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
-									</div>
-								</li>
-
-								<li class="product-item">
-									<div class="product product-widget-style">
-										<div class="thumbnnail">
-											<a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="{{ asset('public/frontend/images/products/digital_01.jpg') }}" alt=""></figure>
-											</a>
-										</div>
-										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
-									</div>
-								</li>
-
+								<?php } ?>
+								@endforeach 
+								@endforeach 
 							</ul>
 						</div>
 					</div>
@@ -282,14 +214,14 @@
 
 				<div class="single-advance-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="wrap-show-advance-info-box style-1 box-in-site">
-						<h3 class="title-box">Sản phẩm tương tự</h3>
+						<h3 class="title-box">Sản phẩm liên quan</h3>
 						<div class="wrap-products">
 							<div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
-
+							@foreach($relate as $key => $related)
 								<div class="product product-style-2 equal-elem ">
 									<div class="product-thumnail">
-										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="{{ asset('public/frontend/images/products/digital_04.jpg') }}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+										<a href="{{$related->product_id}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+											<img src="{{URL::to('public/uploads/product/'.$related->product_image)}}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim">
 										</a>
 										<div class="group-flash">
 											<span class="flash-item new-label">new</span>
@@ -299,135 +231,11 @@
 										</div>
 									</div>
 									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><span class="product-price">$250.00</span></div>
+										<a href="#" class="product-name"><span>{{$related->product_name}}</span></a>
+										<div class="wrap-price"><span class="product-price">{{number_format($related->product_price).' '.'VNĐ'}}</span></div>
 									</div>
 								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="{{ asset('public/frontend/images/products/digital_04.jpg') }}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="group-flash">
-											<span class="flash-item sale-label">sale</span>
-										</div>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><ins><p class="product-price">$168.00</p></ins> <del><p class="product-price">$250.00</p></del></div>
-									</div>
-								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="{{ asset('public/frontend/images/products/digital_04.jpg') }}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="group-flash">
-											<span class="flash-item new-label">new</span>
-											
-										</div>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><ins><p class="product-price">$168.00</p></ins> <del><p class="product-price">$250.00</p></del></div>
-									</div>
-								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="{{ asset('public/frontend/images/products/digital_04.jpg') }}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="group-flash">
-											<span class="flash-item bestseller-label">Bestseller</span>
-										</div>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><span class="product-price">$250.00</span></div>
-									</div>
-								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="{{ asset('public/frontend/images/products/digital_04.jpg') }}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><span class="product-price">$250.00</span></div>
-									</div>
-								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="{{ asset('public/frontend/images/products/digital_04.jpg') }}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="group-flash">
-											<span class="flash-item sale-label">sale</span>
-										</div>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><ins><p class="product-price">$168.00</p></ins> <del><p class="product-price">$250.00</p></del></div>
-									</div>
-								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="{{ asset('public/frontend/images/products/digital_04.jpg') }}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="group-flash">
-											<span class="flash-item new-label">new</span>
-										</div>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><span class="product-price">$250.00</span></div>
-									</div>
-								</div>
-
-								<div class="product product-style-2 equal-elem ">
-									<div class="product-thumnail">
-										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-											<figure><img src="{{ asset('public/frontend/images/products/digital_04.jpg') }}" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
-										</a>
-										<div class="group-flash">
-											<span class="flash-item bestseller-label">Bestseller</span>
-										</div>
-										<div class="wrap-btn">
-											<a href="#" class="function-link">quick view</a>
-										</div>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><span class="product-price">$250.00</span></div>
-									</div>
-								</div>
-
+							@endforeach
 							</div>
 						</div><!--End wrap-products-->
 					</div>

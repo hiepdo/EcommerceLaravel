@@ -9,7 +9,7 @@
                          <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<br><div style="text-align: center; font-size: 18px;" class="alert alert-success" role="alert">'.$message.'</div>';
                                 Session::put('message',null);
                             }
                             ?>
@@ -20,12 +20,14 @@
                                     {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên Sản Phẩm</label>
-                                    <input type="text" name="product_name" class="form-control" id="exampleInputEmail1" 
+                                    <input data-validation="length" data-validation-length="min1" data-validation-error-msg="Hãy nhập vào tên cho sản phẩm"
+                                    type="text" name="product_name" class="form-control" id="exampleInputEmail1" 
                                     placeholder="Tên sản phẩm">
                                 </div>      
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá Sản Phẩm</label>
-                                    <input type="text" name="product_price" class="form-control" id="exampleInputEmail1" 
+                                    <input data-validation="number" data-validation-error-msg="Chỉ được nhập vào chữ số"
+                                    type="text" name="product_price" class="form-control" id="exampleInputEmail1" 
                                     placeholder="Tên sản phẩm">
                                 </div>                        
                                 <div class="form-group">
@@ -34,13 +36,11 @@
                                 </div>            
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Mô tả Sản phẩm</label>
-                                    <textarea style="resize: none" rows="8" class="form-control" name="product_desc" id="exampleInputPassword1" 
-                                    placeholder="Mô tả sản phẩm"></textarea>
+                                    <textarea style="resize: none"  rows="8" class="form-control" name="product_desc"  placeholder="Mô tả sản phẩm"></textarea>
                                 </div>       
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Nội Dung Sản phẩm</label> 
-                                    <textarea style="resize: none" rows="8" class="form-control" name="product_content" id="exampleInputPassword1" 
-                                    placeholder="Nội Dung sản phẩm"></textarea>
+                                    <textarea style="resize: none" rows="8" class="form-control" name="product_content"   placeholder="Nội dung sản phẩm"></textarea>
                                 </div> 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Danh Mục Sản Phẩm</label>
