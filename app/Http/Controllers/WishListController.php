@@ -63,6 +63,7 @@ class WishListController extends Controller
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
         $all_product = DB::table('tbl_product')
         ->join('tbl_wishlist','tbl_wishlist.product_id','=','tbl_product.product_id')
+        ->where('tbl_wishlist.customers_id',$customer_id)
         ->where('product_status','0')->orderby('tbl_product.product_id','desc')->paginate(6); 
         $all_product_full =  DB::table('tbl_product')->get();
 

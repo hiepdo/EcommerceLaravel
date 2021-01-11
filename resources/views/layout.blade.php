@@ -101,9 +101,9 @@
 										if($customer_id!=null){
 										
 									?>
-										<span class="index">{{session::get('numberlike_customer')}} item</span>
+										<span class="index">{{session::get('numberlike_customer')}} sản phẩm</span>
 										<?php } else { ?>
-											<span class="index">0 item</span>
+											<span class="index">0 sản phẩm</span>
 										<?php } ?>
 										<span class="title">Wishlist</span>
 									</div>
