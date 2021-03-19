@@ -25,7 +25,13 @@
     color: red;
     font-size: 25px;
 }
-
+.my-btn--detail {
+    background-color: #fff;
+    color: red;
+    font-size: 25px;
+	border: none;
+	
+}
 .my-btn--liked {
     background-color: red;
     color: #fff;

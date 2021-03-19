@@ -45,7 +45,7 @@
 							<input type="password" name="customer_password" placeholder="Mật khẩu">
 						</fieldset>
 						<fieldset class="wrap-input">
-							<label for="frm-reg-cfphone">Mật khẩu</label>
+							<label for="frm-reg-cfphone">Số điện thoại</label>
 							<input type="text" name="customer_phone" placeholder="Số điện thoại">
 						</fieldset>
 						<input type="submit" class="btn btn-sign" value="Register" name="register">
