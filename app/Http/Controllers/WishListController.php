@@ -21,14 +21,12 @@ class WishListController extends Controller
         $customer = Session::get('customer_id');
         if($customer!=null){
             $data = $request->all();
-            // $wishlist = array();
-            // $wishlist['customers_id'] = Session::get('customer_id');
-            // $wishlist['product_id'] = $data['product_id'];
             $wishList = new WishList();
             $wishList->customers_id =  Session::get('customer_id');
             $wishList->product_id = $data['product_id'];
             $wishList->save();
             Session::put('message','Thêm yêu thích thành công');
+            
         }else{
             Session::put('message','Bạn chưa đăng nhập, Bạn nên đăng nhập để yêu thích được lưu');
         }

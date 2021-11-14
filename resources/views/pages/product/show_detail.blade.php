@@ -87,14 +87,14 @@
                                                 {
                                             ?>
 											<b>
-                                            <button type="button" data-id_product="{{$value->product_id}}" class="btn btn-danger add-to-wishlist-product-detail" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+                                            <button type="button" data-id_product="{{$value->product_id}}" class="btn btn-danger my-btn--detail add-to-wishlist-product-detail" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
                                             Chưa yêu thích
 											<?php }else if ($customer_id!=NULL && $like ==$value->product_id ) { ?>
-											<button type="button" data-id_product="{{$value->product_id}}" class="btn btn-primary delete-to-wishlist-ajax" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+											<button type="button" data-id_product="{{$value->product_id}}" class="btn btn-primary my-btn--detail delete-to-wishlist-ajax" name="add_to_wishlist" ><i class="fa fa-heart" aria-hidden="true"></i></button>
                                             Đã yêu thích
 											<?php }else{?>
-												<button type="button"  class="btn btn-danger" id="{{$value->product_id}}" onclick="add_wishlist(this.id);" ><i class="fa fa-heart" aria-hidden="true"></i></button>
-											<?php } ?>
+												<button type="button"  class="btn btn-danger my-btn--detail" id="{{$value->product_id}}" onclick="add_wishlist(this.id);" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+											<?php } ?> 
 										</b>
 								</div>
 							</form>
